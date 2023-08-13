@@ -1,12 +1,14 @@
 import HomeIntro from "@/components/home/Home";
+import Projects from "@/components/projects/Projects";
 
 export default function Home() {
   return (
     <div>
-      <div>
         {/* intro session */}
         <HomeIntro />
-      </div>
+
+        {/* projetos */}
+        <Projects />
     </div>
   );
 }

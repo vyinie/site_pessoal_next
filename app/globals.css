@@ -8,3 +8,19 @@ body,
   w-full
   h-full;
 }
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: #3335;
+}
+
+*::-webkit-scrollbar:hover {
+  width: 13px;
+  height: 13px;
+  background-color: #3335;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #777;
+  border-radius: 50px;
+}
