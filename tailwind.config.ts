@@ -13,12 +13,17 @@ const config: Config = {
       "mobile-lg": { max: "425px", min: "321px" },
       mobile: { max: "425px" },
       tablet: { min: "426px", max: "1024px" },
-      leptop: { min: "1024px", max: "1400" },
+      laptop: { min: "1024px", max: "1400px" },
       desktop: { min: "1400px" },
       "exept-mobile": { min: "426px" },
       moblet: { max: "1024px" },
     },
     extend: {
+      colors: {
+        purple: {
+          550: "#a91dd0",
+        },
+      },
       keyframes: {
         intro_key: { from: { opacity: "0" }, to: { opacity: "1" } },
       },

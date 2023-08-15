@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500&display=swap");
+.body {
+  display: grid;
+  grid-template-columns: 570px auto;
+  grid-template-rows: 70px auto;
+  grid-template-areas: "header header" "form img";
+
+  font-family: "Inter", sans-serif;
+}
+.header {
+  grid-area: header;
+}
+.ACform {
+  grid-area: form;
+}
+.ACimg {
+  grid-area: img;
+}
+
+.ACheaderLinks > p:hover {
+  @apply transition-colors;
+  color: #a91dd0;
+}
+
+.ACloginBtn:hover {
+  background: linear-gradient(145deg, #a91dd0, #d215c9);
+}
+
+.signupInp {
+  @apply h-11
+  pl-3
+  outline-none
+  rounded-lg
+  text-lg;
+}
+
+.arrow {
+  display: none;
+}
+
+.signupBtn:hover {
+  background-color: #8808ac;
+}
+
+.atBody {
+  display: none;
+}
+
+@media (width < 1160px) {
+  .header {
+    padding-left: 70px;
+  }
+}
+
+@media (width < 1100px) {
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  .ACform {
+    align-items: center;
+  }
+}

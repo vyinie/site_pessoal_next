@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 body,
+html,
 .App {
-  @apply bg-yellow-100
-  w-full
+  @apply w-full
   h-full;
+}
+.App {
+  @apply bg-yellow-100;
 }
 *::-webkit-scrollbar {
   width: 5px;

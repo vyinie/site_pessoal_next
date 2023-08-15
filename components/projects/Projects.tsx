@@ -46,7 +46,7 @@ export default function Projects() {
         title: "acALMA",
         des: "landing page da newsletter de um curso de meditação, apenas HTML e CSS",
         id: 4,
-        link: "/acAlma",
+        link: "/acalma",
         img: acAlma,
       },
       {
