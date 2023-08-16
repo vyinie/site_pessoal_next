@@ -29,7 +29,7 @@ function CursoMeditacao() {
         <h1 className="text-5xl">
           <h1 className="text-purple-550 ">Inscreva-se agora</h1> na Newsletter
         </h1>
-        <p className=" w-[500px] moblet:text-xl moblet:w-[70%] mobile:w-[90%] mobile-lg:min-w-[370px] mobile-sm:min-w-[300px]">
+        <p className=" w-[500px] moblet:text-xl moblet:w-[70%] tablet:min-w-[370px] mobile:w-[90%] mobile-lg:min-w-[370px] mobile-sm:min-w-[300px]">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam
           aliquclassName est expedita mollitia, aut veritatis magnam natus
           blanditiis iste dolor libero harum obcaecati possimus rerum, aperiam
