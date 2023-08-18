@@ -5,7 +5,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 export default function Contact() {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="BScontactLinkContainer">
       <div className="BScontactLink">
         <WhatsAppIcon sx={{ fontSize: "40px" }} />
         <p>(81) 99999-9999</p>

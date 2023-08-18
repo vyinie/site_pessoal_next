@@ -8,15 +8,16 @@ import { NavBar } from "./components/NavBar";
 
 import Image from "next/image";
 import Contact from "./components/contact";
+import { BSMenu } from "./components/Menu";
 
 export default function MHSBarberShop() {
   return (
     <div className="BSbody w-full h-screen overflow-hidden overflow-y-auto flex flex-col scroll-pt-14 scroll-smooth">
       <ArrowBackTop />
       {/* ==================== header ==================== */}
-      <header className="h-14 w-full px-5 bg-black flex justify-between items-center fixed z-10 ">
+      <header className="h-14 w-full px-5 bg-neutral-800 flex justify-between items-center fixed z-10 ">
         <BackIcon className="top-1/2 -translate-y-1/2 left-0 w-10" />
-        <Image className="h-14 w-14 ml-8" src={logo} alt="" />
+        <Image className="h-12 w-12 ml-8" src={logo} alt="" />
         <NavBar />
       </header>
 
@@ -38,9 +39,13 @@ export default function MHSBarberShop() {
 
       <div
         id="BSmenu"
-        className="menu w-full flex flex-col items-center justify-center"
+        className="menu w-full flex flex-col items-center justify-center relative"
       >
-        <p className="text-yellow-400 text-5xl capitalize">serviços</p>
+        <p className="text-yellow-400 text-5xl capitalize absolute top-5 right-1/2 translate-x-1/2">
+          serviços
+        </p>
+
+        <BSMenu />
       </div>
 
       {/* ================== horarios ================== */}
@@ -62,7 +67,10 @@ export default function MHSBarberShop() {
       {/* ================== localização ================== */}
 
       <div id="BSaddress" className="address w-full bg-white pt-5">
-        <p className="mapTitle text-3xl font-bold uppercase text-center"> endereço</p>
+        <p className="mapTitle text-3xl font-bold uppercase text-center">
+          {" "}
+          endereço
+        </p>
         <div className="addressCard ml-[5vw] w-[310px] p-2 text-xl rounded-lg bg-neutral-100">
           <h4>MHS barber shop</h4>
           <br />
