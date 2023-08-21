@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================== BUTOES ================== */
+.actBtn {
+  @apply hover:bg-zinc-200 dark:hover:bg-neutral-600 rounded-full cursor-pointer transition;
+}
+.kase {
+  @apply absolute top-0 left-0 h-full w-full cursor-pointer;
+}
+.bgHover {
+  @apply hover:bg-zinc-200 hover:bg-opacity-50 dark:border-neutral-600 dark:hover:bg-neutral-600 dark:hover:bg-opacity-50 border-slate-300 transition;
+}
+/* ================== INPUTS ================== */
+.containedInp {
+  @apply  
+    pl-1
+    outline-none
+    
+    
+    h-full
+    text-ellipsis 
+    
+    dark:text-white
+    dark:text-opacity-80
+    dark:bg-zinc-500
+    dark:border-neutral-700;
+}
+
+.arrow {
+  @apply after:w-2
+    after:h-2 
+    after:absolute
+    after:bottom-[41%]
+    after:right-2
+    
+    after:rotate-[135deg]
+    
+    after:border-solid
+    after:border-r-[2px]
+    after:border-t-[2px]
+  after:border-black
+   
+    after:content-[""]
+  
+    w-full
+    h-full
+   
+    absolute
+    top-0
+    right-0
+    z-[2];
+}
+
+/* tabs */
+.tab,
+table {
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+/* ================== DIVS ================== */
+.wrapper {
+  @apply fixed 
+  top-0
+  left-0
+
+  h-full
+  w-full
+  
+  bg-black
+  bg-opacity-60
+  
+  flex
+  items-center
+  justify-center
+  
+  transition
+;
+}
+
+.skeletonShape {
+  @apply bg-zinc-300
+  dark:bg-neutral-700
+  border-zinc-600
+  
+  rounded-md
+  border
+  shadow-md;
+}

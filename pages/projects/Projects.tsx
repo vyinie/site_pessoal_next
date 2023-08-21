@@ -3,7 +3,6 @@ import "./Projects.css";
 
 import { useState } from "react";
 
-import Item from "./components/ProjectItem";
 
 import colorgb from "/public/_images/projectsItems/games/coloRGB_kase.png";
 import todo from "/public/_images/projectsItems/apps/ToDo_kase.png";
@@ -12,6 +11,7 @@ import mhsBS from "/public/_images/projectsItems/landingPages/mhsBS/mhsBS_kase.p
 import emBreve from "/public/_images/projectsItems/em-breve.png";
 import kanban from "/public/_images/projectsItems/apps/kanban_kase.png";
 import ProjectsMenu from "./components/ProjectsMenu";
+import Item from "./components/ProjectItem";
 
 export default function Projects() {
   const projectsList = {

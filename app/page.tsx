@@ -1,6 +1,5 @@
-import HomeIntro from "@/components/home/Home";
-import Projects from "@/components/projects/Projects";
-import { getPageFiles } from "next/dist/server/get-page-files";
+import HomeIntro from "@/pages/home/Home";
+import Projects from "@/pages/projects/Projects";
 
 export default async function Home() {
   return (

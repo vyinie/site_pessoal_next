@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind variants;
+
+.to_do_item {
+  display: grid;
+  grid-template-columns:
+    min-content auto repeat(2, 38px);
+    @apply 
+    w-[300px]
+    h-10
+    bg-white
+    rounded-md
+    gap-2
+    items-center
+    border
+    border-zinc-400;
+}
