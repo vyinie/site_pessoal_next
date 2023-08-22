@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export function NavBar() {
+export default function NavBar() {
   // mostra os links do header
   const [navToggle, setNavToggle] = useState(true);
 

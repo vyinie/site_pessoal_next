@@ -3,12 +3,12 @@ import "./styles.css";
 import logo from "/public/_images/projectsItems/landingPages/mhsBS/MHSlogo.png";
 
 import BackIcon from "@/pages/projects/components/global/BackIcon";
-import { ArrowBackTop } from "./components/ArrowBackTop";
-import { NavBar } from "./components/NavBar";
+import ArrowBackTop from "./components/ArrowBackTop";
+import NavBar from "./components/NavBar";
 
 import Image from "next/image";
 import Contact from "./components/contact";
-import { BSMenu } from "./components/Menu";
+import BSMenu from "./components/Menu";
 
 export default function MHSBarberShop() {
   return (
@@ -30,7 +30,7 @@ export default function MHSBarberShop() {
           <h1 className="homeTitle">MHS</h1>
           <h1 className="homeTitle">Barber Shop</h1>
         </div>
-        <div className="mt-5 w-[300px] h-12 flex items-center justify-center rounded-full bg-green-500 cursor-pointer text-white text-3xl ">
+        <div className="mt-5 w-[300px] h-12 flex items-center justify-center rounded-full bg-green-500 hover:bg-green-600 transition cursor-pointer text-white text-3xl">
           Fazer Reserva
         </div>
       </div>

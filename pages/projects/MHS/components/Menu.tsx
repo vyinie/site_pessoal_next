@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export function BSMenu() {
+export default function BSMenu() {
   const servicos = [
     {
       id: 0,

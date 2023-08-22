@@ -20,6 +20,7 @@ export function ToDoItemEditor({
     Access.enterAct(editToDo, e);
     Access.closeEsc(e, setIsOpen);
   }
+  
   useEffect(() => {
     if (isOpen) document.getElementById(`to_do_edit_inp${id}`)?.focus();
   }, [isOpen]);
