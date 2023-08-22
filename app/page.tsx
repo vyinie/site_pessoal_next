@@ -1,5 +1,5 @@
-import HomeIntro from "@/pages/home/Home";
-import Projects from "@/pages/projects/Projects";
+import HomeIntro from "@/components/home/Home";
+import Projects from "@/components/projects/Projects";
 
 export default async function Home() {
   return (

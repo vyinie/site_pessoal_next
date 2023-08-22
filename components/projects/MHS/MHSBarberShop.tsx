@@ -2,7 +2,7 @@ import "./styles.css";
 
 import logo from "/public/_images/projectsItems/landingPages/mhsBS/MHSlogo.png";
 
-import BackIcon from "@/pages/projects/components/global/BackIcon";
+import BackIcon from "@/components/projects/components/global/BackIcon";
 
 import ArrowBackTop from "./components/ArrowBackTop";
 import NavBar from "./components/NavBar";
