@@ -33,7 +33,7 @@ export function BSMenu() {
     setScroll((old) => (old === 1 ? 0 : 1));
 
     const el = document.getElementById(`menuCard${scroll}`);
-    el.scrollIntoView({
+    el?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
     });
