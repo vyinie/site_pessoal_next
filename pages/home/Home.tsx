@@ -1,9 +1,12 @@
-import './styles.css'
+import "./styles.css";
+
 import myPic from "/public/_images/home/FotinhaDaora.png";
 import github from "/public/_images/contact/github.png";
 import curriculo from "/public/_images/contact/curriculo.png";
 import linkedin from "/public/_images/contact/linkedin.png";
+
 import Image from "next/image";
+
 import TextAnimation from "./TextAnimation";
 
 export default function HomeIntro() {
@@ -35,7 +38,9 @@ export default function HomeIntro() {
       />
 
       <div className="flex flex-col items-center relative uppercase font-bold">
-        <h1 className="title tracking-wide sm:tracking-tight w-fit">desenvolvedor</h1>
+        <h1 className="title tracking-wide sm:tracking-tight w-fit">
+          desenvolvedor
+        </h1>
 
         <div className="subtitleContainer">
           <h1 className="text-sky-500 title sm:tracking-tight">react</h1>
@@ -44,7 +49,11 @@ export default function HomeIntro() {
 
         <div className="w-full h-12 flex justify-around items-center mt-4 sm:mt-8">
           {links.map((i) => (
-            <a key={i.id} href={i.link} className="w-12 h-12 moblet:w-14 moblet:h-14">
+            <a
+              key={i.id}
+              href={i.link}
+              className="w-12 h-12 moblet:w-14 moblet:h-14"
+            >
               <Image className="imgLink" src={i.img} alt={i.alt} />
             </a>
           ))}
@@ -53,4 +62,3 @@ export default function HomeIntro() {
     </div>
   );
 }
-

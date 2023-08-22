@@ -1,5 +1,5 @@
 "use client";
-
+import './styles.css'
 import { useEffect, useState } from "react";
 
 export default function TextAnimation() {

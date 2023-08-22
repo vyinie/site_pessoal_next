@@ -2,13 +2,14 @@ import "./styles.css";
 
 import logo from "/public/_images/projectsItems/landingPages/mhsBS/MHSlogo.png";
 
-import BackIcon from "@/pagesComponents/projects/components/global/BackIcon";
+import BackIcon from "@/pages/projects/components/global/BackIcon";
+
 import ArrowBackTop from "./components/ArrowBackTop";
 import NavBar from "./components/NavBar";
-
-import Image from "next/image";
 import Contact from "./components/contact";
 import BSMenu from "./components/Menu";
+
+import Image from "next/image";
 
 export default function MHSBarberShop() {
   return (

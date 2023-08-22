@@ -1,6 +1,6 @@
 import Img from "/public/_images/projectsItems/landingPages/acAlma/HomeImg.png";
 import "./style.css";
-import BackIcon from "@/pagesComponents/projects/components/global/BackIcon";
+import BackIcon from "@/pages/projects/components/global/BackIcon";
 import Image from "next/image";
 import AcLinks from "./AcLinks";
 
