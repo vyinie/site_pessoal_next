@@ -41,8 +41,13 @@ export function DelBtn({
   func: () => void;
 }) {
   return (
-    <div onClick={func} className={`${className || ""} actBtn p-1 relative `}>
-      <div className="kase"></div>
+    <div className={`${className || ""} actBtn p-1 relative `}>
+      <div
+        tabIndex={0}
+        onKeyDown={(e) => Access.enterAct(func, e)}
+        onClick={func}
+        className="kase"
+      ></div>
       <DeleteOutlineIcon sx={{ fontSize: "30px" }} />
     </div>
   );
@@ -50,14 +55,19 @@ export function DelBtn({
 
 // ========================= TOGGLE EDIT WRAPPER =========================
 export function EditBtn({ setToggle }) {
-  const handlerEditDispay = (e) => {
+  function handlerEditDispay(e) {
     Access.handlerWrapper(e, setToggle);
-  };
+  }
 
+  function enterAct(e) {
+    Access.enterAct(handlerEditDispay, e);
+  }
   return (
     <div className="stay-on-click actBtn p-1 relative">
       <div
+        tabIndex={0}
         onClick={handlerEditDispay}
+        onKeyDown={enterAct}
         className="btn kase change-on-click"
       ></div>
       <EditIcon sx={{ fontSize: "30px" }} />
@@ -72,7 +82,11 @@ export function InfoBtn({ setToggle }) {
   };
   return (
     <div className="stay-on-click actBtn p-1 relative">
-      <div onClick={handlerEditDispay} className="kase change-on-click"></div>
+      <div
+        onClick={handlerEditDispay}
+        tabIndex={0}
+        className="kase change-on-click"
+      ></div>
       <InfoOutlinedIcon sx={{ fontSize: "30px" }} />
     </div>
   );

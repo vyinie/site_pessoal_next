@@ -11,8 +11,11 @@
     h-10
     bg-white
     rounded-md
-    gap-2
+    gap-1
     items-center
     border
-    border-zinc-400;
+    border-zinc-400
+    pl-2
+    hover:bg-zinc-100
+    ;
 }

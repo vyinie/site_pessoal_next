@@ -1,11 +1,10 @@
 "use client";
 import { SetStateAction, useState } from "react";
-import { CommonBtn, DelBtn, EditBtn } from "../../components/global/buttons";
+import { DelBtn, EditBtn } from "../../components/global/buttons";
 import "../styles.css";
 import { ToDoItem } from "@/functions/interfaces";
-import { accessibility } from "@/functions/accessibilityFunctions";
+import { ToDoItemEditor } from "./EditPopUp";
 
-const Access = new accessibility();
 export default function ToDoItemComp({
   to_do_item,
   setMainList,
@@ -42,22 +41,21 @@ export default function ToDoItemComp({
     const index = list.findIndex((i) => i.id === to_do_item.id);
 
     //mó trampo pra o ts não chorar
-    const newText = (
-      document.getElementById(
-        `to_do_edit_inp${to_do_item.id}`
-      ) as HTMLInputElement
-    ).value;
+    const newText = document.getElementById(
+      `to_do_edit_inp${to_do_item.id}`
+    ) as HTMLInputElement;
 
-    list[index].text = newText;
-
+    list[index].text = newText.value;
+    
     localStorage.setItem("to_do_list", JSON.stringify(list));
     setMainList(() => list);
     setIsOpen(() => false);
+    newText.value = "";
   }
 
   return (
     <div className="to_do_item relative">
-      <EditInp
+      <ToDoItemEditor
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         editToDo={editItem}
@@ -79,34 +77,6 @@ export default function ToDoItemComp({
       </label>
       <EditBtn setToggle={setIsOpen} />
       <DelBtn func={delItem} />
-    </div>
-  );
-}
-export function EditInp({
-  isOpen,
-  setIsOpen,
-  editToDo,
-  id,
-}: {
-  isOpen: boolean;
-  editToDo: () => void;
-  id: number;
-  setIsOpen: (v: SetStateAction<boolean>) => void;
-}) {
-  return (
-    <div
-      onMouseLeave={() => setIsOpen(() => false)}
-      className={`${
-        isOpen ? "flex" : "hidden"
-      } w-full h-full gap-1 items-center bg-black absolute top-0 left-0 z-10`}
-    >
-      <input
-        type="text"
-        placeholder="Editar"
-        id={`to_do_edit_inp${id}`}
-        className="w-full h-full pl-1"
-      />
-      <CommonBtn text="Editar" ActFunc={editToDo} />
     </div>
   );
 }

@@ -18,7 +18,7 @@ export default function ToDoForm({
   return (
     <div
       onChange={(e) => dataH.getData(e, setList)}
-      onKeyDown={(e) => Access.enterAct(addNewItem, e.key)}
+      onKeyDown={(e) => Access.enterAct(addNewItem, e)}
       className="p-2 w-fit flex gap-2 items-center justify-center border-neutral-300 border-2 rounded-md mt-4"
     >
       <CommonInp

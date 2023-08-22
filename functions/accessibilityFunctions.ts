@@ -1,29 +1,29 @@
 import { SetStateAction } from "react";
 
 export class accessibility {
-  closeEsc(open: boolean, setOpen: any) {
-    /* open = state
+  closeEsc(e: any, setOpen: (v: SetStateAction<boolean>) => void) {
+    /* e = event
        setOpen = setState
     */
-    if (open) {
-      document.addEventListener("keydown", (e) => {
-        e.key === "Escape" && setOpen(() => false);
-        const classBody = document.body.style;
-        classBody.overflow = "";
-      });
+    if (e.key === "Escape") {
+      setOpen(() => false);
+
+      const classBody = document.body.style;
+      classBody.overflow = "";
     }
   }
 
-  enterAct(func: (e?) => void, key: string) {
-    if (key === "Enter") {
-      func();
+  enterAct(func: (e?) => void, e: any) {
+    // func = função à executar
+    // key = e.key
+    if (e.key === "Enter") {
+      func(e);
     }
   }
 
   closeWrapper(e: any, setOpen: (v: SetStateAction<boolean>) => void) {
-    /* e = event
-       setOpen = setState que fecha o wrapper
-     */
+    // e = event
+    // setOpen = setState que fecha o wrapper
     const target = e.target.className;
 
     if (
@@ -37,9 +37,9 @@ export class accessibility {
   }
 
   handlerWrapper(e: any, setOpen: (v: SetStateAction<boolean>) => void) {
-    /* e = event
-       setOpen = setState que muda o stado do wrapper
-     */
+    // e = event
+    // setOpen = setState que dita se o wrapper está aberto
+
     const target = e.target.className;
     if (
       typeof target === "string" &&
