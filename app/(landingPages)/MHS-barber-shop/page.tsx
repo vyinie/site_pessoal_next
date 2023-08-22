@@ -1,4 +1,4 @@
-import MHSBarberShop from "@/pages/projects/MHS/MHSBarberShop";
+import MHSBarberShop from "@/pagesComponents/projects/MHS/MHSBarberShop";
 
 export default function MHS() {
   return <MHSBarberShop />;
