@@ -1,10 +1,11 @@
-import { SetStateAction } from "react";
+import { SetBoo } from "./interfaces";
 
 export class accessibility {
-  closeEsc(e: any, setOpen: (v: SetStateAction<boolean>) => void) {
-    /* e = event
-       setOpen = setState
-    */
+  /**
+   * e = event
+   * setOpen = setState
+   */
+  closeEsc(e: KeyboardEvent, setOpen: SetBoo) {
     if (e.key === "Escape") {
       setOpen(() => false);
 
@@ -21,7 +22,7 @@ export class accessibility {
     }
   }
 
-  closeWrapper(e: any, setOpen: (v: SetStateAction<boolean>) => void) {
+  closeWrapper(e, setOpen: SetBoo) {
     // e = event
     // setOpen = setState que fecha o wrapper
     const target = e.target.className;
@@ -36,7 +37,7 @@ export class accessibility {
     }
   }
 
-  handlerWrapper(e: any, setOpen: (v: SetStateAction<boolean>) => void) {
+  handlerWrapper(e, setOpen: SetBoo, hidden?: boolean) {
     // e = event
     // setOpen = setState que dita se o wrapper está aberto
 
@@ -46,8 +47,10 @@ export class accessibility {
       target.split(" ").some((i) => i === "change-on-click")
     ) {
       setOpen((old) => !old);
-      const classBody = document.body.style;
-      classBody.overflow = classBody.overflow == "" ? "hidden" : "";
+      if (hidden) {
+        const classBody = document.body.style;
+        classBody.overflow = classBody.overflow == "" ? "hidden" : "";
+      }
     }
   }
 }

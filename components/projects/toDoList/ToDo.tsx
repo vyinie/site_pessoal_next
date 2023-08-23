@@ -9,10 +9,11 @@ import ToDoForm from "./components/ToDoForm";
 import ToDoItemComp from "./components/ToDoItem";
 
 // types
-import { ToDoItem } from "@/functions/interfaces";
+import { ToDoItem, ToDoListData } from "@/functions/interfaces";
 
 // functions
 import { verifiers } from "@/functions/verifyers";
+import ToDoListMoreOpt from "./components/ListDirectionBtn";
 
 // ===================================================================
 
@@ -21,55 +22,79 @@ const verifier = new verifiers();
 // ===================================================================
 
 export default function ToDoList() {
+  /** lista com todos os items  */
   const [mainList, setMainList] = useState<ToDoItem[]>([]);
 
-  // caso não haja um id o sistema usara um numero que provavelmente não foi registrado
+  /** obj pra add um novo item */
   const [newToDo, setNewToDo] = useState<ToDoItem>({
-    id: 100,
+    // caso não haja um id o sistema usara um numero que provavelmente não foi registrado
+    id: 500,
     text: "",
     done: false,
   });
 
+  /** define se a lista sera na horizintal */
+  const [verticalList, setverticalList] = useState(true);
+
+  /** define se a lista sera na horizintal */
+  const [moreOptToggle, setMoreOptToggle] = useState(false);
+  /**   salva os dados no localStorage */
+  function saveData() {
+    // holder pra definir os novos dados
+    const newListData: ToDoListData = {
+      id: newToDo.id + 1,
+      verticalList: verticalList,
+      lists: [...mainList, newToDo],
+    };
+    // salva os novos dados
+    localStorage.setItem("to_do_list_data", JSON.stringify(newListData));
+  }
+
+  /** add um novo item e salva a nova lista */
   function addNewToDo() {
     if (verifier.ObjChecker(newToDo)) {
-      // holder_list++
+      saveData();
       setMainList((old) => [...old, newToDo]);
-      localStorage.setItem(
-        "to_do_list",
-        JSON.stringify([...mainList, newToDo])
-      );
-
-      // holder_id++
       setNewToDo((old) => ({ ...old, id: old.id + 1, text: "" }));
-      localStorage.setItem("to_do_id", JSON.stringify(newToDo.id + 1));
     }
+  }
+  /** deleta todos os item da lista principal */
+  function delAllItems() {
+    const t = localStorage.getItem("to_do_list_data") || "{}";
+    const holder_list: ToDoListData = { ...JSON.parse(t), lists: [] };
+
+    setMainList(() => []);
+    localStorage.setItem("to_do_list_data", JSON.stringify(holder_list));
+  }
+
+  /** mostra os dados salvos */
+  function initialSetter() {
+    const t = localStorage.getItem("to_do_list_data") || "{}";
+    const holder_list: ToDoListData = JSON.parse(t);
+
+    setMainList(() => holder_list.lists);
+
+    // define apenas o id
+    setNewToDo((old) => ({
+      ...old,
+      id: holder_list.id,
+    }));
+
+    setverticalList(() => holder_list.verticalList);
   }
 
   useEffect(() => {
-    // certificação de que sempre haverá um id
-    const storageId = localStorage.getItem("to_do_id");
-    const storageList = localStorage.getItem("to_do_list");
-
-    if (!storageId) {
-      localStorage.setItem("to_do_id", "1");
-      setNewToDo((old) => ({
-        ...old,
-        id: Number(localStorage.getItem("to_do_id")),
-      }));
-    } else {
-      setNewToDo((old) => ({
-        ...old,
-        id: Number(localStorage.getItem("to_do_id")),
-      }));
-    }
+    // certificação de que sempre haverá os dados
+    const storageList = localStorage.getItem("to_do_list_data");
 
     if (!storageList) {
-      localStorage.setItem("to_do_list", "[]");
-      // @ts-ignore
-      setMainList(() => JSON.parse(localStorage.getItem("to_do_list")));
+      localStorage.setItem(
+        "to_do_list_data",
+        JSON.stringify({ id: 1, lists: [], verticalList: true })
+      );
+      initialSetter();
     } else {
-      // @ts-ignore
-      setMainList(() => JSON.parse(localStorage.getItem("to_do_list")));
+      initialSetter();
     }
   }, []);
 
@@ -78,15 +103,32 @@ export default function ToDoList() {
       {/* header */}
       <ProjectHeader title="To Do List" />
 
-      {/* aside */}
+      {/* ================ aside ================ */}
 
-      {/* dashboard */}
+      {/* ================ dashboard ================ */}
       <div className="template_dashboard flex flex-col items-center">
         {/* form */}
-        <ToDoForm list={newToDo} setList={setNewToDo} addNewItem={addNewToDo} />
+        <div className="flex gap-2 items-center mt-4 translate-x-5">
+          <ToDoForm
+            list={newToDo}
+            setList={setNewToDo}
+            addNewItem={addNewToDo}
+          />
+          <ToDoListMoreOpt
+            isOpen={moreOptToggle}
+            setIsOpen={setMoreOptToggle}
+            vert={verticalList}
+            setVert={setverticalList}
+            delAllItems={delAllItems}
+          />
+        </div>
 
         {/* table */}
-        <div className="mt-4 p-2 rounded-md min-w-[310px] max-h-[70vh] overflow-auto grid justify-center gap-2 bg-white">
+        <div
+          className={`${
+            verticalList ? "overflow-y-auto" : "overflow-x-auto flex-wrap"
+          } h-fit w-fit mt-4 p-2 rounded-md min-w-[310px] max-w-[620px] max-h-[70vh] overflow-hidden flex flex-col  justify-center gap-2 bg-white`}
+        >
           {mainList.map((i) => (
             <ToDoItemComp
               key={`to_do_item${i.id}`}

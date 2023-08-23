@@ -6,7 +6,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import EditIcon from "@mui/icons-material/Edit";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { accessibility } from "@/functions/accessibilityFunctions";
-import { CommonBtn } from "@/functions/interfaces";
+import { CommonBtn, SetBoo } from "@/functions/interfaces";
 
 const Access = new accessibility();
 // ========================= GREEN BUTTON =========================
@@ -41,7 +41,11 @@ export function DelBtn({
   func: () => void;
 }) {
   return (
-    <div className={`${className || ""} actBtn p-1 relative `}>
+    <div
+      className={`${
+        className || "rounded-full"
+      } actBtn p-1 flex justify-center items-center relative `}
+    >
       <div
         tabIndex={0}
         onKeyDown={(e) => Access.enterAct(func, e)}
@@ -54,9 +58,21 @@ export function DelBtn({
 }
 
 // ========================= TOGGLE EDIT WRAPPER =========================
-export function EditBtn({ setToggle }) {
+/** tem a função expecifica de abrir popups pra edição
+ ** hidden === true => overflow do body muda*/
+export function EditBtn({
+  setToggle,
+  hidden,
+}: {
+  setToggle: SetBoo;
+  hidden?: boolean;
+}) {
   function handlerEditDispay(e) {
-    Access.handlerWrapper(e, setToggle);
+    if (hidden) {
+      Access.handlerWrapper(e, setToggle);
+    } else {
+      setToggle((old) => !old);
+    }
   }
 
   function enterAct(e) {
@@ -97,21 +113,23 @@ export function MoreOptsBtn({
   children,
   standing,
   className,
+  func,
 }: {
   children?: React.ReactNode;
   standing?: boolean;
   className?: string;
+  func: (e?) => void;
 }) {
   // três pontinhos, é uma tag pai
   return (
-    <div className={`actBtn ${className} relative  flex gap-1 items-center`}>
+    <div className={`${className} relative  flex gap-1 items-center`}>
       <div
         tabIndex={0}
         className={`${
-          standing && "flex-col"
-        }  flex gap-1 justify-center items-center w-9 h-9`}
+          standing ? "flex-col" : ""
+        }  flex gap-1 justify-center actBtn items-center w-9 h-9`}
       >
-        <div className="kase"></div>
+        <div className="kase change-on-click" onClick={func}></div>
         <div className="h-1.5 w-1.5 bg-black dark:bg-white rounded-full"></div>
         <div className="h-1.5 w-1.5 bg-black dark:bg-white rounded-full"></div>
         <div className="h-1.5 w-1.5 bg-black dark:bg-white rounded-full"></div>

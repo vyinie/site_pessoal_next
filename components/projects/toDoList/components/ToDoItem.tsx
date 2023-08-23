@@ -2,9 +2,12 @@
 import { SetStateAction, useState } from "react";
 import { DelBtn, EditBtn } from "../../components/global/buttons";
 import "../styles.css";
-import { ToDoItem } from "@/functions/interfaces";
+import { ToDoItem, ToDoListData } from "@/functions/interfaces";
 import { ToDoItemEditor } from "./EditPopUp";
+/** key do localStorage */
+const defaultStorage = "to_do_list_data";
 
+/** item */
 export default function ToDoItemComp({
   to_do_item,
   setMainList,
@@ -14,47 +17,53 @@ export default function ToDoItemComp({
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // salva os items completos
+  /** salva os items  feitos */
   function checkItem() {
-    // @ts-ignore
-    const list: ToDoItem[] = JSON.parse(localStorage.getItem("to_do_list"));
-    const index = list.findIndex((i) => i.id === to_do_item.id);
+    const json = localStorage.getItem(defaultStorage) || "{}";
+    const list_data: ToDoListData = JSON.parse(json);
 
-    list[index].done = !list[index].done;
-    localStorage.setItem("to_do_list", JSON.stringify(list));
+    const index = list_data.lists.findIndex((i) => i.id === to_do_item.id);
+
+    list_data.lists[index].done = !list_data.lists[index].done;
+    localStorage.setItem(defaultStorage, JSON.stringify(list_data));
   }
 
-  // deleta esse item
+  /** deleta esse item */
   function delItem() {
-    // @ts-ignore
-    const list: ToDoItem[] = JSON.parse(localStorage.getItem("to_do_list"));
-    const newList = list.filter((i) => i.id !== to_do_item.id);
+    const json = localStorage.getItem(defaultStorage) || "{}";
+    const list_data: ToDoListData = JSON.parse(json);
+    const newList = list_data.lists.filter((i) => i.id !== to_do_item.id);
 
-    localStorage.setItem("to_do_list", JSON.stringify(newList));
+    localStorage.setItem(
+      defaultStorage,
+      JSON.stringify({ ...list_data, lists: newList })
+    );
     setMainList(() => newList);
   }
 
-  // edita esse item
+  /** edita esse item */
   function editItem() {
-    // @ts-ignore
-    const list: ToDoItem[] = JSON.parse(localStorage.getItem("to_do_list"));
-    const index = list.findIndex((i) => i.id === to_do_item.id);
+    const json = localStorage.getItem(defaultStorage) || "{}";
+    const list_data: ToDoListData = JSON.parse(json);
+
+    const index = list_data.lists.findIndex((i) => i.id === to_do_item.id);
 
     //mó trampo pra o ts não chorar
     const newText = document.getElementById(
       `to_do_edit_inp${to_do_item.id}`
     ) as HTMLInputElement;
 
-    list[index].text = newText.value;
-    
-    localStorage.setItem("to_do_list", JSON.stringify(list));
-    setMainList(() => list);
+    // troca o texto original
+    list_data.lists[index].text = newText.value;
+
+    localStorage.setItem(defaultStorage, JSON.stringify(list_data));
+    setMainList(() => list_data.lists);
     setIsOpen(() => false);
     newText.value = "";
   }
 
   return (
-    <div className="to_do_item relative">
+    <div className="to_do_item relative z-0">
       <ToDoItemEditor
         isOpen={isOpen}
         setIsOpen={setIsOpen}

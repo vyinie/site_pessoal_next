@@ -19,7 +19,7 @@ export default function ToDoForm({
     <div
       onChange={(e) => dataH.getData(e, setList)}
       onKeyDown={(e) => Access.enterAct(addNewItem, e)}
-      className="p-2 w-fit flex gap-2 items-center justify-center border-neutral-300 border-2 rounded-md mt-4"
+      className="p-2 w-fit flex gap-2 items-center justify-center border-neutral-300 border-2 rounded-md"
     >
       <CommonInp
         name="text"

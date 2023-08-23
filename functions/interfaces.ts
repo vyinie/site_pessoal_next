@@ -1,9 +1,17 @@
+import { SetStateAction } from "react";
+
 // ===================== vaiaveis =====================
 export interface ToDoItem {
   id: number;
   text: string;
   done: boolean;
 }
+export interface ToDoListData {
+  id: number;
+  lists: ToDoItem[];
+  verticalList: boolean;
+}
+
 // ===================== components =====================
 export interface CommonInput {
   name: string;
@@ -28,3 +36,7 @@ export interface SelectInp {
   width?: string;
   bgColor?: string;
 }
+
+// ===================== functions =====================
+/** setState boolean  */
+export type SetBoo = (v: SetStateAction<boolean>) => void;
