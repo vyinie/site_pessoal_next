@@ -122,7 +122,7 @@ export function MoreOptsBtn({
 }) {
   // três pontinhos, é uma tag pai
   return (
-    <div className={`${className} relative  flex gap-1 items-center`}>
+    <div className={`${className || ""} relative flex gap-1 items-center`}>
       <div
         tabIndex={0}
         className={`${

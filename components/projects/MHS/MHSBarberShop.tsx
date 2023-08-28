@@ -69,7 +69,6 @@ export default function MHSBarberShop() {
 
       <div id="BSaddress" className="address w-full bg-white pt-5">
         <p className="mapTitle text-3xl font-bold uppercase text-center">
-          {" "}
           endereço
         </p>
         <div className="addressCard ml-[5vw] w-[310px] p-2 text-xl rounded-lg bg-neutral-100">

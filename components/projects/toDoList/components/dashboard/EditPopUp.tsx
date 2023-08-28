@@ -1,8 +1,8 @@
 "use client";
-import { SetStateAction, useEffect } from "react";
-import { CommonBtn } from "../../components/global/buttons";
+import { useEffect } from "react";
 import { accessibility } from "@/functions/accessibilityFunctions";
 import { SetBoo } from "@/functions/interfaces";
+import { CommonBtn } from "@/components/projects/components/global/buttons";
 
 const Access = new accessibility();
 

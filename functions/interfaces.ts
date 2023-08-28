@@ -1,14 +1,23 @@
 import { SetStateAction } from "react";
 
 // ===================== vaiaveis =====================
+/** item unico de uma lista  */
 export interface ToDoItem {
   id: number;
   text: string;
   done: boolean;
 }
-export interface ToDoListData {
+
+/** lista que guarda item, parte do conjunto */
+export interface TDList {
+  list: ToDoItem[];
   id: number;
-  lists: ToDoItem[];
+  title: string;
+}
+/** todas as informações de todo o projeto */
+export interface ToDoListData {
+  globalIds: number;
+  lists: TDList[];
   verticalList: boolean;
 }
 

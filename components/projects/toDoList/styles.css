@@ -4,10 +4,8 @@
 
 .to_do_item {
   display: grid;
-  grid-template-columns:
-    min-content auto repeat(2, 38px);
-    @apply 
-    w-[300px]
+  grid-template-columns: min-content auto repeat(2, 38px);
+  @apply w-[300px]
     h-10
     bg-white
     rounded-md
@@ -16,6 +14,11 @@
     border
     border-zinc-400
     pl-2
-    hover:bg-zinc-100
-    ;
+    hover:bg-zinc-100;
+}
+
+.template_side_bar{
+  display: grid;
+  grid-template-rows: 100px auto;
+  grid-template-columns: 100%;
 }

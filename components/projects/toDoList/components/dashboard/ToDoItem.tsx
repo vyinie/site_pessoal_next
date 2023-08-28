@@ -1,52 +1,62 @@
 "use client";
-import { SetStateAction, useState } from "react";
-import { DelBtn, EditBtn } from "../../components/global/buttons";
-import "../styles.css";
-import { ToDoItem, ToDoListData } from "@/functions/interfaces";
+import "../../styles.css";
+import { Dispatch, SetStateAction, useState } from "react";
+import { TDList, ToDoItem, ToDoListData } from "@/functions/interfaces";
 import { ToDoItemEditor } from "./EditPopUp";
+import {
+  DelBtn,
+  EditBtn,
+} from "@/components/projects/components/global/buttons";
 /** key do localStorage */
 const defaultStorage = "to_do_list_data";
 
 /** item */
 export default function ToDoItemComp({
   to_do_item,
+  mainList,
+  currentList,
+  listIndex,
   setMainList,
 }: {
+  listIndex: number;
   to_do_item: ToDoItem;
-  setMainList: (v: SetStateAction<ToDoItem[]>) => void;
+  currentList: ToDoItem[];
+  mainList: TDList[];
+  setMainList: Dispatch<SetStateAction<TDList[]>>;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-
   /** salva os items  feitos */
   function checkItem() {
-    const json = localStorage.getItem(defaultStorage) || "{}";
-    const list_data: ToDoListData = JSON.parse(json);
+    const h = localStorage.getItem(defaultStorage) || "{}";
+    const old_to_do_data: ToDoListData = JSON.parse(h);
 
-    const index = list_data.lists.findIndex((i) => i.id === to_do_item.id);
+    const index = currentList.findIndex((i) => i.id === to_do_item.id);
+    currentList[index].done = !currentList[index].done;
 
-    list_data.lists[index].done = !list_data.lists[index].done;
-    localStorage.setItem(defaultStorage, JSON.stringify(list_data));
+    const newListData: ToDoListData = { ...old_to_do_data, lists: mainList };
+
+    localStorage.setItem(defaultStorage, JSON.stringify(newListData));
   }
 
   /** deleta esse item */
   function delItem() {
     const json = localStorage.getItem(defaultStorage) || "{}";
-    const list_data: ToDoListData = JSON.parse(json);
-    const newList = list_data.lists.filter((i) => i.id !== to_do_item.id);
+    const old_to_do_data: ToDoListData = JSON.parse(json);
 
-    localStorage.setItem(
-      defaultStorage,
-      JSON.stringify({ ...list_data, lists: newList })
-    );
-    setMainList(() => newList);
+    const newList = currentList.filter((i) => i.id !== to_do_item.id);
+    old_to_do_data.lists[listIndex].list = newList;
+
+    setMainList(() => old_to_do_data.lists);
+
+    localStorage.setItem(defaultStorage, JSON.stringify(old_to_do_data));
   }
 
   /** edita esse item */
   function editItem() {
     const json = localStorage.getItem(defaultStorage) || "{}";
-    const list_data: ToDoListData = JSON.parse(json);
+    const old_to_do_data: ToDoListData = JSON.parse(json);
 
-    const index = list_data.lists.findIndex((i) => i.id === to_do_item.id);
+    const index = currentList.findIndex((i) => i.id === to_do_item.id);
 
     //mó trampo pra o ts não chorar
     const newText = document.getElementById(
@@ -54,10 +64,13 @@ export default function ToDoItemComp({
     ) as HTMLInputElement;
 
     // troca o texto original
-    list_data.lists[index].text = newText.value;
+    currentList[index].text = newText.value;
 
-    localStorage.setItem(defaultStorage, JSON.stringify(list_data));
-    setMainList(() => list_data.lists);
+    localStorage.setItem(
+      defaultStorage,
+      JSON.stringify({ ...old_to_do_data, lists: mainList })
+    );
+
     setIsOpen(() => false);
     newText.value = "";
   }

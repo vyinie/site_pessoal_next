@@ -1,29 +1,30 @@
 import { ToDoItem } from "@/functions/interfaces";
-import { CommonInp } from "../../components/global/inputs";
-import { CommonBtn } from "../../components/global/buttons";
 import { accessibility } from "@/functions/accessibilityFunctions";
 import { DataHandlers } from "@/functions/dataHandlers";
+import { CommonInp } from "@/components/projects/components/global/inputs";
+import { CommonBtn } from "@/components/projects/components/global/buttons";
+import { Dispatch, SetStateAction } from "react";
 
 export default function ToDoForm({
-  list,
-  setList,
+  newToDo,
+  setNewToDo,
   addNewItem,
 }: {
-  list: ToDoItem;
-  setList: any;
+  newToDo: ToDoItem;
+  setNewToDo: Dispatch<SetStateAction<ToDoItem>>;
   addNewItem: () => void;
 }) {
   const Access = new accessibility();
   const dataH = new DataHandlers();
   return (
     <div
-      onChange={(e) => dataH.getData(e, setList)}
+      onChange={(e) => dataH.getData(e, setNewToDo)}
       onKeyDown={(e) => Access.enterAct(addNewItem, e)}
       className="p-2 w-fit flex gap-2 items-center justify-center border-neutral-300 border-2 rounded-md"
     >
       <CommonInp
         name="text"
-        inpValue={list.text}
+        inpValue={newToDo.text}
         placeholder="À Fazer"
         type="text"
         h="h-10"
