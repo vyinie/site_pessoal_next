@@ -44,7 +44,7 @@ export function DelBtn({
     <div
       className={`${
         className || "rounded-full"
-      } actBtn p-1 flex justify-center items-center relative `}
+      } btn_hover_full p-1 flex justify-center items-center relative `}
     >
       <div
         tabIndex={0}
@@ -79,7 +79,7 @@ export function EditBtn({
     Access.enterAct(handlerEditDispay, e);
   }
   return (
-    <div className="stay-on-click actBtn p-1 relative">
+    <div className="stay-on-click btn_hover_full p-1 relative">
       <div
         tabIndex={0}
         onClick={handlerEditDispay}
@@ -97,7 +97,7 @@ export function InfoBtn({ setToggle }) {
     Access.handlerWrapper(e, setToggle);
   };
   return (
-    <div className="stay-on-click actBtn p-1 relative">
+    <div className="stay-on-click btn_hover_full p-1 relative">
       <div
         onClick={handlerEditDispay}
         tabIndex={0}
@@ -113,10 +113,12 @@ export function MoreOptsBtn({
   children,
   standing,
   className,
+  type,
   func,
 }: {
   children?: React.ReactNode;
   standing?: boolean;
+  type: "lines" | "dots";
   className?: string;
   func: (e?) => void;
 }) {
@@ -125,14 +127,26 @@ export function MoreOptsBtn({
     <div className={`${className || ""} relative flex gap-1 items-center`}>
       <div
         tabIndex={0}
-        className={`${
-          standing ? "flex-col" : ""
-        }  flex gap-1 justify-center actBtn items-center w-9 h-9`}
+        className={`${standing ? "flex-col" : ""} ${
+          type === "dots" ? "w-10 gap-1 btn_hover_full" : "w-12 btn_hover_md p-1 flex-col gap-1.5"
+        } flex justify-center items-center h-10 relative`}
       >
         <div className="kase change-on-click" onClick={func}></div>
-        <div className="h-1.5 w-1.5 bg-black dark:bg-white rounded-full"></div>
-        <div className="h-1.5 w-1.5 bg-black dark:bg-white rounded-full"></div>
-        <div className="h-1.5 w-1.5 bg-black dark:bg-white rounded-full"></div>
+        <div
+          className={`h-1.5 ${
+            type === "dots" ? "w-1.5" : "w-full"
+          } bg-black dark:bg-white rounded-full`}
+        ></div>
+        <div
+          className={`h-1.5 ${
+            type === "dots" ? "w-1.5" : "w-full"
+          } bg-black dark:bg-white rounded-full`}
+        ></div>
+        <div
+          className={`h-1.5 ${
+            type === "dots" ? "w-1.5" : "w-full"
+          } bg-black dark:bg-white rounded-full`}
+        ></div>
       </div>
       {children}
     </div>

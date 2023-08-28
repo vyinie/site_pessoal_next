@@ -1,7 +1,10 @@
 import { SetBoo } from "@/functions/interfaces";
 import { accessibility } from "@/functions/accessibilityFunctions";
 import ListDirectionBtn from "./ListDirectionBtn";
-import { DelBtn, MoreOptsBtn } from "@/components/projects/components/global/buttons";
+import {
+  DelBtn,
+  MoreOptsBtn,
+} from "@/components/projects/components/global/buttons";
 
 const Access = new accessibility();
 
@@ -20,6 +23,7 @@ export default function ToDoListMoreOpt({
 }) {
   return (
     <MoreOptsBtn
+      type="dots"
       func={(e) => Access.handlerWrapper(e, setIsOpen)}
       className="h-fit "
       standing

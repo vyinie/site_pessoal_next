@@ -25,7 +25,7 @@ export default function ListDirectionBtn({
     localStorage.setItem("to_do_list_data", JSON.stringify(holder_list));
   }
   return (
-    <div className="p-2 rounded-md actBtn ">
+    <div className="p-2 btn_hover_md ">
       <div className="kase" onClick={handlerIcon}></div>
       {vert ? <AlignHorizontalRightIcon /> : <AlignVerticalBottomIcon />}
     </div>

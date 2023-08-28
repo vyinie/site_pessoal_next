@@ -19,7 +19,7 @@ export default function ToDoArrowBtn({
     <div
       className={`${className || ""} absolute bottom-0 ${
         left ? "-left-12" : "-right-12"
-      } actBtn rounded-md items-center h-full `}
+      } btn_hover_md items-center h-full `}
       onClick={scroll}
     >
       {left ? (

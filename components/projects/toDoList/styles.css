@@ -17,8 +17,3 @@
     hover:bg-zinc-100;
 }
 
-.template_side_bar{
-  display: grid;
-  grid-template-rows: 100px auto;
-  grid-template-columns: 100%;
-}

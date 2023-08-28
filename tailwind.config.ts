@@ -17,7 +17,7 @@ const config: Config = {
       laptop: { min: "1024px", max: "1400px" },
       desktop: { min: "1400px" },
       "exept-mobile": { min: "426px" },
-      moblet: { max: "1024px" },
+      moblet: { max: "950px" },
     },
     extend: {
       colors: {

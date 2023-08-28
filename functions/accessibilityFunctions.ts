@@ -36,11 +36,12 @@ export class accessibility {
       classBody.overflow = "";
     }
   }
-
+  /**
+   ** e = event
+   ** setOpen = setStateAction<bollean>
+   ** hidden = bodyoverflow
+   */
   handlerWrapper(e, setOpen: SetBoo, hidden?: boolean) {
-    // e = event
-    // setOpen = setState que dita se o wrapper está aberto
-
     const target = e.target.className;
     if (
       typeof target === "string" &&
