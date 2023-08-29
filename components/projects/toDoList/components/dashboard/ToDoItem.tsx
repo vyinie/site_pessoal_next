@@ -76,12 +76,12 @@ export default function ToDoItemComp({
   }
 
   return (
-    <div className="to_do_item relative z-0">
+    <div className="to_do_item relative z-0" title={to_do_item.text}>
       <ToDoItemEditor
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         editToDo={editItem}
-        id={to_do_item.id}
+        item={to_do_item}
       />
       <input
         defaultChecked={to_do_item.done}
@@ -91,7 +91,7 @@ export default function ToDoItemComp({
       />
       <label
         htmlFor={`to_do_check_${to_do_item.id}`}
-        className="w-full h-full flex items-center overflow-hidden"
+        className="w-full h-full flex items-center overflow-hidden whitespace-nowrap text-ellipsis"
       >
         <p className="text-ellipsis max-w-full overflow-hidden">
           {to_do_item.text}

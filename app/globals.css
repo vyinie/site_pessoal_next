@@ -86,10 +86,10 @@ html,
 
 /* ================== BUTOES ================== */
 .btn_hover_full {
-  @apply hover:bg-black dark:hover:bg-white hover:bg-opacity-20 rounded-full cursor-pointer transition;
+  @apply hover:bg-black dark:hover:bg-white hover:bg-opacity-20 rounded-full cursor-pointer transition relative;
 }
 .btn_hover_md {
-  @apply hover:bg-black dark:hover:bg-white hover:bg-opacity-20 rounded-md cursor-pointer transition;
+  @apply hover:bg-black dark:hover:bg-white hover:bg-opacity-20 rounded-md cursor-pointer transition relative;
 }
 .kase {
   @apply absolute top-0 left-0 h-full w-full cursor-pointer;

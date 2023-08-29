@@ -5,6 +5,10 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import EditIcon from "@mui/icons-material/Edit";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import AlignVerticalBottomIcon from "@mui/icons-material/AlignVerticalBottom";
+import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
+import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
+
 import { accessibility } from "@/functions/accessibilityFunctions";
 import { CommonBtn, SetBoo } from "@/functions/interfaces";
 
@@ -36,15 +40,19 @@ export function FilterBtn() {
 export function DelBtn({
   className,
   func,
+  rounded,
+  fontSize,
 }: {
+  rounded?: "full" | "md";
+  fontSize?: string;
   className?: string;
   func: () => void;
 }) {
   return (
     <div
-      className={`${
-        className || "rounded-full"
-      } btn_hover_full p-1 flex justify-center items-center relative `}
+      className={`${className} ${
+        rounded === "full" ? "btn_hover_full" : "btn_hover_md"
+      } min-h-[40px] min-w-[40px] flex justify-center items-center`}
     >
       <div
         tabIndex={0}
@@ -52,7 +60,7 @@ export function DelBtn({
         onClick={func}
         className="kase"
       ></div>
-      <DeleteOutlineIcon sx={{ fontSize: "30px" }} />
+      <DeleteOutlineIcon sx={{ fontSize: fontSize || "35px" }} />
     </div>
   );
 }
@@ -63,7 +71,12 @@ export function DelBtn({
 export function EditBtn({
   setToggle,
   hidden,
+  rounded,
+  fontSize,
 }: {
+  rounded?: "full" | "md";
+  fontSize?: string;
+
   setToggle: SetBoo;
   hidden?: boolean;
 }) {
@@ -79,25 +92,29 @@ export function EditBtn({
     Access.enterAct(handlerEditDispay, e);
   }
   return (
-    <div className="stay-on-click btn_hover_full p-1 relative">
+    <div
+      className={`${
+        rounded === "full" ? "btn_hover_full" : "btn_hover_md"
+      } min-h-[40px] min-w-[40px] flex justify-center items-center`}
+    >
       <div
         tabIndex={0}
         onClick={handlerEditDispay}
         onKeyDown={enterAct}
         className="btn kase change-on-click"
       ></div>
-      <EditIcon sx={{ fontSize: "30px" }} />
+      <EditIcon sx={{ fontSize: fontSize || "32px" }} />
     </div>
   );
 }
 
-// ========================= THREE DOTS =========================
+// ========================= I EM ITALICO =========================
 export function InfoBtn({ setToggle }) {
   const handlerEditDispay = (e) => {
     Access.handlerWrapper(e, setToggle);
   };
   return (
-    <div className="stay-on-click btn_hover_full p-1 relative">
+    <div className="btn_hover_full min-h-[40px] min-w-[40px] flex justify-center items-center">
       <div
         onClick={handlerEditDispay}
         tabIndex={0}
@@ -128,8 +145,10 @@ export function MoreOptsBtn({
       <div
         tabIndex={0}
         className={`${standing ? "flex-col" : ""} ${
-          type === "dots" ? "w-10 gap-1 btn_hover_full" : "w-12 btn_hover_md p-1 flex-col gap-1.5"
-        } flex justify-center items-center h-10 relative`}
+          type === "dots"
+            ? "w-10 gap-1 btn_hover_full"
+            : "w-12 btn_hover_md p-1 flex-col gap-1.5"
+        } flex justify-center items-center h-10`}
       >
         <div className="kase change-on-click" onClick={func}></div>
         <div
@@ -149,6 +168,91 @@ export function MoreOptsBtn({
         ></div>
       </div>
       {children}
+    </div>
+  );
+}
+
+/** btn para selecionar direção de listas
+ ** isVert = state
+ ** setVert = setState
+ ** func = função adicional opicional
+ */
+export function DirectionBtn({
+  isVert,
+  setVert,
+  func,
+  rounded,
+  className,
+  fontSize,
+}: {
+  rounded?: "full" | "md";
+  fontSize?: string;
+  isVert: boolean;
+  setVert: SetBoo;
+  func?: (e?) => void;
+  className?: string;
+}) {
+  function handlerIcon(e) {
+    setVert((old) => !old);
+    func && func(e);
+  }
+  return (
+    <div
+      className={`${className}
+      ${rounded === "full" ? "btn_hover_full" : "btn_hover_md"}
+      ${isVert ? "rotate-180" : "rotate-90"}
+       min-h-[40px] min-w-[40px] flex justify-center items-center`}
+    >
+      <div className="kase" onClick={handlerIcon}></div>
+      <AlignVerticalBottomIcon />
+    </div>
+  );
+}
+
+/** botão para marcar todas as checkboses */
+export function MarkAllBoxesBtn({
+  func,
+  rounded,
+  fontSize,
+}: {
+  rounded?: "full" | "md";
+  fontSize?: string;
+  func: (e?) => void;
+}) {
+  function handlerIcon(e) {
+    func(e);
+  }
+  return (
+    <div
+      className={`${
+        rounded === "full" ? "btn_hover_full" : "btn_hover_md"
+      } min-h-[40px] min-w-[40px] flex justify-center items-center`}
+    >
+      <div className="kase" tabIndex={0} onClick={handlerIcon}></div>
+      <LibraryAddCheckIcon sx={{fontSize:fontSize||'30px'}} />
+    </div>
+  );
+}
+export function UnmarkAllBoxesBtn({
+  func,
+  rounded,
+  fontSize,
+}: {
+  rounded?: "full" | "md";
+  fontSize?: string;
+  func: (e?) => void;
+}) {
+  function handlerIcon(e) {
+    func(e);
+  }
+  return (
+    <div
+      className={`${
+        rounded === "full" ? "btn_hover_full" : "btn_hover_md"
+      } min-h-[40px] min-w-[40px] flex justify-center items-center`}
+    >
+      <div className="kase" tabIndex={0} onClick={handlerIcon}></div>
+      <IndeterminateCheckBoxIcon sx={{fontSize:fontSize||'30px'}}/>
     </div>
   );
 }

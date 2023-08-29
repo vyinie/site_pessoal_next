@@ -78,7 +78,7 @@ export default function Projects() {
         title: "ColoRGB",
         des: "Tente acertar a cor que representa o codigo RGB",
         id: 0,
-        link: "/coloRGB",
+        link: "/colorgb",
         img: colorgb,
       },
     ],

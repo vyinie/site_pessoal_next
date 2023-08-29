@@ -10,9 +10,9 @@ export default function ToDoArrowBtn({
   function scroll() {
     const el = document.getElementsByClassName("list");
     if (left) {
-      el.item(0)?.scrollBy(-608, 0);
+      el.item(0)?.scrollBy(-580, 0);
     } else {
-      el.item(0)?.scrollBy(608, 0);
+      el.item(0)?.scrollBy(580, 0);
     }
   }
   return (

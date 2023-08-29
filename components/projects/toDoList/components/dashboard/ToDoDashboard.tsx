@@ -5,11 +5,15 @@ import ToDoForm from "./ToDoForm";
 import ToDoItemComp from "./ToDoItem";
 import ToDoListMoreOpt from "./ToDoMoreOpt";
 
+import { MoreOptsBtn } from "@/components/projects/components/global/buttons";
+
 import { TDList, ToDoItem, ToDoListData } from "@/functions/interfaces";
 
+import { accessibility } from "@/functions/accessibilityFunctions";
 import { verifiers } from "@/functions/verifyers";
 
 const verifier = new verifiers();
+const Access = new accessibility();
 
 export default function ToDoDashboard({
   mainList,
@@ -21,6 +25,7 @@ export default function ToDoDashboard({
   verticalList,
   setverticalList,
 
+  currentList,
   listIndex,
 }: {
   mainList: TDList[];
@@ -32,6 +37,7 @@ export default function ToDoDashboard({
   verticalList: boolean;
   setverticalList: Dispatch<SetStateAction<boolean>>;
 
+  currentList: ToDoItem[];
   listIndex: number;
 }) {
   //
@@ -41,98 +47,95 @@ export default function ToDoDashboard({
   function addNewToDo() {
     if (verifier.ObjChecker(newToDo)) {
       /* add o novo item na lista selecionada */
-      mainList[listIndex].list.push(newToDo);
+      currentList.push(newToDo);
 
       // reseta o form
       setNewToDo((old) => ({ ...old, id: old.id + 1, text: "" }));
 
-      saveData();
+      saveData(true);
     }
   }
 
-  /** deleta todos os item da lista principal */
-  function delAllItems() {
-    /* verifica se há items marcados */
-    const checkedItems = mainList[listIndex].list.some((i) => i.done);
-
-    /* holder que pega os dados do local storage */
-    const t = localStorage.getItem("to_do_list_data") || "{}";
-    const oldMainList: ToDoListData = JSON.parse(t);
-
-    if (checkedItems) {
-      // nova lista sem os marcados
-      const newList = mainList[listIndex].list.filter((i) => !i.done);
-      mainList[listIndex].list = newList;
-      //
-    } else {
-      // apaga a lista selecionada
-      mainList[listIndex].list = [];
-    }
-
-    const newToDoData: ToDoListData = { ...oldMainList, lists: mainList };
-
-    localStorage.setItem("to_do_list_data", JSON.stringify(newToDoData));
-  }
-
-  /**   salva os dados no localStorage */
-  function saveData() {
+  /** salva os dados no localStorage */
+  function saveData(sumId?: boolean) {
     const holder = localStorage.getItem("to_do_list_data") || "{}";
     const ListData: ToDoListData = JSON.parse(holder);
 
     // holder pra definir os novos dados
-    const newListData: ToDoListData = {
-      globalIds: ListData.globalIds + 1,
-      verticalList: verticalList,
-      lists: mainList,
-    };
+    const newListData: ToDoListData = sumId
+      ? {
+          globalIds: ListData.globalIds + 1,
+          verticalList: verticalList,
+          lists: mainList,
+        }
+      : {
+          ...ListData,
+          lists: mainList,
+        };
 
     // salva os novos dados
     localStorage.setItem("to_do_list_data", JSON.stringify(newListData));
   }
-
   return (
-    <div>
-      <div className="template_dashboard flex flex-col items-center">
-        {/* form */}
-        <div className="flex gap-2 items-center mt-4 translate-x-5">
-          <ToDoForm
-            newToDo={newToDo}
-            setNewToDo={setNewToDo}
-            addNewItem={addNewToDo}
-          />
+    <div className="template_dashboard flex flex-col items-center">
+      {/* form */}
+      <div className="flex gap-2 items-center mt-4 exept-mobile:translate-x-6">
+        <ToDoForm
+          newToDo={newToDo}
+          setNewToDo={setNewToDo}
+          addNewItem={addNewToDo}
+        />
+        <MoreOptsBtn
+          type="dots"
+          func={(e) => Access.handlerWrapper(e, setMoreOptToggle)}
+          className="h-fit mobile-sm:hidden"
+          standing
+        >
           <ToDoListMoreOpt
+            currentList={mainList[listIndex]?.list}
             isOpen={moreOptToggle}
             setIsOpen={setMoreOptToggle}
             vert={verticalList}
             setVert={setverticalList}
-            delAllItems={delAllItems}
+            listIndex={listIndex}
+            setMainList={setMainList}
           />
-        </div>
+        </MoreOptsBtn>
+      </div>
 
-        {/* table */}
-        <div className={`relative mt-4 p-2 rounded-md bg-white`}>
-          <div
-            className={`list ${
-              verticalList ? "overflow-y-auto" : "overflow-x-auto flex-wrap"
-            } h-fit pb-1 min-w-[300px] max-w-[604px] max-h-[70vh] overflow-hidden flex flex-col justify-center items-center gap-1 scroll-smooth`}
-          >
-            {mainList[listIndex]?.list.map((i) => (
-              <ToDoItemComp
-                key={`to_do_item${i.id}`}
-                mainList={mainList}
-                to_do_item={i}
-                listIndex={listIndex}
-                currentList={mainList[listIndex].list}
-                setMainList={setMainList}
-              />
-            ))}
-          </div>
-          <ToDoArrowBtn className={`${verticalList ? "hidden" : "flex"}`} />
-          <ToDoArrowBtn
-            className={`${verticalList ? "hidden" : "flex"}`}
-            left
-          />
+      {/* table */}
+      <div
+        className={`${
+          verticalList ? "pr-1" : ""
+        } relative mt-4 p-2  rounded-md bg-white`}
+      >
+        <div
+          className={`list 
+          moblet:grid moblet:overflow-y-auto
+          ${
+            verticalList
+              ? "desktop:overflow-y-auto desktop:grid laptop:overflow-y-auto laptop:grid pr-1"
+              : "desktop:overflow-x-auto desktop:flex desktop:flex-col desktop:flex-wrap  laptop:overflow-x-auto laptop:flex laptop:flex-col laptop:flex-wrap"
+          } h-fit  pb-1 min-w-[290px] max-w-[584px] max-h-[70vh] overflow-hidden justify-center items-center gap-1 scroll-smooth `}
+        >
+          {currentList?.map((i) => (
+            <ToDoItemComp
+              listIndex={listIndex}
+              key={`to_do_item${i.id}`}
+              mainList={mainList}
+              to_do_item={i}
+              currentList={currentList}
+              setMainList={setMainList}
+            />
+          ))}
         </div>
+        <ToDoArrowBtn
+          className={`${verticalList ? "hidden" : "flex"} moblet:hidden`}
+        />
+        <ToDoArrowBtn
+          className={`${verticalList ? "hidden" : "flex"} moblet:hidden`}
+          left
+        />
       </div>
     </div>
   );

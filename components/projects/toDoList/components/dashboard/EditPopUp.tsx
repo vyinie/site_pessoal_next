@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { accessibility } from "@/functions/accessibilityFunctions";
-import { SetBoo } from "@/functions/interfaces";
+import { SetBoo, ToDoItem } from "@/functions/interfaces";
 import { CommonBtn } from "@/components/projects/components/global/buttons";
 
 const Access = new accessibility();
@@ -10,11 +10,11 @@ export function ToDoItemEditor({
   isOpen,
   setIsOpen,
   editToDo,
-  id,
+  item,
 }: {
   isOpen: boolean;
   editToDo: () => void;
-  id: number;
+  item: ToDoItem;
   setIsOpen: SetBoo;
 }) {
   function keyboardActs(e) {
@@ -23,7 +23,7 @@ export function ToDoItemEditor({
   }
 
   useEffect(() => {
-    if (isOpen) document.getElementById(`to_do_edit_inp${id}`)?.focus();
+    if (isOpen) document.getElementById(`to_do_edit_inp${item.id}`)?.focus();
   }, [isOpen]);
 
   return (
@@ -35,10 +35,11 @@ export function ToDoItemEditor({
       } w-full h-full rounded-md bg-white items-center absolute top-0 left-0 z-10`}
     >
       <input
+      defaultValue={item.text}
         autoFocus={isOpen}
         type="text"
         placeholder="Editar"
-        id={`to_do_edit_inp${id}`}
+        id={`to_do_edit_inp${item.id}`}
         className="w-full h-full pl-1 rounded-md outline-none "
       />
       <CommonBtn text="Editar" ActFunc={editToDo} />

@@ -83,6 +83,7 @@ export default function ToDoList() {
 
       {/* ================ aside ================ */}
       <ToDoSideBar
+        setMainList={setMainList}
         listIndex={listIndex}
         setlistIndex={setListIndex}
         mainList={mainList}
@@ -95,8 +96,9 @@ export default function ToDoList() {
         setMainList={setMainList}
         newToDo={newToDo}
         setNewToDo={setNewToDo}
-        setverticalList={setverticalList}
         verticalList={verticalList}
+        setverticalList={setverticalList}
+        currentList={mainList[listIndex]?.list}
         listIndex={listIndex}
       />
     </div>
