@@ -20,6 +20,10 @@ export interface ToDoListData {
   lists: TDList[];
   verticalList: boolean;
 }
+export interface ColoRGBBlock {
+  id: number;
+  colorCode: string;
+}
 
 // ===================== components =====================
 export interface CommonInput {

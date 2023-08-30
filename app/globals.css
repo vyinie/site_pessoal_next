@@ -48,7 +48,7 @@ html,
 .template_side_bar {
   display: grid;
   grid-template-rows: 100px auto;
-  grid-template-columns: 90%;
+  grid-template-columns: 95%;
   
   @apply w-full h-full;
 }

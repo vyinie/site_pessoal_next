@@ -1,6 +1,8 @@
 import "./styles.css";
 
 import logo from "/public/_images/projectsItems/landingPages/mhsBS/MHSlogo.png";
+import bgHome from "@/public/_images/projectsItems/landingPages/mhsBS/mesa_cinza.png";
+import bgMenu from "@/public/_images/projectsItems/landingPages/mhsBS/garcon_cinza.png";
 
 import BackIcon from "@/components/projects/components/global/BackIcon";
 
@@ -18,7 +20,9 @@ export default function MHSBarberShop() {
       {/* ==================== header ==================== */}
       <header className="h-14 w-full px-5 bg-neutral-800 flex justify-between items-center fixed z-10 ">
         <BackIcon className="top-1/2 -translate-y-1/2 left-0 w-10" />
-        <Image className="h-12 w-12 ml-8" src={logo} alt="" />
+        <a href="#BShome">
+          <Image className="h-12 w-12 ml-8" src={logo} alt="" />
+        </a>
         <NavBar />
       </header>
 
@@ -27,6 +31,11 @@ export default function MHSBarberShop() {
         id="BShome"
         className="home w-full relative mt-14 flex flex-col items-center justify-center gap-7 text-center"
       >
+        <Image
+          alt="background"
+          src={bgHome}
+          className="-z-10 absolute top-0 left-0"
+        />
         <div>
           <h1 className="homeTitle">MHS</h1>
           <h1 className="homeTitle">Barber Shop</h1>
@@ -42,6 +51,11 @@ export default function MHSBarberShop() {
         id="BSmenu"
         className="menu w-full flex flex-col items-center justify-center relative"
       >
+        <Image
+          alt="background"
+          src={bgMenu}
+          className="-z-10 absolute top-0 left-0"
+        />
         <p className="text-yellow-400 text-5xl capitalize absolute top-5 right-1/2 translate-x-1/2">
           serviços
         </p>
@@ -53,7 +67,7 @@ export default function MHSBarberShop() {
 
       <div
         id="BShours"
-        className="w-full min-h-[250px] flex flex-col items-center justify-center text-3xl uppercase relative overflow-hidden border-black border-b"
+        className="bg-white w-full min-h-[250px] flex flex-col items-center justify-center text-3xl uppercase relative overflow-hidden border-black border-b"
       >
         <p>segunda - sexta</p>
         <p>10:00 - 20:00</p>

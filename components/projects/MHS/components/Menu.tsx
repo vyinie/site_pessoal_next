@@ -43,7 +43,7 @@ export default function BSMenu() {
       <div className="BScardsContainer">
         {servicos.map((i) => (
           <div key={i.title} id={`menuCard${i.id}`} className="menuCard">
-            <h1 className="w-4/5 text-yellow-400 mt-3 border-b-yellow-400 border-b-2 text-center">
+            <h1 className="w-4/5 text-yellow-400 mt-3 border-b-yellow-400 border-b-2 text-center text-3xl pb-2">
               {i.title}
             </h1>
 
