@@ -196,13 +196,15 @@ export default function ColoRGB() {
         </div>
 
         {/* painel das cores */}
-        <ColorsPanel
-          ezMode={dificultModes[0].setted}
-          blocks={blocks}
-          checkMove={checkMove}
-        />
-        <div className="w-[200px] fixed mobile-sm:bottom-5 bottom-32 moblet:block hidden">
-          <ColorgbScore score={score} />
+        <div className="w-full h-full pb-[60px] flex flex-col items-center bg-slate-100">
+          <ColorsPanel
+            ezMode={dificultModes[0].setted}
+            blocks={blocks}
+            checkMove={checkMove}
+          />
+          <div className="w-[200px]  moblet:block hidden">
+            <ColorgbScore score={score} />
+          </div>
         </div>
       </div>
     </div>
