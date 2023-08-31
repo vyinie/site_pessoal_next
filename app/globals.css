@@ -45,43 +45,39 @@ html,
   @apply w-full h-full;
 }
 
-.template_side_bar {
-  display: grid;
-  grid-template-rows: 100px auto;
-  grid-template-columns: 95%;
-  
-  @apply w-full h-full;
-}
-.side_bar_wrapper {
-  grid-area: sideBar;
-  
-}
 @media (width <= 950px) {
   .template {
     grid-template-areas: "header" "dashboard";
     grid-template-columns: auto;
   }
+}
 
-  .template_side_bar {
-    @apply w-60 h-full;
-  }
+.template_side_bar {
+  display: grid;
+  grid-template-rows: 100px auto;
+  grid-template-columns: 95%;
+  
+  @apply moblet:w-60
+  w-full
+  h-full;
+}
 
-  .side_bar_wrapper {
-    @apply fixed 
-    top-0
-    left-0
+.side_bar_wrapper {
+  grid-area: sideBar;
+  @apply moblet:fixed 
+    moblet:top-0
+    moblet:left-0
 
-    h-full
-    w-full
-    
-    bg-black
-    bg-opacity-60
-    
-    flex
-    justify-start
-    
-    transition-all;
-  }
+    moblet:h-full
+    moblet:w-full
+
+    moblet:bg-black
+    moblet:bg-opacity-60
+
+    moblet:flex
+    moblet:justify-start
+
+    moblet:transition-all;
 }
 
 /* ================== BUTOES ================== */

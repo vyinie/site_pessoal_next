@@ -1,14 +1,20 @@
 "use client";
 import "./styles.css";
 
-import ProjectHeader from "../../components/ProjectHeader";
-import ColorsPanel from "./components/LayoutColors";
-
 import { useEffect, useState } from "react";
 
-import { ColoRGBBlock } from "@/functions/interfaces";
+import ProjectHeader from "../../components/ProjectHeader";
+
+import { ColoRGBBlock, ColorDIficultControl } from "@/functions/interfaces";
 import { colorRandom, randomNumber } from "@/functions/randomizers";
+
+import ColorsPanel from "./components/ColorgbColorPanel";
 import ColoRGBLifes from "./components/lifes";
+import {
+  DificultControl,
+  DificultControlMobile,
+} from "./components/ColorgbDificultControl";
+import ColorgbScore from "./components/ColorgbScore";
 
 export default function ColoRGB() {
   // lista de cores
@@ -27,6 +33,14 @@ export default function ColoRGB() {
 
   // cor verdadeira
   const [trueColor, setTrueColor] = useState("");
+
+  const [DiffControlToggle, setDiffControlToggle] = useState(false);
+
+  const [dificultModes, setDificultModes] = useState<ColorDIficultControl[]>([
+    { text: "noob", setted: false, lifes: [0, 1, 2] },
+    { text: "normal", setted: true, lifes: [0, 1, 2] },
+    { text: "difícil", setted: false, lifes: [0] },
+  ]);
 
   /** reseta todas as cores e define a cor verdadeira */
   function changeColors() {
@@ -74,8 +88,9 @@ export default function ColoRGB() {
         el.backgroundColor = "white";
       });
 
+      const index = dificultModes.findIndex((i) => i.setted);
       setTimeout(() => {
-        setLifes(() => [0, 1, 2]);
+        setLifes(() => dificultModes[index].lifes);
 
         changeColors();
 
@@ -101,6 +116,19 @@ export default function ColoRGB() {
     } else {
       wrongMoveEvent(itemData);
     }
+  }
+
+  /** muda a dificuldade */
+  function setDificult(itemData: ColorDIficultControl) {
+    const newList = dificultModes.map((i) => ({ ...i, setted: false }));
+    const index = newList.findIndex((i) => i.text === itemData.text);
+
+    newList[index].setted = true;
+    setDificultModes(() => newList);
+
+    setLifes(() => itemData.lifes);
+    changeColors();
+    setScore((old) => ({ ...old, score: 0 }));
   }
 
   useEffect(() => {
@@ -133,14 +161,18 @@ export default function ColoRGB() {
       <ProjectHeader title="ColoRGB" />
 
       {/* sidebar */}
-      <div className="template_side_bar border-r-2 border-zinc-400 justify-center">
-        <div className="w-full h-fit py-2 mt-4 flex flex-col items-center text-2xl border-neutral-500 border-2 rounded-md">
-          {score.score}
-          <hr className="w-11/12 border-black" />
-          {score.highScore}
-        </div>
-        <div className="w-full h-full flex justify-center gap-3">
+      <div
+        className={`moblet:hidden template_side_bar border-r-2 border-zinc-400 justify-center transition-all bg-slate-100`}
+      >
+        {/* score */}
+        <ColorgbScore score={score} />
+
+        <div className="w-full h-full py-5 flex flex-col items-center gap-3">
           <ColoRGBLifes lifes={lifes} />
+          <DificultControl
+            setDificult={setDificult}
+            dificultModes={dificultModes}
+          />
         </div>
       </div>
 
@@ -148,12 +180,30 @@ export default function ColoRGB() {
       <div className="template_dashboard colorgb_dashboard place-items-center">
         {/* 
         painel que mostra a cor certa */}
-        <div className=" w-60 h-12 grid place-items-center rounded-md border-2 bg-gray-200 border-zinc-400 text-center">
-          <p className="text-3xl">{trueColor.slice(4, -1)}</p>
+        <div className=" w-60 mobile-sm:w-52 mobile-sm:ml-3 h-12 grid place-items-center rounded-md border-2 bg-gray-200 border-zinc-400 text-center relative moblet:mt-8">
+          <div className="moblet:flex hidden absolute -left-14 -top-8">
+            <ColoRGBLifes lifes={lifes} />
+          </div>
+
+          <p className="text-3xl ">{trueColor.slice(4, -1)}</p>
+
+          <DificultControlMobile
+            DiffControlToggle={DiffControlToggle}
+            setDiffControlToggle={setDiffControlToggle}
+            dificultModes={dificultModes}
+            setDificult={setDificult}
+          />
         </div>
 
         {/* painel das cores */}
-        <ColorsPanel blocks={blocks} checkMove={checkMove} />
+        <ColorsPanel
+          ezMode={dificultModes[0].setted}
+          blocks={blocks}
+          checkMove={checkMove}
+        />
+        <div className="w-[200px] fixed mobile-sm:bottom-5 bottom-32 moblet:block hidden">
+          <ColorgbScore score={score} />
+        </div>
       </div>
     </div>
   );

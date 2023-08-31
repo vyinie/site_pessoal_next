@@ -20,9 +20,16 @@ export interface ToDoListData {
   lists: TDList[];
   verticalList: boolean;
 }
+
 export interface ColoRGBBlock {
   id: number;
   colorCode: string;
+}
+
+export interface ColorDIficultControl {
+  text: string;
+  setted: boolean;
+  lifes: number[];
 }
 
 // ===================== components =====================

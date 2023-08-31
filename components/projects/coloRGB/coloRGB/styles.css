@@ -1,5 +1,5 @@
 .colorgb_dashboard{
     display: grid;
-    grid-template-rows: 120px auto;
+    grid-template-rows: 120px auto auto;
     grid-template-columns: 100%;
 }
