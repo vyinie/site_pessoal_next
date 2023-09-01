@@ -1,8 +1,6 @@
 import "./styles.css";
 
 import logo from "/public/_images/projectsItems/landingPages/mhsBS/MHSlogo.png";
-import bgHome from "@/public/_images/projectsItems/landingPages/mhsBS/mesa_cinza.png";
-import bgMenu from "@/public/_images/projectsItems/landingPages/mhsBS/garcon_cinza.png";
 
 import BackIcon from "@/components/projects/components/global/BackIcon";
 
@@ -31,11 +29,6 @@ export default function MHSBarberShop() {
         id="BShome"
         className="home w-full relative mt-14 flex flex-col items-center justify-center gap-7 text-center"
       >
-        <Image
-          alt="background"
-          src={bgHome}
-          className="-z-10 absolute top-0 left-0"
-        />
         <div>
           <h1 className="homeTitle">MHS</h1>
           <h1 className="homeTitle">Barber Shop</h1>
@@ -51,11 +44,6 @@ export default function MHSBarberShop() {
         id="BSmenu"
         className="menu w-full flex flex-col items-center justify-center relative"
       >
-        <Image
-          alt="background"
-          src={bgMenu}
-          className="-z-10 absolute top-0 left-0"
-        />
         <p className="text-yellow-400 text-5xl capitalize absolute top-5 right-1/2 translate-x-1/2">
           serviços
         </p>

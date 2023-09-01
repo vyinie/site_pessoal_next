@@ -23,6 +23,10 @@
 /* ================================= home ================================= */
 .home {
   min-height: var(--sectionHeight);
+  background-image: url("/_images/projectsItems/landingPages/mhsBS/mesa_cinza.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 .homeTitle {
   @apply text-white 
@@ -41,6 +45,11 @@
 }
 .menu {
   min-height: var(--sectionHeight);
+  --img: url("/_images/projectsItems/landingPages/mhsBS/garcon_cinza.png?url");
+  background-image: var(--img);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .menuCard {

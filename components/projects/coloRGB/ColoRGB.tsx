@@ -3,7 +3,7 @@ import "./styles.css";
 
 import { useEffect, useState } from "react";
 
-import ProjectHeader from "../../components/ProjectHeader";
+import ProjectHeader from "../components/ProjectHeader";
 
 import { ColoRGBBlock, ColorDIficultControl } from "@/functions/interfaces";
 import { colorRandom, randomNumber } from "@/functions/randomizers";

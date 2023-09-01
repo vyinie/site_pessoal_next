@@ -32,6 +32,13 @@ export interface ColorDIficultControl {
   lifes: number[];
 }
 
+export interface KanbanCard {
+  name: string;
+  id: string | number;
+  items: string[];
+  color: string;
+}
+
 // ===================== components =====================
 export interface CommonInput {
   name: string;

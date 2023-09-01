@@ -1,4 +1,4 @@
-import ColoRGB from "@/components/projects/coloRGB/coloRGB/ColoRGB";
+import ColoRGB from "@/components/projects/coloRGB/ColoRGB";
 
 export default function ColoRGBPage() {
   return <ColoRGB />;
