@@ -21,22 +21,43 @@ export interface ToDoListData {
   verticalList: boolean;
 }
 
+/** bloco de cor */
 export interface ColoRGBBlock {
   id: number;
   colorCode: string;
 }
 
+/** botão de dificuldade */
 export interface ColorDIficultControl {
   text: string;
   setted: boolean;
   lifes: number[];
 }
 
+/** ids do kanban */
+export interface KanbanIds {
+  cardId: number;
+  itemId: number;
+}
+
+/** obj de card do kanban */
 export interface KanbanCard {
   name: string;
   id: string | number;
-  items: string[];
+  items: KanbanItem[];
   color: string;
+}
+
+/** item que vai dentro do KanbanCard */
+export interface KanbanItem {
+  id: number;
+  text: string;
+}
+
+/** dodos do kanban, salvo no localStorage */
+export interface KanbanData {
+  globalIds: KanbanIds;
+  cards: KanbanCard[];
 }
 
 // ===================== components =====================

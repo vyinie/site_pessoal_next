@@ -14,7 +14,7 @@ export class accessibility {
     }
   }
 
-  enterAct(func: (e?) => void, e: any) {
+  enterAct(e: any, func: (e?) => void) {
     // func = função à executar
     // key = e.key
     if (e.key === "Enter") {
