@@ -1,6 +1,6 @@
 import { ToDoItem } from "@/functions/interfaces";
 import { accessibility } from "@/functions/accessibilityFunctions";
-import { DataHandlers } from "@/functions/dataHandlers";
+import { dataHandlers } from "@/functions/dataHandlers";
 import { CommonInp } from "@/components/projects/components/global/inputs";
 import { CommonBtn } from "@/components/projects/components/global/buttons";
 import { Dispatch, SetStateAction } from "react";
@@ -15,11 +15,11 @@ export default function ToDoForm({
   addNewItem: () => void;
 }) {
   const Access = new accessibility();
-  const dataH = new DataHandlers();
+  const dataH = new dataHandlers();
   return (
     <div
       onChange={(e) => dataH.getData(e, setNewToDo)}
-      onKeyDown={(e) => Access.enterAct(addNewItem, e)}
+      onKeyDown={(e) => Access.enterAct(e,addNewItem)}
       className="p-2 w-fit flex gap-2 items-center justify-center border-neutral-300 border-2 rounded-md"
     >
       <CommonInp
