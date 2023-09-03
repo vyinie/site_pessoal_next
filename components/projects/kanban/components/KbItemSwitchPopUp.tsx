@@ -1,8 +1,7 @@
-import { accessibility } from "@/functions/accessibilityFunctions";
 import { KanbanCard, KanbanData, KanbanItem } from "@/functions/interfaces";
 import { Dispatch, SetStateAction } from "react";
+import { PopUpWrapper } from "../../components/global/PopUps";
 
-const Access = new accessibility();
 export default function KbItemSwitchPopUp({
   itemData,
   currentCard,
@@ -44,22 +43,21 @@ export default function KbItemSwitchPopUp({
   }
 
   return (
-    <div
-      onClick={(e) => Access.closeWrapper(e, setIsOpen)}
-      className={`${isOpen ? "fixed" : "hidden"} common_wrapper close-on-click`}
+    <PopUpWrapper
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      className="flex flex-wrap gap-2 p-2"
     >
-      <div className="min-w-[200px] max-w-[90vw] min-h-[50px] max-h-[90vh] h-fit w-fit p-2 bg-slate-100 rounded-md flex flex-wrap gap-2">
-        {cardList.cards?.map((i) => (
-          <div
-            key={`kanbam_card_switch${i.id}`}
-            style={{ backgroundColor: i.color }}
-            className="min-w-[90px] p-2 text-center rounded-md cursor-pointer opacity-80 hover:opacity-100 close-on-click"
-            onClick={() => switchItem(i)}
-          >
-            {i.name}
-          </div>
-        ))}
-      </div>
-    </div>
+      {cardList.cards?.map((i) => (
+        <div
+          key={`kanbam_card_switch${i.id}`}
+          style={{ backgroundColor: i.color.bg }}
+          className={`${i.color.text} min-w-[90px] h-fit  p-2 text-center rounded-md cursor-pointer opacity-80 hover:opacity-100 close-on-click capitalize`}
+          onClick={() => switchItem(i)}
+        >
+          {i.name}
+        </div>
+      ))}
+    </PopUpWrapper>
   );
 }

@@ -2,8 +2,10 @@ import { KanbanCard, KanbanData } from "@/functions/interfaces";
 import { CommonBtn } from "../../components/global/buttons";
 import { Dispatch, SetStateAction } from "react";
 import { accessibility } from "@/functions/accessibilityFunctions";
+import { verifiers } from "@/functions/verifyers";
 
 const Access = new accessibility();
+const Verifiers = new verifiers();
 
 export default function KbAddItemPopUp({
   cardData,
@@ -28,31 +30,34 @@ export default function KbAddItemPopUp({
     const text = document.getElementById(`card_add_item${cardData.id}`);
 
     // add o item à lista
-    KanbanData.cards[cardIndex].items.push({
-      id: KanbanData.globalIds.itemId,
+    //@ts-ignore
+    if (Verifiers.InpChecker(text?.value)) {
+      KanbanData.cards[cardIndex].items.push({
+        id: KanbanData.globalIds.itemId,
+        // @ts-ignore
+        text: text?.value,
+      });
+      setKanbanLists(() => KanbanData.cards);
+
+      // muda o id dos itens
+      KanbanData.globalIds.itemId++;
+
+      // salva a nova lista
+      localStorage.setItem("kanban_data", JSON.stringify(KanbanData));
+
+      // limpa o input
       // @ts-ignore
-      text: text?.value,
-    });
-    setKanbanLists(() => KanbanData.cards);
+      text.value = "";
+      // verifica se o keepOpen está ativo
+      const keepOpen: boolean = document.getElementById(
+        `card_keep_open${cardData.id}`
+        //@ts-ignore
+      )?.checked;
 
-    // muda o id dos itens
-    KanbanData.globalIds.itemId++;
-
-    // salva a nova lista
-    localStorage.setItem("kanban_data", JSON.stringify(KanbanData));
-
-    // limpa o input
-    // @ts-ignore
-    text.value = "";
-    // verifica se o keepOpen está ativo
-    const keepOpen: boolean = document.getElementById(
-      `card_keep_open${cardData.id}`
-      //@ts-ignore
-    )?.checked;
-
-    //fecha o pop up
-    if (!keepOpen) {
-      setIsOpen(() => false);
+      //fecha o pop up
+      if (!keepOpen) {
+        setIsOpen(() => false);
+      }
     }
   }
 
@@ -67,7 +72,7 @@ export default function KbAddItemPopUp({
       <div
         className={`${
           isOpen ? "border-2 border-neutral-400 p-1" : "h-0"
-        } w-full overflow-hidden bg-white rounded-sm grid gap-2 place-items-center absolute top-full z-10 transition-all`}
+        } w-full overflow-hidden bg-white rounded grid gap-2 place-items-center absolute top-full z-10 transition-all`}
       >
         <input
           placeholder="nome do item"

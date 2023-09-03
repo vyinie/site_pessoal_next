@@ -45,7 +45,7 @@ export interface KanbanCard {
   name: string;
   id: string | number;
   items: KanbanItem[];
-  color: string;
+  color: { bg: string; text: "text-white" | "text-black" };
 }
 
 /** item que vai dentro do KanbanCard */

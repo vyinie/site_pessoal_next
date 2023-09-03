@@ -142,17 +142,17 @@ table {
 
 /* ================== DIVS ================== */
 .common_wrapper {
-  @apply top-0
+  @apply fixed
+  top-0
   left-0
-  z-30
+  z-10
 
   h-screen
   w-screen
   
   bg-black
-  bg-opacity-60
-
-  flex
+  bg-opacity-70
+  
   items-center
   justify-center;
 }

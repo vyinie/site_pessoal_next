@@ -2,8 +2,15 @@
 import { useState } from "react";
 
 import { DelEditPopOver, MoreOptsBtn } from "../../components/global/buttons";
+import { SetBoo } from "@/functions/interfaces";
 
-export default function KbCardMoreOpts({ delCard }: { delCard: () => void }) {
+export default function KbCardMoreOpts({
+  delCard,
+  setEditToggle,
+}: {
+  delCard: () => void;
+  setEditToggle: SetBoo;
+}) {
   const [optsToggle, setOptsToggle] = useState(false);
 
   return (
@@ -12,8 +19,7 @@ export default function KbCardMoreOpts({ delCard }: { delCard: () => void }) {
         <MoreOptsBtn type="dots" func={() => setOptsToggle((old) => !old)}>
           <DelEditPopOver
             delFunc={delCard}
-            setEditToggle={setOptsToggle}
-            
+            setEditToggle={setEditToggle}
             optsToggle={optsToggle}
             setOptsToggle={setOptsToggle}
           />

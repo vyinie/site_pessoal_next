@@ -1,45 +1,34 @@
 "use client";
-import "./index.css";
 
 import { useEffect, useState } from "react";
 import ProjectHeader from "../components/ProjectHeader";
 import KbCard from "./components/KbCard";
 import { KanbanCard, KanbanData } from "@/functions/interfaces";
+import KanbanSideBar from "./components/KbSideBar";
 
 /* ================ materialUI ================ */
 
 export default function Kanban() {
   const [kanbanLists, setKanbanLists] = useState<KanbanCard[]>([
     {
-      name: "To Do",
+      name: "à fazer",
       id: "ToDo",
       items: [],
-      color: "#90d4d9",
+      color: { bg: "#90d4d9", text: "text-black" },
     },
     {
-      name: "Doing",
+      name: "fazendo",
       id: "Doing",
       items: [],
-      color: "#FFD25F",
+      color: { bg: "#FFD25F", text: "text-black" },
     },
     {
-      name: "Done",
+      name: "feito",
       id: "Done",
       items: [],
-      color: "#60FFB3",
+      color: { bg: "#60FFB3", text: "text-black" },
     },
   ]);
-
-  const [ids, setIds] = useState({ itemId: 0, cardId: 0 });
-  // ================ adiciona um card ================
-  function addCard() {}
-
-  // ================ deleta todos os cards adicionados ================
-
-  function delAllCards() {}
-
-  // ================ deleta todos os itens de todos os cards ================
-  function delAllItems() {}
 
   useEffect(() => {
     const storage = localStorage.getItem("kanban_data");
@@ -50,38 +39,21 @@ export default function Kanban() {
     } else {
       const holder: KanbanData = {
         globalIds: { itemId: 0, cardId: 0 },
-        cards: [
-          {
-            name: "To Do",
-            id: "ToDo",
-            items: [],
-            color: "#90d4d9",
-          },
-          {
-            name: "Doing",
-            id: "Doing",
-            items: [],
-            color: "#FFD25F",
-          },
-          {
-            name: "Done",
-            id: "Done",
-            items: [],
-            color: "#60FFB3",
-          },
-        ],
+        cards: kanbanLists,
       };
       localStorage.setItem("kanban_data", JSON.stringify(holder));
     }
   }, []);
 
   return (
-    <div className="template bg-slate-100 ">
+    <div className="template bg-slate-100 relative">
       {/* ====================== header ====================== */}
       <ProjectHeader title="Kanban " />
 
-      {/* ================ area de todos os cards ================ */}
-      <div className="template_dashboard p-3 grid grid-cols-4 gap-2 justify-center content-start overflow-y-auto overflow-hidden">
+      {/* ================ side bar ================ */}
+      <KanbanSideBar setKanbanLists={setKanbanLists} />
+      {/* ================ dashboard ================ */}
+      <div className="template_dashboard p-1 grid grid-cols-4 tablet-lg:grid-cols-3 tablet-sm:grid-cols-2 mobile:flex mobile:flex-col mobile:items-center  gap-2 content-start overflow-y-auto overflow-hidden">
         {kanbanLists.map((i) => (
           <KbCard key={i.id} setKanbanLists={setKanbanLists} cardData={i} />
         ))}

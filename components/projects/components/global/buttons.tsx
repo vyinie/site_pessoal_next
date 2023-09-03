@@ -61,7 +61,7 @@ export function DelBtn({
         tabIndex={0}
         onKeyDown={(e) => Access.enterAct(e, func)}
         onClick={func}
-        className="kase"
+        className="kase change-on-click"
       ></div>
       <DeleteOutlineIcon sx={{ fontSize: fontSize || "35px" }} />
     </div>
@@ -113,9 +113,9 @@ export function EditBtn({
 }) {
   function handlerEditDispay(e) {
     if (hidden) {
-      Access.handlerWrapper(e, setToggle);
+      Access.handlerWrapper(e, setToggle, true);
     } else {
-      setToggle((old) => !old);
+      Access.handlerWrapper(e, setToggle);
     }
   }
 
@@ -132,7 +132,7 @@ export function EditBtn({
         tabIndex={0}
         onClick={handlerEditDispay}
         onKeyDown={enterAct}
-        className="btn kase change-on-click"
+        className="kase change-on-click"
       ></div>
       <EditIcon sx={{ fontSize: fontSize || "32px" }} />
     </div>
@@ -157,6 +157,10 @@ export function InfoBtn({ setToggle }) {
 }
 
 // ========================= THREE DOTS =========================
+/** 3 pontinhos ou sandwitch 
+ ** ser quiser que ele tenha position fixed ponha dentro de um div,
+    ele é relative
+*/
 export function MoreOptsBtn({
   children,
   standing,
@@ -172,7 +176,7 @@ export function MoreOptsBtn({
 }) {
   // três pontinhos, é uma tag pai
   return (
-    <div className={`${className || ""} relative flex gap-1 items-center`}>
+    <div className={`${className || ""} relative`}>
       <div
         tabIndex={0}
         className={`${standing ? "flex-col" : ""} ${
@@ -307,7 +311,11 @@ export function SwitchArrowsBtn({
         rounded === "full" ? "btn_hover_full" : "btn_hover_md"
       } min-h-[40px] min-w-[40px] flex justify-center items-center`}
     >
-      <div className="kase" tabIndex={0} onClick={handlerIcon}></div>
+      <div
+        className="kase change-on-click"
+        tabIndex={0}
+        onClick={handlerIcon}
+      ></div>
       <MultipleStopIcon sx={{ fontSize: fontSize || "30px" }} />
     </div>
   );
@@ -329,16 +337,18 @@ export function DelEditPopOver({
 
   optsToggle,
   setOptsToggle,
-  
+
   layed,
+  center,
 }: {
-  setEditToggle: Dispatch<SetStateAction<boolean>>;
+  setEditToggle: SetBoo;
   delFunc: () => void;
 
   optsToggle: boolean;
-  setOptsToggle: Dispatch<SetStateAction<boolean>>;
+  setOptsToggle: SetBoo;
 
   layed?: boolean;
+  center?: boolean;
 }) {
   return (
     <>
@@ -350,13 +360,16 @@ export function DelEditPopOver({
         } h-screen w-screen top-0 left-0 z-[2] close-on-click`}
       ></div>
       <div
+        onClick={(e) => Access.handlerWrapper(e, setOptsToggle)}
         className={`${
           optsToggle
             ? layed
               ? "w-24 h-12 border-2 grid-flow-col"
               : "w-12 h-24 border-2"
             : "w-0 h-0"
-        } overflow-hidden bg-slate-200 border-zinc-500 rounded-md absolute top-5 right-9 transition-all grid place-items-center close-on-click z-10`}
+        }
+        ${center ? "top-1/2 -translate-y-1/2" : "top-5"}
+        overflow-hidden bg-slate-200 border-zinc-500 rounded-md absolute right-9 transition-all grid place-items-center z-10`}
       >
         <EditBtn rounded="full" setToggle={setEditToggle} />
         <DelBtn rounded="full" func={delFunc} />

@@ -1,4 +1,4 @@
-export class DataHandlers {
+export class dataHandlers {
   getData(e, handler) {
     /* 
     e = event

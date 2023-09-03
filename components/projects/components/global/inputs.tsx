@@ -3,6 +3,10 @@ import "./styles.css";
 import { SelectInp, CommonInput } from "@/functions/interfaces";
 import { useState } from "react";
 
+/** pra pegar o input coloque o onchange na div pai
+ * o name do input tem de ser igual a key o obj que
+ * mudará
+ */
 export function CommonInp({
   inpValue,
   type,
@@ -12,7 +16,6 @@ export function CommonInp({
   h,
   w,
 }: CommonInput) {
-  // pra pegar o input coloque o onchange na div pai
   return (
     <input
       className={`

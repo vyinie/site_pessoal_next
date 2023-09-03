@@ -6,25 +6,41 @@ import {
 } from "../../components/global/buttons";
 import { Dispatch, SetStateAction, useState } from "react";
 import KbItemSwitchPopUp from "./KbItemSwitchPopUp";
+import { accessibility } from "@/functions/accessibilityFunctions";
+import { PopOverInpInline } from "../../components/global/PopUps";
+import { verifiers } from "@/functions/verifyers";
+
+const Access = new accessibility();
+const Verifiers = new verifiers();
 
 export default function KbItem({
   item,
   cardData,
 
-  switchItem,
   setKanbanLists,
 }: {
   item: KanbanItem;
   cardData: KanbanCard;
 
-  switchItem: () => void;
   setKanbanLists: Dispatch<SetStateAction<KanbanCard[]>>;
 }) {
+  /** state do pop over dos botões de delete e edição */
   const [itemOptsToggle, setItemOptsToggle] = useState(false);
-  const [switchPopup, setSwitchPopup] = useState(false);
 
-  function handlerToggle() {
-    setItemOptsToggle((old) => !old);
+  /** state do pop up de realocação do item */
+  const [switchPopup, setSwitchPopup] = useState(true);
+
+  /** state do pop over de edição do item */
+  const [editPopUpToggle, setEditPopUpToggle] = useState(false);
+
+  /** abre o pop over de mais opições */
+  function openMoreOpts(e) {
+    Access.handlerWrapper(e, setItemOptsToggle);
+  }
+
+  /** abre o pop up de realocação do item */
+  function openSwitchPopup(e) {
+    Access.handlerWrapper(e, setSwitchPopup);
   }
 
   function delItem() {
@@ -42,11 +58,34 @@ export default function KbItem({
     localStorage.setItem("kanban_data", JSON.stringify(KanbanData));
   }
 
-  function openSwitchPopup() {
-    setSwitchPopup((old) => !old);
+  function editItem() {
+    const holder = localStorage.getItem("kanban_data") || "{}";
+    const KanbanData: KanbanData = JSON.parse(holder);
+
+    // index do card
+    const cardIndex = KanbanData.cards.findIndex((i) => i.id === cardData.id);
+
+    // index do item
+    const itemIndex = KanbanData.cards[cardIndex].items.findIndex(
+      (i) => i.id === item.id
+    );
+
+    const newText = document.getElementById(
+      `kanban_edit_item${item.id}`
+      //@ts-ignore
+    )?.value;
+    if (Verifiers.InpChecker(newText)) {
+      KanbanData.cards[cardIndex].items[itemIndex].text = newText;
+
+      setKanbanLists(() => KanbanData.cards);
+
+      localStorage.setItem("kanban_data", JSON.stringify(KanbanData));
+
+      setEditPopUpToggle(() => false);
+    }
   }
   return (
-    <div className="w-full h-10 pl-2 rounded-sm bg-white text-ellipsis whitespace-nowrap text-xl bg_hover grid grid-cols-6 place-items-center">
+    <div className="w-full h-10 pl-2 rounded bg-white text-ellipsis whitespace-nowrap text-xl bg_hover grid grid-cols-6 place-items-center relative">
       <p title={item.text} className="col-start-1 col-end-5 w-full ">
         {item.text}
       </p>
@@ -55,13 +94,14 @@ export default function KbItem({
         <SwitchArrowsBtn rounded="full" func={openSwitchPopup} />
       </div>
       <div className="col-start-6 col-end-6">
-        <MoreOptsBtn func={handlerToggle} type="dots" standing>
+        <MoreOptsBtn func={openMoreOpts} type="dots" standing>
           <DelEditPopOver
             delFunc={delItem}
-            setEditToggle={setItemOptsToggle}
+            setEditToggle={setEditPopUpToggle}
             optsToggle={itemOptsToggle}
             setOptsToggle={setItemOptsToggle}
             layed
+            center
           />
         </MoreOptsBtn>
       </div>
@@ -71,6 +111,14 @@ export default function KbItem({
         currentCard={cardData}
         isOpen={switchPopup}
         setIsOpen={setSwitchPopup}
+      />
+      <PopOverInpInline
+        isOpen={editPopUpToggle}
+        setIsOpen={setEditPopUpToggle}
+        defaultValue={item.text}
+        id={`kanban_edit_item${item.id}`}
+        placeholder="Editar"
+        func={editItem}
       />
     </div>
   );

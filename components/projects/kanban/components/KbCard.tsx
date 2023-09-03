@@ -6,16 +6,20 @@ import { AddBtn } from "../../components/global/buttons";
 import { Dispatch, SetStateAction, useState } from "react";
 import KbItem from "./KbItem";
 import KbAddItemPopUp from "./KbAddItemPopUp";
+import { PopOverInpInline } from "../../components/global/PopUps";
 
 const kanbanStorageName = "kanban_data";
 const KbCard = ({
   cardData,
   setKanbanLists,
+  classname,
 }: {
   cardData: KanbanCard;
   setKanbanLists: Dispatch<SetStateAction<KanbanCard[]>>;
+  classname?: string;
 }) => {
   const [addItemToggle, setAddItemToggle] = useState(false);
+  const [editTitleToggle, setEditTitleToggle] = useState(false);
 
   //
   function delCard() {
@@ -23,10 +27,7 @@ const KbCard = ({
     const holder = localStorage.getItem(kanbanStorageName) || "{}";
     const KanbanData: KanbanData = JSON.parse(holder);
 
-    // index desse card
-    const cardIndex = KanbanData.cards.findIndex((i) => i.id === cardData.id);
-
-    KanbanData.cards[cardIndex].items = [];
+    KanbanData.cards = KanbanData.cards.filter((i) => i.id !== cardData.id);
 
     setKanbanLists(() => KanbanData.cards);
     localStorage.setItem(kanbanStorageName, JSON.stringify(KanbanData));
@@ -37,16 +38,38 @@ const KbCard = ({
     document.getElementById(`card_add_item${cardData.id}`)?.focus();
   }
 
-  function switchItem() {}
+  function editCardTitle() {
+    const holder = localStorage.getItem(kanbanStorageName) || "{}";
+    const KanbanData: KanbanData = JSON.parse(holder);
+
+    // index desse card
+    const cardIndex = KanbanData.cards.findIndex((i) => i.id === cardData.id);
+
+    const inp = document.getElementById(`kanban_edit_card${cardData.id}`);
+
+    // @ts-ignore
+    if (inp?.value) {
+      // @ts-ignore
+      KanbanData.cards[cardIndex].name = inp?.value;
+
+      setKanbanLists(() => KanbanData.cards);
+      localStorage.setItem("kanban_data", JSON.stringify(KanbanData));
+
+      // @ts-ignore
+      inp.value = "";
+    }
+  }
 
   return (
     <div
-      style={{ backgroundColor: cardData.color }}
-      className={`min-w-[190px] max-h-[300px]  h-fit w-full rounded-md p-1 pt-0 flex flex-col items-center`}
+    style={{backgroundColor:cardData.color.bg}}
+      className={`${
+        classname || ""
+      } min-w-[190px] max-h-[300px]  h-fit w-full rounded-md p-1 pt-0 flex flex-col items-center relative`}
     >
       {/* header */}
-      <div className="h-10 w-full grid grid-cols-6 place-items-center relative">
-        <p className="col-start-1 col-end-5 w-full text-2xl text-center capitalize">
+      <div className="h-10 w-full pl-1 grid grid-cols-6 place-items-center relative">
+        <p className={`${cardData.color.text} col-start-1 col-end-5 w-full text-xl  capitalize text-ellipsis whitespace-nowrap overflow-hidden`}>
           {cardData.name}
         </p>
         <AddBtn
@@ -54,7 +77,7 @@ const KbCard = ({
           rounded="full"
           className="col-start-5 col-end-5"
         />
-        <KbCardMoreOpts delCard={delCard} />
+        <KbCardMoreOpts delCard={delCard} setEditToggle={setEditTitleToggle} />
 
         <KbAddItemPopUp
           isOpen={addItemToggle}
@@ -62,15 +85,22 @@ const KbCard = ({
           cardData={cardData}
           setKanbanLists={setKanbanLists}
         />
+        <PopOverInpInline
+          defaultValue={cardData.name}
+          func={editCardTitle}
+          id={`kanban_edit_card${cardData.id}`}
+          isOpen={editTitleToggle}
+          setIsOpen={setEditTitleToggle}
+          placeholder="Editar"
+        />
       </div>
 
       {/* items */}
-      <div className="w-full grid gap-1 overflow-hidden overflow-y-auto">
+      <div className="w-full h-fit grid gap-1 overflow-hidden overflow-y-auto">
         {cardData.items.map((i) => (
           <KbItem
             key={`kanban_item${i.id}`}
             item={i}
-            switchItem={switchItem}
             cardData={cardData}
             setKanbanLists={setKanbanLists}
           />
