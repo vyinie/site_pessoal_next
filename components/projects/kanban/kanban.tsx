@@ -55,7 +55,7 @@ export default function Kanban() {
       {/* ================ dashboard ================ */}
       <div className="template_dashboard p-1 grid grid-cols-4 tablet-lg:grid-cols-3 tablet-sm:grid-cols-2 mobile:flex mobile:flex-col mobile:items-center  gap-2 content-start overflow-y-auto overflow-hidden">
         {kanbanLists.map((i) => (
-          <KbCard key={i.id} setKanbanLists={setKanbanLists} cardData={i} />
+          <KbCard kanbanLists={kanbanLists} key={i.id} setKanbanLists={setKanbanLists} cardData={i} />
         ))}
       </div>
     </div>

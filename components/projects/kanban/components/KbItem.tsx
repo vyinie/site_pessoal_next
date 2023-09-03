@@ -17,11 +17,12 @@ export default function KbItem({
   item,
   cardData,
 
+  kanbanLists,
   setKanbanLists,
 }: {
   item: KanbanItem;
   cardData: KanbanCard;
-
+  kanbanLists: KanbanCard[];
   setKanbanLists: Dispatch<SetStateAction<KanbanCard[]>>;
 }) {
   /** state do pop over dos botões de delete e edição */
@@ -106,6 +107,7 @@ export default function KbItem({
         </MoreOptsBtn>
       </div>
       <KbItemSwitchPopUp
+        kanbanLists={kanbanLists}
         setKanbanLists={setKanbanLists}
         itemData={item}
         currentCard={cardData}

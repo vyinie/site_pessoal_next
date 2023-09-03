@@ -11,11 +11,17 @@ import { PopOverInpInline } from "../../components/global/PopUps";
 const kanbanStorageName = "kanban_data";
 const KbCard = ({
   cardData,
+
+  kanbanLists,
   setKanbanLists,
+  
   classname,
 }: {
   cardData: KanbanCard;
+
+  kanbanLists: KanbanCard[];
   setKanbanLists: Dispatch<SetStateAction<KanbanCard[]>>;
+
   classname?: string;
 }) => {
   const [addItemToggle, setAddItemToggle] = useState(false);
@@ -62,14 +68,16 @@ const KbCard = ({
 
   return (
     <div
-    style={{backgroundColor:cardData.color.bg}}
+      style={{ backgroundColor: cardData.color.bg }}
       className={`${
         classname || ""
       } min-w-[190px] max-h-[300px]  h-fit w-full rounded-md p-1 pt-0 flex flex-col items-center relative`}
     >
       {/* header */}
       <div className="h-10 w-full pl-1 grid grid-cols-6 place-items-center relative">
-        <p className={`${cardData.color.text} col-start-1 col-end-5 w-full text-xl  capitalize text-ellipsis whitespace-nowrap overflow-hidden`}>
+        <p
+          className={`${cardData.color.text} col-start-1 col-end-5 w-full text-xl  capitalize text-ellipsis whitespace-nowrap overflow-hidden`}
+        >
           {cardData.name}
         </p>
         <AddBtn
@@ -102,6 +110,7 @@ const KbCard = ({
             key={`kanban_item${i.id}`}
             item={i}
             cardData={cardData}
+            kanbanLists={kanbanLists}
             setKanbanLists={setKanbanLists}
           />
         ))}

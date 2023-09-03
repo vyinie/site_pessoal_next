@@ -121,6 +121,7 @@ export default function KbAddCardPopUp({
       <div className="relative">
         <div className="w-full h-full absolute z-[1]"></div>
         <KbCard
+         kanbanLists={[]}
           classname="max-w-full"
           cardData={newCardData}
           setKanbanLists={setCardListTest}
