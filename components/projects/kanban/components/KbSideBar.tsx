@@ -12,8 +12,9 @@ export default function KanbanSideBar({
 }: {
   setKanbanLists: Dispatch<SetStateAction<KanbanCard[]>>;
 }) {
-  const holder = localStorage.getItem("kanban_data") || "{}";
+  const holder = localStorage?.getItem("kanban_data") || "{}";
   const KanbanData: KanbanData = JSON.parse(holder);
+
   // abre a side bar do mobile
   const [sideBarToggle, setSideBarToggle] = useState(false);
   // abre o popup para add um card

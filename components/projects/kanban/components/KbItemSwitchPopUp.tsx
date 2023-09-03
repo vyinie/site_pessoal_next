@@ -19,8 +19,8 @@ export default function KbItemSwitchPopUp({
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) {
-  const holder = localStorage.getItem("kanban_data");
-  const cardList: KanbanData = JSON.parse(holder || "{}");
+  const holder = localStorage?.getItem("kanban_data") || "{}";
+  const cardList: KanbanData = JSON.parse(holder);
 
   function switchItem(chosenCard: KanbanCard) {
     //index do card atual
@@ -48,16 +48,17 @@ export default function KbItemSwitchPopUp({
       setIsOpen={setIsOpen}
       className="flex flex-wrap gap-2 p-2"
     >
-      {cardList.cards?.map((i) => (
-        <div
-          key={`kanbam_card_switch${i.id}`}
-          style={{ backgroundColor: i.color.bg }}
-          className={`${i.color.text} min-w-[90px] h-fit  p-2 text-center rounded-md cursor-pointer opacity-80 hover:opacity-100 close-on-click capitalize`}
-          onClick={() => switchItem(i)}
-        >
-          {i.name}
-        </div>
-      ))}
+      {cardList &&
+        cardList.cards.map((i) => (
+          <div
+            key={`kanbam_card_switch${i.id}`}
+            style={{ backgroundColor: i.color.bg }}
+            className={`${i.color.text} min-w-[90px] h-fit  p-2 text-center rounded-md cursor-pointer opacity-80 hover:opacity-100 close-on-click capitalize`}
+            onClick={() => switchItem(i)}
+          >
+            {i.name}
+          </div>
+        ))}
     </PopUpWrapper>
   );
 }
