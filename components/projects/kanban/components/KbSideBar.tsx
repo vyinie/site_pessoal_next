@@ -12,9 +12,6 @@ export default function KanbanSideBar({
 }: {
   setKanbanLists: Dispatch<SetStateAction<KanbanCard[]>>;
 }) {
-  const holder = localStorage?.getItem("kanban_data") || "{}";
-  const KanbanData: KanbanData = JSON.parse(holder);
-
   // abre a side bar do mobile
   const [sideBarToggle, setSideBarToggle] = useState(false);
   // abre o popup para add um card
@@ -30,6 +27,9 @@ export default function KanbanSideBar({
   // ================ deleta todos os cards adicionados ================
 
   function delAllCards() {
+    const holder = localStorage?.getItem("kanban_data") || "{}";
+    const KanbanData: KanbanData = JSON.parse(holder);
+
     KanbanData.cards = [];
 
     setKanbanLists(() => KanbanData.cards);
@@ -38,6 +38,9 @@ export default function KanbanSideBar({
 
   // ================ deleta todos os itens de todos os cards ================
   function delAllItems() {
+    const holder = localStorage?.getItem("kanban_data") || "{}";
+    const KanbanData: KanbanData = JSON.parse(holder);
+
     const newKanbanList = KanbanData.cards.map((i) => ({ ...i, items: [] }));
 
     KanbanData.cards = newKanbanList;
@@ -76,7 +79,6 @@ export default function KanbanSideBar({
       </div>
 
       <KbAddCardPopUp
-        KanbanData={KanbanData}
         setKanbanLists={setKanbanLists}
         addCardPopupToggle={addCardPopupToggle}
         setAddCardPopupToggle={setAddCardPopupToggle}

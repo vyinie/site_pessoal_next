@@ -11,12 +11,10 @@ const DataHandlers = new dataHandlers();
 const Verifiers = new verifiers();
 
 export default function KbAddCardPopUp({
-  KanbanData,
   addCardPopupToggle,
   setAddCardPopupToggle,
   setKanbanLists,
 }: {
-  KanbanData: KanbanData;
   setKanbanLists: Dispatch<SetStateAction<KanbanCard[]>>;
 
   addCardPopupToggle: boolean;
@@ -24,7 +22,7 @@ export default function KbAddCardPopUp({
 }) {
   const [newCardData, setNewCardData] = useState<KanbanCard>({
     name: "",
-    id: `card${KanbanData?.globalIds?.cardId}`,
+    id: "cardExmple",
     items: [
       { id: 99996, text: "exemplo" },
       { id: 99997, text: "exemplo" },
@@ -50,7 +48,11 @@ export default function KbAddCardPopUp({
       const holder = localStorage.getItem("kanban_data") || "{}";
       const KanbanData: KanbanData = JSON.parse(holder);
 
-      KanbanData.cards.push({ ...newCardData, items: [] });
+      KanbanData.cards.push({
+        ...newCardData,
+        id: `card${KanbanData.globalIds.cardId}`,
+        items: [],
+      });
       KanbanData.globalIds.cardId++;
 
       setKanbanLists(() => KanbanData.cards);
