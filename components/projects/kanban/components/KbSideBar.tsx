@@ -31,6 +31,7 @@ export default function KanbanSideBar({
     const KanbanData: KanbanData = JSON.parse(holder);
 
     KanbanData.cards = [];
+    KanbanData.globalIds.cardId = 0;
 
     setKanbanLists(() => KanbanData.cards);
     localStorage.setItem("kanban_data", JSON.stringify(KanbanData));
@@ -44,6 +45,8 @@ export default function KanbanSideBar({
     const newKanbanList = KanbanData.cards.map((i) => ({ ...i, items: [] }));
 
     KanbanData.cards = newKanbanList;
+    KanbanData.globalIds.itemId = 0;
+
     setKanbanLists(() => newKanbanList);
 
     localStorage.setItem("kanban_data", JSON.stringify(KanbanData));

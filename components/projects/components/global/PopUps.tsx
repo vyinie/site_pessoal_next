@@ -26,7 +26,7 @@ export function PopUpWrapper({
       className={`${isOpen ? "flex" : "hidden"} common_wrapper close-on-click`}
     >
       <div
-        className={`${className} max-w-[95vw] max-h-[80vh] rounded bg-white overflow-y-auto`}
+        className={`${className} max-w-[90vw] max-h-[80vh] w-fit rounded bg-white overflow-hidden overflow-y-auto`}
       >
         {children}
       </div>

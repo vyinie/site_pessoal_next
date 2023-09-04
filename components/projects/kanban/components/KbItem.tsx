@@ -29,7 +29,7 @@ export default function KbItem({
   const [itemOptsToggle, setItemOptsToggle] = useState(false);
 
   /** state do pop up de realocação do item */
-  const [switchPopup, setSwitchPopup] = useState(true);
+  const [switchPopup, setSwitchPopup] = useState(false);
 
   /** state do pop over de edição do item */
   const [editPopUpToggle, setEditPopUpToggle] = useState(false);

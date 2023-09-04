@@ -48,7 +48,7 @@ export default function KbItemSwitchPopUp({
     <PopUpWrapper
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      className="flex flex-wrap gap-2 p-2"
+      className="flex flex-wrap justify-center gap-2 p-2 "
     >
       {kanbanLists.map((i) => (
         <div
