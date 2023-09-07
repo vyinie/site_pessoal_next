@@ -11,10 +11,13 @@ body,
 html,
 .App {
   @apply w-full
-  h-full;
+  h-full
+  bg-neutral-400
+  ;
 }
 .App {
   @apply bg-yellow-100;
+
 }
 
 *::-webkit-scrollbar {
@@ -33,8 +36,7 @@ html,
   grid-template-areas: "header header" "sideBar dashboard";
   grid-template-rows: 60px auto;
   grid-template-columns: 200px auto;
-  @apply w-screen
-  h-screen;
+  @apply w-screen h-screen;
 }
 .template_header {
   grid-area: header;
@@ -68,13 +70,15 @@ html,
     moblet:top-0
     moblet:left-0
 
-    moblet:h-full
-    moblet:w-full
+    h-full
+    w-full
 
     moblet:bg-black
     moblet:bg-opacity-60
 
-    moblet:flex
+    flex
+    justify-center
+
     moblet:justify-start
 
     moblet:transition-all;
@@ -91,7 +95,7 @@ html,
   @apply absolute top-0 left-0 h-full w-full cursor-pointer;
 }
 .bg_hover {
-  @apply hover:bg-slate-100 hover:bg-opacity-80 dark:border-neutral-600 dark:hover:bg-neutral-600 dark:hover:bg-opacity-50 border-slate-300 transition-all;
+  @apply hover:bg-neutral-300 hover:bg-opacity-80 dark:border-neutral-600 dark:hover:bg-neutral-600 dark:hover:bg-opacity-50 border-slate-300 transition-all;
 }
 /* ================== INPUTS ================== */
 .containedInp {

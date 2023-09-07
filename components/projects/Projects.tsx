@@ -4,12 +4,18 @@ import "./Projects.css";
 import { useState } from "react";
 
 
-import colorgb from "/public/_images/projectsItems/games/coloRGB_kase.png";
-import todo from "/public/_images/projectsItems/apps/ToDo_kase.png";
-import acAlma from "/public/_images/projectsItems/landingPages/acAlma/acAlma_kase.png";
-import mhsBS from "/public/_images/projectsItems/landingPages/mhsBS/mhsBS_kase.png";
-import emBreve from "/public/_images/projectsItems/em-breve.png";
-import kanban from "/public/_images/projectsItems/apps/kanban_kase.png";
+import colorgb from "@/public/_images/projectsItems/games/coloRGB_kase.png";
+
+import todo from "@/public/_images/projectsItems/apps/ToDo_kase.png";
+import kanban from "@/public/_images/projectsItems/apps/kanban_kase.png";
+import finnance from "@/public/_images/projectsItems/apps/finnance_kase.png";
+
+
+import mhsBS from "@/public/_images/projectsItems/landingPages/mhsBS/mhsBS_kase.png";
+import acAlma from "@/public/_images/projectsItems/landingPages/acAlma/acAlma_kase.png";
+
+import emBreve from "@/public/_images/projectsItems/em-breve.png";
+
 import ProjectsMenu from "./components/ProjectsMenu";
 import Item from "./components/ProjectItem";
 
@@ -17,6 +23,13 @@ export default function Projects() {
   const projectsList = {
     // apps
     apps: [
+      {
+        title: "Finnance",
+        des: "CRUD de controle financeiro, com banco de dados multi-tenancy",
+        id: 3,
+        link: "/finnance",
+        img: finnance,
+      },
       {
         title: "To Do List",
         des: "To Do List, o nome é bem objetivo",
@@ -30,13 +43,6 @@ export default function Projects() {
         id: 2,
         link: "/kanban",
         img: kanban,
-      },
-      {
-        title: "Sistema de Cadastro",
-        des: "projeto de CRUD",
-        id: 3,
-        link: "/sistema-de-cadastro",
-        img: emBreve,
       },
     ],
 

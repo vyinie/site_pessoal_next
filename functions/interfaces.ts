@@ -1,4 +1,4 @@
-import { SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 // ===================== vaiaveis =====================
 /** item unico de uma lista  */
@@ -60,6 +60,53 @@ export interface KanbanData {
   cards: KanbanCard[];
 }
 
+/** item da lista de notas do finnance */
+export interface note {
+  id?: number;
+  name: string;
+  value: number;
+  noteClass: string;
+  date: string;
+  flow: string;
+}
+
+/** item da lista de dividas do finnance */
+export interface debt {
+  id?: number;
+  name: string;
+  value: number;
+  installments: number;
+  remainingInsts: number;
+  date: string;
+}
+
+/** classe de nota */
+export interface Classes {
+  id: number;
+  text: string;
+  flow: "saida" | "entrada";
+}
+
+/** dados da calculadora de juros */
+export interface Compound {
+  initialValue: number;
+  monthlyValue: number;
+  interestRate: number;
+  aplicationTime: number;
+}
+
+/** todos os dados de listas do finnance */
+export interface FinnanceData {
+  globalIds: number;
+  debtsList: debt[];
+  notesList: { notes: note[]; classes: Classes[] };
+}
+
+export interface GraphData {
+  labels: string[];
+  series: number[];
+}
+
 // ===================== components =====================
 export interface CommonInput {
   name: string;
@@ -75,12 +122,15 @@ export interface CommonBtn {
   ActFunc: (e?) => void;
   text: string;
   className?: string;
+  color?: string;
+
 }
 
 export interface SelectInp {
+  name?: string;
   inpValue: string;
-  dataHandler: any;
-  list: { id: number; text: string }[];
+  setStateAction: Dispatch<SetStateAction<object>>;
+  list: { id: number; text: string; [key: string]: any }[];
   width?: string;
   bgColor?: string;
 }

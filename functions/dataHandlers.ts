@@ -1,27 +1,29 @@
+import { Dispatch, SetStateAction } from "react";
+import { debt, note } from "./interfaces";
+
 export class dataHandlers {
-  getData(e, handler) {
-    /* 
-    e = event
-    handler = setState()
-    
-    essa função precisa de um state em objeto, só funciona com
-    inputs com o 'name' igual a key do objeto, e existe apenas pra mostrar
-    melhormente as informações pro user
-    */
+  /**
+  **e = event
+  **handler = setState()
+  essa função precisa de um state em objeto, só funciona com
+  inputs com o 'name' igual a key do objeto, e existe apenas pra mostrar
+  melhormente as informações pro user
+  */
+  getData(e, setStateAction: Dispatch<SetStateAction<object>>) {
     if (e.target.inputMode === "numeric") {
       if (e.target.value == "0") {
-        handler((old) => ({
+        setStateAction((old) => ({
           ...old,
           [e.target.name]: "",
         }));
       } else {
-        handler((old) => ({
+        setStateAction((old) => ({
           ...old,
           [e.target.name]: this.localeDecimal(e.target.value),
         }));
       }
     } else {
-      handler((old) => ({
+      setStateAction((old) => ({
         ...old,
         [e.target.name]: e.target.value,
       }));
@@ -60,5 +62,23 @@ export class dataHandlers {
     const d1 = new Date(date.split("T")[0] + " ").toLocaleString();
     const d2 = d1.split(",")[0];
     return d2;
+  }
+
+  formatForms(Note) {
+    /* essa função é pra formatar dados de objetos do tipo 
+    'note' => /functions/interfaces.ts:2
+    antes de enviar pra adicionar ou editar. Formatando a data
+    e valor pra ISO */
+    const note = Note;
+    note.date = new Date(Note.date).toISOString();
+    note.value = Number(
+      Note.value
+        .toString()
+        .split(".")
+        .reduce((a, b) => a + b)
+        .replace(",", ".")
+    );
+    Number(note.value);
+    return note;
   }
 }

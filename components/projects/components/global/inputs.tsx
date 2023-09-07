@@ -1,7 +1,10 @@
 "use client";
 import "./styles.css";
 import { SelectInp, CommonInput } from "@/functions/interfaces";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { dataHandlers } from "@/functions/dataHandlers";
+
+const DataHandler = new dataHandlers();
 
 /** pra pegar o input coloque o onchange na div pai
  * o name do input tem de ser igual a key o obj que
@@ -36,15 +39,17 @@ export function CommonInp({
 // ============================ input de fluxo ============================
 export function RadioInp({
   dataHandler,
-  flow,
   inflow,
   outflow,
 }: {
   dataHandler: any;
-  flow: any;
   inflow: string;
   outflow: string;
 }) {
+  useEffect(() => {
+    document.getElementById(outflow)?.click();
+  }, []);
+
   return (
     <div onChange={dataHandler} className="flex gap-3 ">
       <div className="radioContainer">
@@ -60,7 +65,6 @@ export function RadioInp({
 
       <div className="radioContainer">
         <input
-          ref={flow}
           type="radio"
           className="accent-amber-500"
           name="flow"
@@ -74,9 +78,17 @@ export function RadioInp({
 }
 
 // ============================ input das classes ============================
+/**
+ **inpValue = key do obj que esse inp mudará
+ **dataHandler =
+ **list =
+ **widt =
+ **bgColor =
+ */
 export function SelectInp({
   inpValue,
-  dataHandler,
+  name = "select",
+  setStateAction,
   list,
   width,
   bgColor,
@@ -98,7 +110,7 @@ export function SelectInp({
           bgColor || "bg-slate-100 "
         } rounded-md h-full containedInp w-full pr-4`}
         placeholder="Classe"
-        name="noteClass"
+        name={name}
         value={inpValue}
         onChange={() => {}}
         onFocus={showOpts}
@@ -108,15 +120,17 @@ export function SelectInp({
           className={`${
             OptsDisplay ? "block" : "hidden"
           }  overflow-y-auto min-w-full max-h-40 h-fit absolute right-1/2 translate-x-1/2 top-full bg-slate-200 text-center captalize`}
-          onClick={dataHandler}
+          onClick={(e) => DataHandler.getData(e, setStateAction)}
         >
           {list.length > 0 &&
             list.map((i) => (
               <button
+                name={name}
+                value={i.text}
                 className={`${
                   bgColor ||
                   "dark:hover:bg-neutral-600 hover:bg-slate-300 dark:font-bold dark:text-opacity-80 dark:bg-zinc-500"
-                } p-1 w-full  dark:text-white dark:border-neutral-700`}
+                } p-1 w-full dark:text-white dark:border-neutral-700`}
                 key={`formClass${i.id}`}
                 tabIndex={0}
               >

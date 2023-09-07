@@ -17,13 +17,14 @@ import { Dispatch, SetStateAction } from "react";
 
 const Access = new accessibility();
 // ========================= GREEN BUTTON =========================
-export function CommonBtn({ ActFunc, text, className }: CommonBtn) {
+export function CommonBtn({ ActFunc, text, className, color }: CommonBtn) {
   return (
     <button
       onClick={ActFunc}
-      className={`${
-        className || "bg-green-500 hover:bg-green-600 py-2 px-3"
-      } capitalize cursor-pointer transition rounded-md text-white`}
+      className={`
+      ${className || ""}
+      ${color || "bg-green-500 hover:bg-green-600 "}
+       capitalize cursor-pointer transition rounded-md text-white py-2 px-3`}
     >
       {text}
     </button>
@@ -176,7 +177,7 @@ export function MoreOptsBtn({
 }) {
   // três pontinhos, é uma tag pai
   return (
-    <div className={`${className || ""} relative`}>
+    <div onClick={func} className={`${className || ""} relative`}>
       <div
         tabIndex={0}
         className={`${standing ? "flex-col" : ""} ${
@@ -185,7 +186,7 @@ export function MoreOptsBtn({
             : "w-12 btn_hover_md p-1 flex-col gap-1.5"
         } flex justify-center items-center h-10`}
       >
-        <div className="kase change-on-click" onClick={func}></div>
+        <div className="kase change-on-click"></div>
         <div
           className={`h-1.5 ${
             type === "dots" ? "w-1.5" : "w-full"
