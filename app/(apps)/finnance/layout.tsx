@@ -11,7 +11,7 @@ export default function finnanceLayout({
       <ProjectHeader title="Finnance" />
       <FinnanceSideBar />
 
-      {typeof window != "undefined" && children}
+      {children}
     </div>
   );
 }

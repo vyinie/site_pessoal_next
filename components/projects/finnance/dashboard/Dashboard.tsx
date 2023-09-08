@@ -44,10 +44,12 @@ export default function FinnanceDashboard() {
   return (
     <div className="template_dashboard overflow-hidden overflow-y-auto">
       <div className="flex flex-col items-center max-h-[110vh] mobile:max-h-[180vh] mobile-sm:max-h-[230vh] h-fit">
-
-      <Cards finnanceData={finnanceData} />
-      <NoteForm finnanceData={finnanceData} setFinnanceData={setFinnanceData} />
-      <Table setFinnanceData={setFinnanceData} finnanceData={finnanceData} />
+        {typeof window != "undefined" && <Cards finnanceData={finnanceData} />}
+        <NoteForm
+          finnanceData={finnanceData}
+          setFinnanceData={setFinnanceData}
+        />
+        <Table setFinnanceData={setFinnanceData} finnanceData={finnanceData} />
       </div>
     </div>
   );
