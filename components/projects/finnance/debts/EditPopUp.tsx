@@ -48,8 +48,8 @@ export function EditDebtPopUp({
     <div
       onClick={(e) => Access.closeWrapper(e, setOpen)}
       className={`${
-        open ? "z-10 opacity-100" : "-z-10 opacity-0"
-      } wrapper close-on-click`}
+        open ? "z-10" : "-z-10"
+      } common_wrapper close-on-click`}
     >
       <div
         onChange={getData}

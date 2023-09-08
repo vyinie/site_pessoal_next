@@ -1,5 +1,5 @@
 import ProjectHeader from "@/components/projects/components/ProjectHeader";
-import FinnanceSideBar from "@/components/projects/finnance/components/aside/aside";
+import FinnanceSideBar from "@/components/projects/finnance/aside/aside";
 
 export default function finnanceLayout({
   children,
@@ -11,7 +11,7 @@ export default function finnanceLayout({
       <ProjectHeader title="Finnance" />
       <FinnanceSideBar />
 
-      {children}
+      {typeof window != "undefined" && children}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import "./styles.css";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import EditIcon from "@mui/icons-material/Edit";

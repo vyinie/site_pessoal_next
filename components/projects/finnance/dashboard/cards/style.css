@@ -12,12 +12,12 @@
   width: fit-content;
 }
 .card {
-  @apply dark:bg-neutral-700
+  @apply 
   w-40
   mobile-sm:w-10/12
   h-24
-  rounded-lg
-  border-zinc-600
+  rounded
+  border-neutral-400
   border
   flex
   flex-col
@@ -50,14 +50,13 @@
   @apply h-28
   w-40
   mobile-sm:w-[70vw]
-  rounded-md
+  rounded
   shadow-lg
   bg-white
-  dark:text-white
-  dark:bg-neutral-700
--z-0
-  dark:text-opacity-80
-  transition;
+  transition
+  border
+  border-neutral-400
+  ;
 }
 .FSbtn {
   width: 22px;

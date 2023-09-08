@@ -3,7 +3,6 @@ import {
   Classes,
   FinnanceData,
   SetBoo,
-  debt,
   note,
 } from "@/functions/interfaces";
 import { verifiers } from "@/functions/verifyers";
@@ -53,31 +52,34 @@ export function EditNotePopUp({
 
   // ================ edit the note ================
   function editNote() {
-    if (Verifiers.ObjChecker({...editedItem, id:"b" })) {
+    if (Verifiers.ObjChecker({ ...editedItem, id: "b" })) {
+      //dados salvos
       const holder = localStorage.getItem("finnance_data") || "{}";
       const data: FinnanceData = JSON.parse(holder);
 
+      // index desse item no arr
       const index = data.notesList.notes.findIndex(
         (i) => i.id == editedItem.id
       );
-      data.notesList.notes[index] = editedItem;
 
+      // tratamento dos dados
+      const formated = DataHandlers.formatForms(editedItem);
+
+      // implantação dos novos dados
+      data.notesList.notes[index] = formated;
+      
+      // salvamento dos novos dados
       localStorage.setItem("finnance_data", JSON.stringify(data));
       setFinnanceData(() => data);
 
       setOpen(() => false);
-    } else {
-      console.log("eroo");
     }
-    console.log(editedItem);
   }
 
   return (
     <div
       onClick={(e) => Access.closeWrapper(e, setOpen)}
-      className={`${
-        open ? "z-10 opacity-100" : "opacity-0 -z-10"
-      } wrapper close-on-click`}
+      className={`${open ? "z-10" : "-z-10"} common_wrapper close-on-click`}
     >
       <div
         onChange={(e) => {
@@ -112,13 +114,14 @@ export function EditNotePopUp({
 
         {/* =============== classe =============== */}
         <SelectInp
+          w="w-48"
           name="noteClass"
           inpValue={editedItem.noteClass}
           list={noteClass}
           setStateAction={setEditedItem}
         />
         {/* =============== data =============== */}
-        <DateInp date={editedItem.date.split("T")[0]} />
+        <DateInp w="w-48" date={editedItem.date.split("T")[0]} />
         <CommonBtn ActFunc={editNote} text="Editar" />
       </div>
     </div>

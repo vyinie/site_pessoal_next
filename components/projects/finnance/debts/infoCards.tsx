@@ -25,9 +25,7 @@ export function DebtInfoCard({
   return (
     <div
       onClick={(e) => Access.closeWrapper(e, setOpen)}
-      className={`${
-        open ? "z-10 opacity-100" : "-z-10 opacity-0"
-      } wrapper close-on-click`}
+      className={`${open ? "z-10" : "-z-10"} common_wrapper close-on-click`}
     >
       <div className="flex flex-col rounded-md p-2 bg-gray-100 dark:bg-neutral-700 w-fit min-w-[300px] mobile-sm:w-[90%]">
         {/* ================== nome ================== */}
@@ -38,9 +36,11 @@ export function DebtInfoCard({
 
         {/* ================== mensalidade ================== */}
         <div className="border-neutral-500 border-b-2 py-2 grid grid-cols-2 grid-rows-1 items-center">
-          <p className="font-bold place-self-start text-start w-fit">mensalidade: </p>
+          <p className="font-bold place-self-start text-start w-fit">
+            mensalidade:{" "}
+          </p>
           <p>
-            R$
+            R$  
             {DataHandlers.localeDecimal(
               (info.value / info.installments).toString().replace(".", ",")
             )}
@@ -49,21 +49,27 @@ export function DebtInfoCard({
 
         {/* ================== parcelas restantes ================== */}
         <div className="border-neutral-500 border-b-2 py-2 grid grid-cols-2 grid-rows-1 items-center">
-          <p className="font-bold place-self-start text-start w-fit">parcelas restantes: </p>
+          <p className="font-bold place-self-start text-start w-fit">
+            parcelas restantes:{" "}
+          </p>
           <p>{info.remainingInsts}</p>
         </div>
 
         {/* ================== parcelas totais ================== */}
         <div className="border-neutral-500 border-b-2 py-2 grid grid-cols-2 grid-rows-1 items-center">
-          <p className="font-bold place-self-start text-start w-fit">parcelas totais: </p>
+          <p className="font-bold place-self-start text-start w-fit">
+            parcelas totais:{" "}
+          </p>
           <p>{info.installments}</p>
         </div>
 
         {/* ================== valor total ================== */}
         <div className="border-neutral-500 border-b-2 py-2 grid grid-cols-2 grid-rows-1 items-center">
-          <p className="font-bold place-self-start text-start w-fit">valor total: </p>
+          <p className="font-bold place-self-start text-start w-fit">
+            valor total:{" "}
+          </p>
           <p>
-            R$
+            R$ 
             {DataHandlers.localeDecimal(
               info.value.toString().replace(".", ",")
             )}
@@ -71,13 +77,17 @@ export function DebtInfoCard({
         </div>
         {/* ================== data ================== */}
         <div className="border-neutral-500 border-b-2 py-2 grid grid-cols-2 grid-rows-1 items-center">
-          <p className="font-bold place-self-start text-start w-fit">data de inicio: </p>
+          <p className="font-bold place-self-start text-start w-fit">
+            data de inicio:{" "}
+          </p>
           <p>{DataHandlers.localeDate(info.date)}</p>
         </div>
 
         {/* ================== expectativa ================== */}
         <div className="py-2 grid grid-cols-2 grid-rows-1 items-center">
-          <p className="font-bold place-self-start text-start w-fit">expectativa de fim: </p>
+          <p className="font-bold place-self-start text-start w-fit">
+            expectativa de fim:{" "}
+          </p>
           <p>{dateSetter(info.date, info.installments)}</p>
         </div>
       </div>

@@ -3,7 +3,7 @@ import {
   SkeletonForm,
   SkeletonTab,
 } from "@/components/projects/components/global/skeletonCoponents";
-import "@/components/projects/finnance/components/dashboard/cards/style.css";
+import "@/components/projects/finnance/dashboard/cards/style.css";
 
 export default async function DashboeardLoading() {
   return (

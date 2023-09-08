@@ -16,7 +16,7 @@ const DataHandler = new dataHandlers();
 const Access = new accessibility();
 
 
-export function NoteForm({
+export default function NoteForm({
   finnanceData,
   setFinnanceData,
 }: {

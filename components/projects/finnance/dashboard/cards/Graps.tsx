@@ -1,19 +1,12 @@
 "use client";
 import { accessibility } from "@/functions/accessibilityFunctions";
+import { GraphData } from "@/functions/interfaces";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
 const Access = new accessibility();
 
-export default function Graph({ handlerGraph }) {
-  // ======================= big =======================
-  const Chart = dynamic(() => import("react-apexcharts"));
-
-  const chartSerie = handlerGraph.series;
-  const chartOpt: ApexCharts.ApexOptions = {
-    labels: handlerGraph.labels,
-  };
-
+export default function Graph({ graphData }: { graphData: GraphData }) {
   const [graphFull, setGraphFull] = useState(false);
 
   function graphToggle(e) {
@@ -23,6 +16,13 @@ export default function Graph({ handlerGraph }) {
   function closeGraph(e) {
     Access.closeWrapper(e, setGraphFull);
   }
+  const Chart = dynamic(() => import("react-apexcharts"));
+
+  const chartSerie = graphData.series;
+  const chartOpt: ApexCharts.ApexOptions = {
+    labels: graphData.labels,
+  };
+
   return (
     <div>
       {/* mini */}
@@ -43,7 +43,6 @@ export default function Graph({ handlerGraph }) {
             },
             stroke: { show: false },
             plotOptions: { pie: { expandOnClick: true } },
-            tooltip: {},
           }}
           type="pie"
           height={"130px"}
@@ -55,12 +54,12 @@ export default function Graph({ handlerGraph }) {
         </div>
       </div>
 
-      {/* full */}
+      {/*full */}
       <div
         onClick={closeGraph}
         className={`${
-          graphFull ? "z-20 opacity-100" : "-z-10 opacity-0"
-        } wrapper close-on-click`}
+          graphFull ? "flex" : "hidden"
+        } common_wrapper z-20 close-on-click`}
       >
         <div className="relative p-1 FSgraph close-on-click">
           <Chart
@@ -92,7 +91,6 @@ export default function Graph({ handlerGraph }) {
             type="pie"
             height={"100%"}
           />
-
           <div className="FSclose close-on-click" onClick={closeGraph}>
             <div className="FSx close-on-click"></div>
           </div>

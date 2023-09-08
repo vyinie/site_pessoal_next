@@ -12,11 +12,11 @@ export default function Item({ title, des, id, link, img }) {
 
   // ============= retorno =============
   return (
-    <div className="w-[350px] transition text-center relative hover:scale-">
+    <div className="w-[350px] transition text-center relative">
       <Link
         href={link}
         id={`itemBox${id}`}
-        className="flex w-full h-56 cursor-pointer text-black border-2 border-neutral-400 p-2 hover:p-0 rounded transition-all"
+        className="flex w-full h-56 mobile:h-52 mobile-sm:h-44 cursor-pointer text-black border-2 border-neutral-400 p-2 hover:p-0 rounded transition-all"
       >
         <Image className="w-full h-full rounded" src={img} alt="coisa" />
       </Link>
@@ -34,7 +34,7 @@ export default function Item({ title, des, id, link, img }) {
       <div
         className={`${
           descToggle ? "z-10 opacity-100" : "-z-10 opacity-0"
-        } w-full h-56 flex items-center justify-center absolute top-0 text-center text-2xl text-white bg-black bg-opacity-70 transition`}
+        } w-full h-56 mobile:h-52 mobile-sm:h-44 flex items-center justify-center absolute top-0 text-center text-2xl text-white bg-black bg-opacity-70 transition`}
       >
         <p className="descText">{des}</p>
       </div>

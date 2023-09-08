@@ -1,4 +1,3 @@
-import "./styles.css";
 export async function SkeletonCard({ className }: { className?: string }) {
   return (
     <div

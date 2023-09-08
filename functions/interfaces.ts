@@ -67,7 +67,7 @@ export interface note {
   value: number;
   noteClass: string;
   date: string;
-  flow: string;
+  flow: "saida" | "entrada";
 }
 
 /** item da lista de dividas do finnance */
@@ -123,7 +123,6 @@ export interface CommonBtn {
   text: string;
   className?: string;
   color?: string;
-
 }
 
 export interface SelectInp {
@@ -131,7 +130,7 @@ export interface SelectInp {
   inpValue: string;
   setStateAction: Dispatch<SetStateAction<object>>;
   list: { id: number; text: string; [key: string]: any }[];
-  width?: string;
+  w?: string;
   bgColor?: string;
 }
 

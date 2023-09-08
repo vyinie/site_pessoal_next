@@ -1,5 +1,4 @@
 "use client";
-import "./styles.css";
 import { SelectInp, CommonInput } from "@/functions/interfaces";
 import { useEffect, useState } from "react";
 import { dataHandlers } from "@/functions/dataHandlers";
@@ -52,7 +51,7 @@ export function RadioInp({
 
   return (
     <div onChange={dataHandler} className="flex gap-3 ">
-      <div className="radioContainer">
+      <div className="flex gap-1">
         <input
           type="radio"
           className="accent-amber-500"
@@ -63,7 +62,7 @@ export function RadioInp({
         <label htmlFor={inflow}>entrada</label>
       </div>
 
-      <div className="radioContainer">
+      <div className="flex gap-1">
         <input
           type="radio"
           className="accent-amber-500"
@@ -90,7 +89,7 @@ export function SelectInp({
   name = "select",
   setStateAction,
   list,
-  width,
+  w,
   bgColor,
 }: SelectInp) {
   // ================ shows the class options ================
@@ -103,12 +102,12 @@ export function SelectInp({
     setOptsDisplay(() => false);
   }
   return (
-    <div className={`${width || "w-36"} h-[35px] cursor-pointer relative z-0`}>
+    <div className={`${w || "w-36"} h-[35px] cursor-pointer relative z-0`}>
       <input
         type="text"
         className={`${
           bgColor || "bg-slate-100 "
-        } rounded-md h-full containedInp w-full pr-4`}
+        } rounded-md h-full containedInp w-full pr-6`}
         placeholder="Classe"
         name={name}
         value={inpValue}
@@ -144,16 +143,16 @@ export function SelectInp({
 }
 
 // ============================ input de data ============================
-export function DateInp({ date }) {
+export function DateInp({ date, w }: { date: string; w?: string }) {
   /* o parametro tem de ser 
   new Date().toISOString().split("T")[0] */
 
   return (
-    <div className="h-[35px]">
+    <div className="h-[35px] ">
       <input
         type="date"
         name="date"
-        className="pr-2 w-full containedInp rounded-md"
+        className={`${w || "w-full "} pr-2 containedInp rounded-md`}
         defaultValue={date}
       />
     </div>

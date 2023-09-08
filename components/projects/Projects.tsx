@@ -116,7 +116,7 @@ export default function Projects() {
       />
 
       {/* links */}
-      <div className="w-[94%] min-h-[330px] max-h-screen flex flex-wrap justify-around gap-y-11 gap-x-20 bg-black bg-opacity-5 relative overflow-y-auto overflow-hidden mt-6 p-2 ">
+      <div className="w-[94%] min-h-[330px] max-h-screen flex flex-wrap justify-around gap-y-11 gap-x-10 bg-black bg-opacity-5 relative overflow-y-auto overflow-hidden mt-6 p-2 ">
         {projectsList[projectSelected].map((i) => (
           <Item
             id={`item${i.id}`}

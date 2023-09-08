@@ -31,6 +31,7 @@ export default function DebtTableRow({
     const res = DataHandlers.localeDecimal(div.toString().replace(".", ","));
     return res;
   };
+
   function delItem() {
     const holder = localStorage.getItem("finnance_data");
     const data: FinnanceData = JSON.parse(holder || "{}");
@@ -40,6 +41,18 @@ export default function DebtTableRow({
 
     localStorage.setItem("finnance_data", JSON.stringify(data));
     setFinnanceData(() => data);
+  }
+
+  function payDebt() {
+    const holder = localStorage.getItem("finnance_data") || "{}";
+    const data: FinnanceData = JSON.parse(holder);
+
+    const index = data.debtsList.findIndex((i) => i.id === debtItem.id);
+
+    data.debtsList[index].remainingInsts--;
+
+    setFinnanceData(() => data);
+    localStorage.setItem("finnance_data", JSON.stringify(data));
   }
   return (
     <tr
@@ -62,7 +75,13 @@ export default function DebtTableRow({
       <td>{DataHandlers.localeDate(debtItem.date)}</td>
 
       {/* açoes */}
-      <td>
+      <td className="flex items-center justify-center gap-1">
+        <button
+          onClick={payDebt}
+          className="font-bold uppercase text-xl btn_hover_full px-2 py-1"
+        >
+          pagar
+        </button>
         <MoreOptsBtn
           func={(e) => Access.handlerWrapper(e, setMoreOptsToggle)}
           type="dots"
@@ -84,6 +103,7 @@ export default function DebtTableRow({
             <InfoBtn setToggle={setInfoCardPopUpToggle} />
           </div>
         </MoreOptsBtn>
+      </td>
         <EditDebtPopUp
           debtData={debtItem}
           open={editPopUpToggle}
@@ -94,7 +114,6 @@ export default function DebtTableRow({
           open={infoCardPopUpToggle}
           setOpen={setInfoCardPopUpToggle}
         />
-      </td>
     </tr>
   );
 }

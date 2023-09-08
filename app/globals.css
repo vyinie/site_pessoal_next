@@ -12,7 +12,7 @@ html,
 .App {
   @apply w-full
   h-full
-  bg-neutral-400
+  bg-neutral-100
   ;
 }
 .App {
@@ -50,7 +50,7 @@ html,
 @media (width <= 950px) {
   .template {
     grid-template-areas: "header" "dashboard";
-    grid-template-columns: auto;
+    grid-template-columns: 100%;
   }
 }
 
@@ -59,7 +59,7 @@ html,
   grid-template-rows: 100px auto;
   grid-template-columns: 95%;
 
-  @apply moblet:w-60
+  @apply moblet:w-[60%]
   w-full
   h-full;
 }
@@ -98,20 +98,17 @@ html,
   @apply hover:bg-neutral-300 hover:bg-opacity-80 dark:border-neutral-600 dark:hover:bg-neutral-600 dark:hover:bg-opacity-50 border-slate-300 transition-all;
 }
 /* ================== INPUTS ================== */
+
 .containedInp {
-  @apply pl-1
+  @apply  
+    pl-2
     outline-none
-    
     
     h-full
     text-ellipsis 
-    
-    dark:text-white
-    dark:text-opacity-80
-    dark:bg-zinc-500
-    dark:border-neutral-700;
-}
 
+    bg-neutral-200
+}
 .arrow {
   @apply after:w-2
     after:h-2 
@@ -149,21 +146,20 @@ table {
   @apply fixed
   top-0
   left-0
-  z-10
 
   h-screen
   w-screen
   
   bg-black
   bg-opacity-70
-  
+
+  flex
   items-center
   justify-center;
 }
 
 .skeletonShape {
-  @apply bg-zinc-300
-  dark:bg-neutral-700
+  @apply bg-zinc-200
   border-zinc-600
   
   rounded-md

@@ -1,12 +1,11 @@
 "use client";
-import Cards from "@/components/projects/finnance/components/dashboard/cards/Cards";
-import Table from "@/components/projects/finnance/components/dashboard/tab/Table";
-import { NoteForm } from "@/components/projects/finnance/components/dashboard/form/NoteForm";
+import DebtTab from "@/components/projects/finnance/debts/table/DebtTab";
+import DebtsCard from "@/components/projects/finnance/debts/DebtsCard";
 import { FinnanceData } from "@/functions/interfaces";
-
 import { useEffect, useState } from "react";
+import { DebtForm } from "./form/DebtForm";
 
-export default function FinnanceDashboard() {
+export default function Debts() {
   const [finnanceData, setFinnanceData] = useState<FinnanceData>({
     globalIds: 0,
     notesList: {
@@ -15,7 +14,6 @@ export default function FinnanceDashboard() {
     },
     debtsList: [],
   });
-
   useEffect(() => {
     const holder = localStorage.getItem("finnance_data");
     const data: FinnanceData = JSON.parse(holder || "{}");
@@ -28,9 +26,14 @@ export default function FinnanceDashboard() {
 
   return (
     <div className="template_dashboard flex flex-col items-center">
-      {/* <Cards /> */}
-      <NoteForm finnanceData={finnanceData} setFinnanceData={setFinnanceData} />
-      <Table setFinnanceData={setFinnanceData} finnanceData={finnanceData} />
+      <div className="mt-3 flex mobile:flex-col gap-5 justify-center items-center px-5">
+        <DebtForm
+          finnanceData={finnanceData}
+          setFinnanceData={setFinnanceData}
+        />
+        <DebtsCard finnaceData={finnanceData} />
+      </div>
+      <DebtTab setFinnanceData={setFinnanceData} finnanceData={finnanceData} />
     </div>
   );
 }

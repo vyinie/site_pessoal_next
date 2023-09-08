@@ -46,7 +46,7 @@ export class dataHandlers {
     const three = two[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
     // devolve as casas decimais
-    const four = two[1] != undefined ? `${three},${two[1].slice(0, 2)}` : three;
+    const four = two[1] ? `${three},${two[1].slice(0, 2)}` : three;
     return four;
   }
 

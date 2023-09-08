@@ -4,7 +4,7 @@ import {
 } from "@/components/projects/components/global/buttons";
 import { dataHandlers } from "@/functions/dataHandlers";
 import { FinnanceData, note } from "@/functions/interfaces";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { EditNotePopUp } from "../editPopUp/editPopUps";
 
 const DataHandlers = new dataHandlers();
@@ -24,18 +24,27 @@ export default function TableRow({
 
     const newNoteList = data.notesList.notes.filter((i) => i.id != item.id);
     data.notesList.notes = newNoteList;
-    
+
     localStorage.setItem("finnance_data", JSON.stringify(data));
     setFinnanceData(() => data);
   }
 
+  useEffect(() => {
+    if (editPopUpToggle) {
+      if (item.flow === "entrada") {
+        document.getElementById(`editInFlow${item.id}`)?.click();
+      } else {
+        document.getElementById(`editOutFlow${item.id}`)?.click();
+      }
+    }
+  }, [editPopUpToggle]);
+
   return (
     <tr
-      key={`note${item.id}`}
       className="bgHover py-2 border-solid border-b-[1.5px] border-slate-300 transition text-lg"
     >
       {/* nome */}
-      <td className="w-[150px] text-center overflow-hidden text-ellipsis">
+      <td className="max-w-[150px] w-fit text-center overflow-hidden text-ellipsis">
         {item.name}
       </td>
 
@@ -66,8 +75,13 @@ export default function TableRow({
       <td className="flex gap-2 items-center justify-center">
         <DelBtn func={delItem} rounded="full" />
         <EditBtn setToggle={setEditPopUpToggle} rounded="full" />
-        <EditNotePopUp setFinnanceData={setFinnanceData} noteData={item} open={editPopUpToggle} setOpen={setEditPopUpToggle} />
+        <EditNotePopUp
+          setFinnanceData={setFinnanceData}
+          noteData={item}
+          open={editPopUpToggle}
+          setOpen={setEditPopUpToggle}
+        />
       </td>
-    </tr>
+    </tr> 
   );
 }
