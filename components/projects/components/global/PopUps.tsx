@@ -23,7 +23,7 @@ export function PopUpWrapper({
   return (
     <div
       onClick={(e) => Access.closeWrapper(e, setIsOpen)}
-      className={`${isOpen ? "flex" : "hidden"} common_wrapper close-on-click`}
+      className={`${isOpen ? "z-10" : "-z-10"} common_wrapper close-on-click`}
     >
       <div
         className={`${className} max-w-[90vw] max-h-[80vh] w-fit rounded bg-white overflow-hidden overflow-y-auto`}
