@@ -18,7 +18,7 @@ export default function HomeIntro() {
     },
     {
       id: "linkedin",
-      link: "https://www.linkedin.com/in/marcus-vinicius-023008248/",
+      link: "https://linkedin.com/in/marcus-xavier-023008248",
       img: linkedin,
       alt: "LinkedIn",
     },
@@ -37,19 +37,20 @@ export default function HomeIntro() {
         alt="my_picture"
       />
 
-      <div className="flex flex-col items-center relative uppercase font-bold">
-        <h1 className="title tracking-wide sm:tracking-tight w-fit">
+      <div className="flex flex-col relative uppercase font-bold w-fit">
+        <h1 className="title tracking-wide mobile-sm:tracking-tight w-fit">
           desenvolvedor
         </h1>
 
         <div className="subtitleContainer">
-          <h1 className="text-sky-500 title sm:tracking-tight">react</h1>
+          <h1 className="text-sky-500 title mobile-sm:tracking-tight">react</h1>
           <TextAnimation />
         </div>
 
         <div className="w-full h-12 flex justify-around items-center mt-4 sm:mt-8">
           {links.map((i) => (
             <a
+            target="_blank"
               key={i.id}
               href={i.link}
               className="w-12 h-12 moblet:w-14 moblet:h-14"

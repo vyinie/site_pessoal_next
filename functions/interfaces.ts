@@ -32,6 +32,7 @@ export interface ColorDIficultControl {
   text: string;
   setted: boolean;
   lifes: number[];
+  blocks:number
 }
 
 /** ids do kanban */

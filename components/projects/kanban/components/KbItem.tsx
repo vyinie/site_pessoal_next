@@ -86,8 +86,8 @@ export default function KbItem({
     }
   }
   return (
-    <div className="w-full h-10 pl-2 rounded bg-white text-ellipsis whitespace-nowrap text-xl bg_hover grid grid-cols-6 place-items-center relative">
-      <p title={item.text} className="col-start-1 col-end-5 w-full ">
+    <div className="w-full h-10 pl-2 rounded bg-white  text-xl bg_hover grid grid-cols-6 place-items-center relative">
+      <p title={item.text} className="col-start-1 col-end-5 w-full text-ellipsis whitespace-nowrap overflow-hidden">
         {item.text}
       </p>
 

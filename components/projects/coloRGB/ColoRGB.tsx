@@ -37,13 +37,13 @@ export default function ColoRGB() {
   const [DiffControlToggle, setDiffControlToggle] = useState(false);
 
   const [dificultModes, setDificultModes] = useState<ColorDIficultControl[]>([
-    { text: "noob", setted: false, lifes: [0, 1, 2] },
-    { text: "normal", setted: true, lifes: [0, 1, 2] },
-    { text: "difícil", setted: false, lifes: [0] },
+    { text: "noob", setted: false, lifes: [0, 1, 2], blocks: 3 },
+    { text: "normal", setted: true, lifes: [0, 1, 2], blocks: 5 },
+    { text: "difícil", setted: false, lifes: [0], blocks: 5 },
   ]);
 
   /** reseta todas as cores e define a cor verdadeira */
-  function changeColors() {
+  function changeColors(blocksNum?: number) {
     blocks.map((i) => {
       const el = document.getElementById("color_block" + i.id)?.style || {
         backgroundColor: "",
@@ -54,7 +54,7 @@ export default function ColoRGB() {
     const newTrueColor = colorRandom();
     const newBlocks = blocks.map((i) => ({ ...i, colorCode: colorRandom() }));
 
-    newBlocks[randomNumber(5)].colorCode = newTrueColor;
+    newBlocks[randomNumber(blocksNum || 5)].colorCode = newTrueColor;
 
     setTrueColor(() => newTrueColor);
     setBlocks(() => newBlocks);
@@ -83,9 +83,10 @@ export default function ColoRGB() {
 
       setLifes(() => []);
       blocks.map((i) => {
-        //@ts-ignore
-        const el = document.getElementById("color_block" + i.id).style;
-        el.backgroundColor = "white";
+        const el = document.getElementById("color_block" + i.id);
+        if (el) {
+          el.style.backgroundColor = "white";
+        }
       });
 
       const index = dificultModes.findIndex((i) => i.setted);
@@ -120,14 +121,16 @@ export default function ColoRGB() {
 
   /** muda a dificuldade */
   function setDificult(itemData: ColorDIficultControl) {
+    // muda o arr de dificuldade
     const newList = dificultModes.map((i) => ({ ...i, setted: false }));
     const index = newList.findIndex((i) => i.text === itemData.text);
 
     newList[index].setted = true;
     setDificultModes(() => newList);
 
+    // mostra as mudanças
     setLifes(() => itemData.lifes);
-    changeColors();
+    changeColors(dificultModes[index].blocks);
     setScore((old) => ({ ...old, score: 0 }));
   }
 

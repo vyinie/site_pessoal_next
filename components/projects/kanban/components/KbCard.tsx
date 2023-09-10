@@ -80,6 +80,7 @@ const KbCard = ({
         >
           {cardData.name}
         </p>
+        {/* btn que abre o pop-up pra add itens */}
         <AddBtn
           func={openAddItemInp}
           rounded="full"

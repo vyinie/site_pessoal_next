@@ -91,14 +91,19 @@ export default function ToDoItemComp({
       />
       <label
         htmlFor={`to_do_check_${to_do_item.id}`}
-        className="w-full h-full flex items-center overflow-hidden whitespace-nowrap text-ellipsis"
+        className="h-full grid grid-cols-7 col-start-1 col-end-6 items-center overflow-hidden whitespace-nowrap text-ellipsis"
       >
-        <p className="text-ellipsis max-w-full overflow-hidden">
+        <p className="w-full text-ellipsis overflow-hidden">
           {to_do_item.text}
         </p>
       </label>
+      <div className="grid-start-6 grid-end-6">
       <EditBtn setToggle={setIsOpen} />
+      </div>
+
+      <div className="grid-start-7 grid-end-7">
       <DelBtn func={delItem} />
+      </div>
     </div>
   );
 }

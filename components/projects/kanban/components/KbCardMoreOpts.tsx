@@ -14,17 +14,15 @@ export default function KbCardMoreOpts({
   const [optsToggle, setOptsToggle] = useState(false);
 
   return (
-    <>
-      <div className="col-start-6 col-end-6 ">
-        <MoreOptsBtn type="dots" func={() => setOptsToggle((old) => !old)}>
-          <DelEditPopOver
-            delFunc={delCard}
-            setEditToggle={setEditToggle}
-            optsToggle={optsToggle}
-            setOptsToggle={setOptsToggle}
-          />
-        </MoreOptsBtn>
-      </div>
-    </>
+    <div className="col-start-6 col-end-6 ">
+      <MoreOptsBtn type="dots" func={() => setOptsToggle((old) => !old)}>
+        <DelEditPopOver
+          delFunc={delCard}
+          setEditToggle={setEditToggle}
+          optsToggle={optsToggle}
+          setOptsToggle={setOptsToggle}
+        />
+      </MoreOptsBtn>
+    </div>
   );
 }

@@ -40,6 +40,7 @@
   .subtitleContainer {
     width: 490px;
     grid-template-columns: min-content 320px;
+    justify-self: start;
   }
   .sub {
     font-size: 24px;
@@ -52,34 +53,35 @@
   }
   .subtitleContainer {
     width: 415px;
-    grid-template-columns: min-content 250px;
+    grid-template-columns: min-content 280px;
   }
   .sub {
     font-size: 20px;
   }
 }
-@media (width < 430px) {
+@media (width < 460px) {
   .title {
+    align-self: start;
     font-size: 40px;
   }
 
   .subtitleContainer {
     width: 332px;
-    grid-template-columns: min-content 190px;
+    grid-template-columns: min-content 183px;
   }
   .sub {
     font-size: 18px;
   }
 }
 
-@media (width < 350px) {
+@media (width < 360px) {
   .title {
-    font-size: 38px;
+    font-size: 35px;
   }
 
   .subtitleContainer {
-    width: 310px;
-    grid-template-columns: min-content 190px;
+    width: fit-content;
+    gap: 8px;
   }
   .sub {
     font-size: 18px;

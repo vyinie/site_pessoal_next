@@ -354,10 +354,10 @@ export function DelEditPopOver({
     <>
       {/* fecha o pop-over qndo clicar fora */}
       <div
-        onClick={(e) => Access.closeWrapper(e, setOptsToggle)}
+        onClick={(e) => Access.handlerWrapper(e, setOptsToggle)}
         className={`${
-          optsToggle ? "fixed" : "hidden"
-        } h-screen w-screen top-0 left-0 z-[2] close-on-click`}
+          optsToggle ? "" : "hidden"
+        } fixed h-screen w-screen top-0 left-0 z-10 close-on-click`}
       ></div>
       <div
         onClick={(e) => Access.handlerWrapper(e, setOptsToggle)}

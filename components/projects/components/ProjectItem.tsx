@@ -16,7 +16,7 @@ export default function Item({ title, des, id, link, img }) {
       <Link
         href={link}
         id={`itemBox${id}`}
-        className="flex w-full h-56 mobile:h-52 mobile-sm:h-44 cursor-pointer text-black border-2 border-neutral-400 p-2 hover:p-0 rounded transition-all"
+        className="flex w-full h-56 mobile:h-52 mobile-sm:h-44 cursor-pointer text-black border-2 border-neutral-400 p-2 hover:p-0 rounded-md transition-all"
       >
         <Image className="w-full h-full rounded" src={img} alt="coisa" />
       </Link>
