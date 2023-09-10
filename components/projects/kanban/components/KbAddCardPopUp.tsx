@@ -69,12 +69,11 @@ export default function KbAddCardPopUp({
   }
 
   return (
-    <PopUpWrapper
-      isOpen={addCardPopupToggle}
-      setIsOpen={setAddCardPopupToggle}
-      className="max-w-[300px] p-2 grid gap-2"
-    >
-      <div onChange={getData} className="w-full h-full grid gap-3">
+    <PopUpWrapper isOpen={addCardPopupToggle} setIsOpen={setAddCardPopupToggle}>
+      <div
+        onChange={getData}
+        className="w-full max-w-[300px] p-2 h-full grid gap-3"
+      >
         <CommonInp
           inpValue={newCardData.name}
           name="name"
@@ -116,16 +115,16 @@ export default function KbAddCardPopUp({
           </div>
         </div>
         <CommonBtn ActFunc={addCard} text="Adicionar" />
-      </div>
 
-      <div className="relative">
-        <div className="w-full h-full absolute z-[1]"></div>
-        <KbCard
-         kanbanLists={[]}
-          classname="max-w-full"
-          cardData={newCardData}
-          setKanbanLists={setCardListTest}
-        />
+        <div className="relative">
+          <div className="w-full h-full absolute z-[1]"></div>
+          <KbCard
+            kanbanLists={[]}
+            classname="max-w-full"
+            cardData={newCardData}
+            setKanbanLists={setCardListTest}
+          />
+        </div>
       </div>
     </PopUpWrapper>
   );
