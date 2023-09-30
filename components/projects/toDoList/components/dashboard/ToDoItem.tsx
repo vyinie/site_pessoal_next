@@ -1,5 +1,4 @@
 "use client";
-import "../../styles.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { TDList, ToDoItem, ToDoListData } from "@/functions/interfaces";
 import { ToDoItemEditor } from "./EditPopUp";
