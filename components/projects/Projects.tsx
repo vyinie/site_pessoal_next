@@ -3,13 +3,11 @@ import "./Projects.css";
 
 import { useState } from "react";
 
-
 import colorgb from "@/public/_images/projectsItems/games/coloRGB_kase.png";
 
 import todo from "@/public/_images/projectsItems/apps/ToDo_kase.png";
 import kanban from "@/public/_images/projectsItems/apps/kanban_kase.png";
 import finnance from "@/public/_images/projectsItems/apps/finnance_kase.png";
-
 
 import mhsBS from "@/public/_images/projectsItems/landingPages/mhsBS/mhsBS_kase.png";
 import acAlma from "@/public/_images/projectsItems/landingPages/acAlma/acAlma_kase.png";
@@ -18,9 +16,24 @@ import emBreve from "@/public/_images/projectsItems/em-breve.png";
 
 import ProjectsMenu from "./components/ProjectsMenu";
 import Item from "./components/ProjectItem";
+import { StaticImageData } from "next/image";
+
+export interface ProjectItemProps {
+  title: string;
+  des: string;
+  id: number;
+  link: string;
+  img: StaticImageData;
+  target?: "_blank";
+}
+export interface ProjectListProps {
+  apps: ProjectItemProps[];
+  LP: ProjectItemProps[];
+  games: ProjectItemProps[];
+}
 
 export default function Projects() {
-  const projectsList = {
+  const projectsList: ProjectListProps = {
     // apps
     apps: [
       {
@@ -59,20 +72,14 @@ export default function Projects() {
         title: "MHS Barber Shop",
         des: "site de barbearia",
         id: 5,
-        link: "/MHS-barber-shop",
+        link: "https://mhsbarbershop.vercel.app/",
         img: mhsBS,
+        target:"_blank"
       },
       {
         title: "Em Breve",
         des: "Ainda em desenvolvimento",
         id: 6,
-        link: "/",
-        img: emBreve,
-      },
-      {
-        title: "Em Breve",
-        des: "Ainda em desenvolvimento",
-        id: 7,
         link: "/",
         img: emBreve,
       },
@@ -118,14 +125,7 @@ export default function Projects() {
       {/* links */}
       <div className="max-w-[90%] w-fit min-h-[310px] max-h-screen flex flex-wrap justify-around gap-y-11 gap-x-10 bg-black bg-opacity-5 relative overflow-y-auto overflow-hidden mt-6 p-2 ">
         {projectsList[projectSelected].map((i) => (
-          <Item
-            id={`item${i.id}`}
-            key={`item${i.id}`}
-            title={i.title}
-            des={i.des}
-            link={i.link}
-            img={i.img}
-          />
+          <Item key={`item${i.id}`} itemData={i} />
         ))}
       </div>
     </div>

@@ -63,3 +63,9 @@
     align-items: center;
   }
 }
+@media (width < 688px) {
+  .header {
+    padding:0;
+  }
+}
+

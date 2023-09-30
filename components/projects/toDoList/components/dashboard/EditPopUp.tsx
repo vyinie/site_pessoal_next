@@ -32,7 +32,7 @@ export function ToDoItemEditor({
       onMouseLeave={() => setIsOpen(() => false)}
       className={`${
         isOpen ? "flex" : "hidden"
-      } w-full h-full rounded-md bg-white items-center absolute top-0 left-0 z-10`}
+      } w-full h-full rounded-md bg-white items-center gap-1 absolute top-0 left-0 z-10`}
     >
       <input
       defaultValue={item.text}

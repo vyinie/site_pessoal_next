@@ -7,10 +7,10 @@ import AcLinks from "./AcLinks";
 function CursoMeditacao() {
   return (
     <div className="w-full desktop:h-full laptop:h-full bg-neutral-800 text-white body">
-      <header className="w-full min-h-[80px] flex items-center justify-around text-3xl header">
+      <header className="w-full min-h-[80px] flex items-center justify-around tablet-sm:justify-center text-3xl header">
         <BackIcon className="top-5 w-16" />
 
-        <p className="flex tablet:block mobile-sm:block text-center">
+        <p className="flex  mobile:block mobile:w-full text-center">
           Curso de <p className="text-purple-550 ml-2"> Meditação</p>
         </p>
 
@@ -25,18 +25,18 @@ function CursoMeditacao() {
         </span>
       </header>
 
-      <section className="w-full h-full flex flex-col gap-4 justify-center to-white pl-16 ACform moblet:p-0 moblet:w-[70%] mobile:w-[90%] mobile-lg:min-w-[370px] mobile-sm:min-w-[300px] ">
-        <h1 className="text-5xl">
+      <section className="w-full h-full flex flex-col gap-4 justify-center to-white pl-16 ACform moblet:p-0 tablet:w-[500px] tablet-sm:w-[90%] mobile:w-[90%] mobile:min-w-[300px] ">
+        <h1 className="text-5xl mobile:text-4xl text-center">
           <h1 className="text-purple-550 ">Inscreva-se agora</h1> na Newsletter
         </h1>
-        <p className=" w-[500px] moblet:text-xl moblet:w-[70%] tablet:min-w-[370px] mobile:w-[90%] mobile-lg:min-w-[370px] mobile-sm:min-w-[300px]">
+        <p className="text-justify w-[500px] mobile:text-xl tablet-sm:text-xl tablet-sm:w-full  tablet:w-[500px] mobile:w-full">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam
           aliquclassName est expedita mollitia, aut veritatis magnam natus
           blanditiis iste dolor libero harum obcaecati possimus rerum, aperiam
           ratione. Sequi, illum doloremque!
         </p>
 
-        <div className="moblet:w-full w-[330px] flex flex-col gap-4">
+        <div className="mobile:w-full tablet:w-[400px] w-[330px] flex flex-col gap-4">
           <input className="signupInp" type="text" placeholder="Nome" />
           <input className="signupInp" type="email" placeholder="E-Mail" />
           <button className="w-36 moblet:w-full h-11 rounded-lg bg-purple-550  text-lg cursor-pointer transition">

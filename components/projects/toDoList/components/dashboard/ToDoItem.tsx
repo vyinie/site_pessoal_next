@@ -76,7 +76,10 @@ export default function ToDoItemComp({
   }
 
   return (
-    <div className="to_do_item relative z-0" title={to_do_item.text}>
+    <div
+      className="w-[290px] h-10 flex items-center  gap-1 pl-2 bg-white hover:bg-zinc-100 rounded-md border border-zinc-400 relative"
+      title={to_do_item.text}
+    >
       <ToDoItemEditor
         isOpen={isOpen}
         setIsOpen={setIsOpen}
@@ -89,20 +92,20 @@ export default function ToDoItemComp({
         type="checkbox"
         id={`to_do_check_${to_do_item.id}`}
       />
-      <label
-        htmlFor={`to_do_check_${to_do_item.id}`}
-        className="h-full grid grid-cols-7 col-start-1 col-end-6 items-center overflow-hidden whitespace-nowrap text-ellipsis"
-      >
-        <p className="w-full text-ellipsis overflow-hidden">
+      <div className="grid grid-cols-7 place-items-center">
+        <label
+          htmlFor={`to_do_check_${to_do_item.id}`}
+          className="w-full col-span-5 overflow-hidden text-ellipsis capitalize"
+        >
           {to_do_item.text}
-        </p>
-      </label>
-      <div className="grid-start-6 grid-end-6">
-      <EditBtn setToggle={setIsOpen} />
-      </div>
+        </label>
+        <div className="">
+          <EditBtn setToggle={setIsOpen} />
+        </div>
 
-      <div className="grid-start-7 grid-end-7">
-      <DelBtn func={delItem} />
+        <div className="">
+          <DelBtn func={delItem} />
+        </div>
       </div>
     </div>
   );
