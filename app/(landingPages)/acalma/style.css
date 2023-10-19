@@ -18,7 +18,7 @@
 }
 
 .ACheaderLinks > p:hover {
-  @apply transition-colors;
+  @apply transition-all;
   color: #a91dd0;
 }
 

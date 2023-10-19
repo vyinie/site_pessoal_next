@@ -72,9 +72,10 @@ export default function Projects() {
         title: "MHS Barber Shop",
         des: "site de barbearia",
         id: 5,
-        link: "https://mhsbarbershop.vercel.app/",
+        // link: "https://mhsbarbershop.vercel.app/",
+        link: "/MHS-barber-shop",
         img: mhsBS,
-        target:"_blank"
+        // target:"_blank"
       },
       {
         title: "Em Breve",

@@ -1,3 +1,4 @@
+"use client";
 import "./styles.css";
 
 import myPic from "/public/_images/home/FotinhaDaora.png";
@@ -24,9 +25,10 @@ export default function HomeIntro() {
     },
     {
       id: "curriculo",
-      link: "https://github.com/vyinie",
+      link: "/files/curriculo Marcus Xavier.pdf",
       img: curriculo,
-      alt: "curriculo",
+      alt: "Curriculo",
+      download: "curriculo_Marcus_Xavier",
     },
   ];
   return (
@@ -50,10 +52,12 @@ export default function HomeIntro() {
         <div className="w-full h-12 flex justify-around items-center mt-4 sm:mt-8">
           {links.map((i) => (
             <a
-            target="_blank"
+              target="_blank"
               key={i.id}
               href={i.link}
               className="w-12 h-12 moblet:w-14 moblet:h-14"
+              title={i.alt}
+              download
             >
               <Image className="imgLink" src={i.img} alt={i.alt} />
             </a>
@@ -63,3 +67,4 @@ export default function HomeIntro() {
     </div>
   );
 }
+
