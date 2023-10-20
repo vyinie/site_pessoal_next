@@ -70,13 +70,13 @@ export default function FinnanceSideBar() {
                   {i.text}
                 </Link>
               ))}
-              {/* <a
+              <a
                 className="w-full py-2 border-b-2 border-neutral-500 text-center text-xl capitalize bg_hover close-on-click"
                 href="https://finnance.vercel.app"
                 target="_blank"
               >
                 app oficial
-              </a> */}
+              </a>
             </div>
           </div>
         </div>
