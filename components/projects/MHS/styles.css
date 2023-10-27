@@ -262,7 +262,7 @@
 @media (width < 600px) {
   .BSline {
     width: 100%;
-    height: 7px;
+    height: 5px;
 
     background-color: #fff;
     border-radius: 20px;

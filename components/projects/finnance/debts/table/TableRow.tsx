@@ -3,7 +3,7 @@ import {
   DelBtn,
   EditBtn,
   InfoBtn,
-  MoreOptsBtn,
+  ThreeDotsBtn,
 } from "@/components/projects/components/global/buttons";
 
 import { accessibility } from "@/functions/accessibilityFunctions";
@@ -82,9 +82,9 @@ export default function DebtTableRow({
         >
           pagar
         </button>
-        <MoreOptsBtn
-          func={(e) => Access.handlerWrapper(e, setMoreOptsToggle)}
-          type="dots"
+        <ThreeDotsBtn
+          func={() => setMoreOptsToggle((old) => !old)}
+          isOn={moreOptsToggle}
           key={`actbtn${debtItem.id}`}
         >
           <div
@@ -102,18 +102,18 @@ export default function DebtTableRow({
             <EditBtn rounded="full" setToggle={setEditPopUpToggle} />
             <InfoBtn setToggle={setInfoCardPopUpToggle} />
           </div>
-        </MoreOptsBtn>
+        </ThreeDotsBtn>
       </td>
-        <EditDebtPopUp
-          debtData={debtItem}
-          open={editPopUpToggle}
-          setOpen={setEditPopUpToggle}
-        />
-        <DebtInfoCard
-          info={debtItem}
-          open={infoCardPopUpToggle}
-          setOpen={setInfoCardPopUpToggle}
-        />
+      <EditDebtPopUp
+        debtData={debtItem}
+        open={editPopUpToggle}
+        setOpen={setEditPopUpToggle}
+      />
+      <DebtInfoCard
+        info={debtItem}
+        open={infoCardPopUpToggle}
+        setOpen={setInfoCardPopUpToggle}
+      />
     </tr>
   );
 }

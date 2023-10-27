@@ -1,12 +1,12 @@
 "use client";
 import { KanbanCard, KanbanData, SetBoo } from "@/functions/interfaces";
-import { PopUpWrapper } from "../../components/global/PopUps";
-import { CommonInp } from "../../components/global/inputs";
+import { PopUpWrapper } from "../../../components/global/PopUps";
+import { CommonInp } from "../../../components/global/inputs";
 import { Dispatch, SetStateAction, useState } from "react";
 import { dataHandlers } from "@/functions/dataHandlers";
-import { CommonBtn } from "../../components/global/buttons";
+import { CommonBtn } from "../../../components/global/buttons";
 import { verifiers } from "@/functions/verifyers";
-import KbCard from "./KbCard";
+import KbCard from "../cardComponents/KbCard";
 const DataHandlers = new dataHandlers();
 const Verifiers = new verifiers();
 

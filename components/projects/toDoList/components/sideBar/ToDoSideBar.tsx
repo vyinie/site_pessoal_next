@@ -1,10 +1,10 @@
 "use client";
 
-import { MoreOptsBtn } from "@/components/projects/components/global/buttons";
 import { accessibility } from "@/functions/accessibilityFunctions";
 import { TDList } from "@/functions/interfaces";
 import { Dispatch, SetStateAction, useState } from "react";
 import ToDoListMoreOpt from "../dashboard/ToDoMoreOpt";
+import { HamburgerBtn } from "@/components/projects/components/global/buttons";
 
 const Access = new accessibility();
 
@@ -27,7 +27,7 @@ export default function ToDoSideBar({
   return (
     <>
       <div className="moblet:z-20 -z-10 fixed top-[10px] right-2 ">
-        <MoreOptsBtn type="lines" func={handlerSideBar} />
+        <HamburgerBtn func={handlerSideBar} />
       </div>
       <div
         onClick={(e) => Access.closeWrapper(e, setsideBarToggle)}

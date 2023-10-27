@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import ProjectHeader from "../components/ProjectHeader";
-import KbCard from "./components/KbCard";
+import KbCard from "./components/cardComponents/KbCard";
 import { KanbanCard, KanbanData } from "@/functions/interfaces";
-import KanbanSideBar from "./components/KbSideBar";
+import KanbanSideBar from "./components/sidebarComponents/KbSideBar";
 
 /* ================ materialUI ================ */
 

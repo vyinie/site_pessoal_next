@@ -1,6 +1,6 @@
+import { PopUpWrapper } from "@/components/projects/components/global/PopUps";
 import { KanbanCard, KanbanData, KanbanItem } from "@/functions/interfaces";
 import { Dispatch, SetStateAction } from "react";
-import { PopUpWrapper } from "../../components/global/PopUps";
 
 export default function KbItemSwitchPopUp({
   itemData,

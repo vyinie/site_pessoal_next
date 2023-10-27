@@ -106,11 +106,10 @@ export default function ToDoListMoreOpt({
       className={`
       ${className || "absolute top-1/2 -translate-y-1/2 right-3/4"}
       ${
-        isOpen ? "w-40 border tablet:w-[120px] mobile-lg:w-[120px] " : "w-0"
-      } flex bg-white rounded-md border-zinc-400 overflow-hidden mobile-sm:w-[144px] transition-all`}
+        isOpen ? "w-36 border tablet:w-[120px] mobile-lg:w-[120px] " : "w-0"
+      } grid grid-cols-4 place-items-center bg-white rounded-md border-zinc-400 overflow-hidden mobile-sm:w-[144px] transition-all`}
     >
       <DirectionBtn
-        fontSize={fontSize}
         className="moblet:hidden"
         isVert={vert}
         setVert={setVert}

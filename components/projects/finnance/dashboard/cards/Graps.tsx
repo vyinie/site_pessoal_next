@@ -26,7 +26,7 @@ export default function Graph({ graphData }: { graphData: GraphData }) {
   return (
     <div>
       {/* mini */}
-      <div className="graphContainer relative p-1">
+      <section className="graphContainer relative p-1">
         <Chart
           series={chartSerie}
           options={{
@@ -52,7 +52,7 @@ export default function Graph({ graphData }: { graphData: GraphData }) {
         <div className="FSbtn change-on-click" onClick={graphToggle}>
           <div className="FScross change-on-click"></div>
         </div>
-      </div>
+      </section>
 
       {/*full */}
       <div

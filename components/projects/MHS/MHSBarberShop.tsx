@@ -4,7 +4,6 @@ import logo from "/public/_images/projectsItems/landingPages/mhsBS/MHSlogo.png";
 
 import BackIcon from "@/components/projects/components/global/BackIcon";
 
-import ArrowBackTop from "./components/ArrowBackTop";
 import NavBar from "./components/NavBar";
 import Contact from "./components/contact";
 import BSMenu from "./components/Menu";
@@ -14,7 +13,6 @@ import Image from "next/image";
 export default function MHSBarberShop() {
   return (
     <div className="BSbody w-full h-screen overflow-hidden overflow-y-auto flex flex-col scroll-pt-14 scroll-smooth">
-      <ArrowBackTop />
       {/* ==================== header ==================== */}
       <header className="h-14 w-full px-5 bg-neutral-800 flex justify-between items-center fixed z-10 ">
         <BackIcon className="top-1/2 -translate-y-1/2 left-0 w-10" />
@@ -33,9 +31,9 @@ export default function MHSBarberShop() {
           <h1 className="homeTitle">MHS</h1>
           <h1 className="homeTitle">Barber Shop</h1>
         </div>
-        <div className="mt-5 w-[300px] h-12 flex items-center justify-center rounded-full bg-green-500 hover:bg-green-600 transition cursor-pointer text-white text-3xl">
+        <a href="https://mhsbarbershop.vercel.app/entrar" target="_black" className="mt-5 w-[300px] h-12 flex items-center justify-center rounded-full bg-green-500 hover:bg-green-600 transition cursor-pointer text-white text-3xl">
           Fazer Reserva
-        </div>
+        </a>
       </div>
 
       {/* ==================== menu ==================== */}

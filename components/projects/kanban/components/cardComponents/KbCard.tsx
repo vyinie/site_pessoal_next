@@ -1,12 +1,12 @@
 "use client";
 
 import { KanbanCard, KanbanData } from "@/functions/interfaces";
-import KbCardMoreOpts from "./KbCardMoreOpts";
-import { AddBtn } from "../../components/global/buttons";
 import { Dispatch, SetStateAction, useState } from "react";
-import KbItem from "./KbItem";
+import KbItem from "../itemComponents/KbItem";
 import KbAddItemPopUp from "./KbAddItemPopUp";
-import { PopOverInpInline } from "../../components/global/PopUps";
+import KbCardMoreOpts from "./KbCardMoreOpts";
+import { AddBtn } from "@/components/projects/components/global/buttons";
+import { PopOverInpInline } from "@/components/projects/components/global/PopUps";
 
 const kanbanStorageName = "kanban_data";
 const KbCard = ({

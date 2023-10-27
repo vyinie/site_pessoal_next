@@ -1,7 +1,7 @@
-import { MoreOptsBtn } from "@/components/projects/components/global/buttons";
 import { ColorDIficultControl } from "@/functions/interfaces";
 import { accessibility } from "@/functions/accessibilityFunctions";
 import { Dispatch, SetStateAction } from "react";
+import { ThreeDotsBtn } from "../../components/global/buttons";
 
 export function DificultControl({
   dificultModes,
@@ -49,15 +49,15 @@ export function DificultControlMobile({
           DiffControlToggle ? "fixed" : "hidden"
         } close-on-click w-screen h-screen  top-0 left-0 z-10`}
       ></div>
-      
+
       <div className="hidden moblet:grid absolute top-1/2 -translate-y-1/2 -right-12 z-10">
-        <MoreOptsBtn
-          func={(e) => Access.handlerWrapper(e, setDiffControlToggle)}
-          type="dots"
+        <ThreeDotsBtn
+          func={(e) => setDiffControlToggle((old) => !old)}
           standing
+          isOn={DiffControlToggle}
         >
           <div
-          onClick={(e) => Access.handlerWrapper(e, setDiffControlToggle)}
+            onClick={(e) => Access.handlerWrapper(e, setDiffControlToggle)}
             className={`${
               DiffControlToggle ? "w-36 h-44 border-2" : " w-0 h-0"
             } grid place-items-center bg-slate-100 rounded-md  border-zinc-600 transition-all overflow-hidden absolute right-3/4 top-3/4 `}
@@ -67,7 +67,7 @@ export function DificultControlMobile({
               dificultModes={dificultModes}
             />
           </div>
-        </MoreOptsBtn>
+        </ThreeDotsBtn>
       </div>
     </>
   );

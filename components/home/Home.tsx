@@ -16,6 +16,7 @@ export default function HomeIntro() {
       link: "https://github.com/vyinie",
       img: github,
       alt: "GitHub",
+      id: "github",
     },
     {
       id: "linkedin",

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { accessibility } from "@/functions/accessibilityFunctions";
 import Link from "next/link";
-import { MoreOptsBtn } from "@/components/projects/components/global/buttons";
+import { HamburgerBtn } from "../../components/global/buttons";
 
 const Access = new accessibility();
 
@@ -38,8 +38,8 @@ export default function FinnanceSideBar() {
   }
   return (
     <>
-      <div className="hidden moblet:block fixed top-[10px] right-2 bg-neutral-300 rounded">
-        <MoreOptsBtn func={asideToggle} type="lines" />
+      <div className="hidden moblet:block fixed top-[15px] right-2">
+        <HamburgerBtn func={asideToggle} />
       </div>
 
       <div

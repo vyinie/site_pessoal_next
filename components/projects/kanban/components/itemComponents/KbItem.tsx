@@ -1,14 +1,11 @@
 import { KanbanCard, KanbanData, KanbanItem } from "@/functions/interfaces";
-import {
-  DelEditPopOver,
-  MoreOptsBtn,
-  SwitchArrowsBtn,
-} from "../../components/global/buttons";
-import { Dispatch, SetStateAction, useState } from "react";
-import KbItemSwitchPopUp from "./KbItemSwitchPopUp";
+
+import { Dispatch, SetStateAction,  useState } from "react";
+import KbItemSwitchPopUp from "../cardComponents/KbItemSwitchPopUp";
 import { accessibility } from "@/functions/accessibilityFunctions";
-import { PopOverInpInline } from "../../components/global/PopUps";
 import { verifiers } from "@/functions/verifyers";
+import { DelEditPopOver, SwitchArrowsBtn, ThreeDotsBtn } from "@/components/projects/components/global/buttons";
+import { PopOverInpInline } from "@/components/projects/components/global/PopUps";
 
 const Access = new accessibility();
 const Verifiers = new verifiers();
@@ -85,9 +82,14 @@ export default function KbItem({
       setEditPopUpToggle(() => false);
     }
   }
+
+
   return (
     <div className="w-full h-10 pl-2 rounded bg-white  text-xl bg_hover grid grid-cols-6 place-items-center relative">
-      <p title={item.text} className="col-start-1 col-end-5 w-full text-ellipsis whitespace-nowrap overflow-hidden">
+      <p
+        title={item.text}
+        className="col-start-1 col-end-5 w-full text-ellipsis whitespace-nowrap overflow-hidden"
+      >
         {item.text}
       </p>
 
@@ -95,7 +97,7 @@ export default function KbItem({
         <SwitchArrowsBtn rounded="full" func={openSwitchPopup} />
       </div>
       <div className="col-start-6 col-end-6">
-        <MoreOptsBtn func={openMoreOpts} type="dots" standing>
+        <ThreeDotsBtn isOn={itemOptsToggle} func={openMoreOpts} standing>
           <DelEditPopOver
             delFunc={delItem}
             setEditToggle={setEditPopUpToggle}
@@ -104,7 +106,7 @@ export default function KbItem({
             layed
             center
           />
-        </MoreOptsBtn>
+        </ThreeDotsBtn>
       </div>
       <KbItemSwitchPopUp
         kanbanLists={kanbanLists}

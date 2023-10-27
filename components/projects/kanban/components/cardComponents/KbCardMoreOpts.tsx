@@ -1,8 +1,11 @@
 "use client";
 import { useState } from "react";
 
-import { DelEditPopOver, MoreOptsBtn } from "../../components/global/buttons";
 import { SetBoo } from "@/functions/interfaces";
+import {
+  DelEditPopOver,
+  ThreeDotsBtn,
+} from "@/components/projects/components/global/buttons";
 
 export default function KbCardMoreOpts({
   delCard,
@@ -11,18 +14,18 @@ export default function KbCardMoreOpts({
   delCard: () => void;
   setEditToggle: SetBoo;
 }) {
-  const [optsToggle, setOptsToggle] = useState(false);
+  const [cardOptsToggle, setCardOptsToggle] = useState(false);
 
   return (
     <div className="col-start-6 col-end-6 ">
-      <MoreOptsBtn type="dots" func={() => setOptsToggle((old) => !old)}>
+      <ThreeDotsBtn isOn={cardOptsToggle} standing func={() => setCardOptsToggle((old) => !old)}>
         <DelEditPopOver
           delFunc={delCard}
           setEditToggle={setEditToggle}
-          optsToggle={optsToggle}
-          setOptsToggle={setOptsToggle}
+          optsToggle={cardOptsToggle}
+          setOptsToggle={setCardOptsToggle}
         />
-      </MoreOptsBtn>
+      </ThreeDotsBtn>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import { KanbanCard, KanbanData } from "@/functions/interfaces";
-import { CommonBtn } from "../../components/global/buttons";
 import { Dispatch, SetStateAction } from "react";
 import { accessibility } from "@/functions/accessibilityFunctions";
 import { verifiers } from "@/functions/verifyers";
+import { CommonBtn } from "@/components/projects/components/global/buttons";
 
 const Access = new accessibility();
 const Verifiers = new verifiers();

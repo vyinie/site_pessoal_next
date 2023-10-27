@@ -6,12 +6,10 @@ import Graph from "./Graps";
 import { dataHandlers } from "@/functions/dataHandlers";
 import { useEffect, useState } from "react";
 import { FinnanceData, GraphData } from "@/functions/interfaces";
-import { MoreOptsBtn } from "@/components/projects/components/global/buttons";
 import { ExpensesPanel } from "./expensesPanel";
-import { accessibility } from "@/functions/accessibilityFunctions";
+import { ThreeDotsBtn } from "@/components/projects/components/global/buttons";
 
 const DataHandlers = new dataHandlers();
-const Access = new accessibility();
 
 export default function Cards({
   finnanceData,
@@ -135,16 +133,13 @@ export default function Cards({
         </div>
 
         <div className="absolute bottom-0 right-0">
-          <MoreOptsBtn
-            func={(e) => Access.handlerWrapper(e, setExpensesPanelToggle)}
-            type="dots"
-          >
+          <ThreeDotsBtn func={() => setExpensesPanelToggle((old) => !old)} isOn={expensesPanelToggle}>
             <ExpensesPanel
               open={expensesPanelToggle}
               setOpen={setExpensesPanelToggle}
               setShowAllExpenses={setShowAllExpenses}
             />
-          </MoreOptsBtn>
+          </ThreeDotsBtn>
         </div>
       </div>
 

@@ -29,8 +29,10 @@ export class accessibility {
 
     if (
       typeof target === "string" &&
-      target.split(" ").some((i) => i === "close-on-click")
+      target.includes("close-on-click")
     ) {
+      console.log(target);
+      
       setOpen(() => false);
       const classBody = document.body.style;
       classBody.overflow = "";
@@ -45,7 +47,7 @@ export class accessibility {
     const target = e.target.className;
     if (
       typeof target === "string" &&
-      target.split(" ").some((i) => i === "change-on-click")
+      target.includes("change-on-click")
     ) {
       setOpen((old) => !old);
       if (hidden) {

@@ -109,9 +109,9 @@ export default function Projects() {
   }
 
   return (
-    <div className="w-full h-screen py-5 flex flex-col items-center">
+    <div className="w-full h-screen mobile:h-[150vh] py-5 flex flex-col items-center">
       {/* titulo */}
-      <div className="ml-12 self-start relative">
+      <div className="ml-12 mobile:ml-8 self-start relative">
         <h1 className="text-[50px] before:absolute before:-bottom-1 before:w-32 before:h-2 before:bg-sky-500">
           Projetos
         </h1>

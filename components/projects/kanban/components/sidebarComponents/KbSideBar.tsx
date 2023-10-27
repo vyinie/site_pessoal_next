@@ -1,9 +1,9 @@
 "use client";
 import { KanbanCard, KanbanData } from "@/functions/interfaces";
 import { Dispatch, SetStateAction, useState } from "react";
-import { MoreOptsBtn } from "../../components/global/buttons";
 import { accessibility } from "@/functions/accessibilityFunctions";
 import KbAddCardPopUp from "./KbAddCardPopUp";
+import { HamburgerBtn } from "@/components/projects/components/global/buttons";
 
 const Access = new accessibility();
 
@@ -75,10 +75,7 @@ export default function KanbanSideBar({
   return (
     <>
       <div className="hidden moblet:flex fixed top-[10px] right-2 h-fit w-fit">
-        <MoreOptsBtn
-          type="lines"
-          func={(e) => Access.handlerWrapper(e, setSideBarToggle)}
-        />
+        <HamburgerBtn func={() => setSideBarToggle((old) => !old)} />
       </div>
 
       <KbAddCardPopUp

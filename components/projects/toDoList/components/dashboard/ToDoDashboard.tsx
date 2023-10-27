@@ -5,12 +5,11 @@ import ToDoForm from "./ToDoForm";
 import ToDoItemComp from "./ToDoItem";
 import ToDoListMoreOpt from "./ToDoMoreOpt";
 
-import { MoreOptsBtn } from "@/components/projects/components/global/buttons";
-
 import { TDList, ToDoItem, ToDoListData } from "@/functions/interfaces";
 
 import { accessibility } from "@/functions/accessibilityFunctions";
 import { verifiers } from "@/functions/verifyers";
+import { ThreeDotsBtn } from "@/components/projects/components/global/buttons";
 
 const verifier = new verifiers();
 const Access = new accessibility();
@@ -41,7 +40,7 @@ export default function ToDoDashboard({
   listIndex: number;
 }) {
   //
-  const [moreOptToggle, setMoreOptToggle] = useState(false);
+  const [toDoMoreOptToggle, setToDoMoreOptToggle] = useState(false);
 
   /** add um novo item e salva a nova lista */
   function addNewToDo() {
@@ -85,22 +84,22 @@ export default function ToDoDashboard({
           setNewToDo={setNewToDo}
           addNewItem={addNewToDo}
         />
-        <MoreOptsBtn
-          type="dots"
-          func={(e) => Access.handlerWrapper(e, setMoreOptToggle)}
+        <ThreeDotsBtn
+          func={() => setToDoMoreOptToggle((old) => !old)}
           className="h-fit mobile-sm:hidden"
           standing
+          isOn={toDoMoreOptToggle}
         >
           <ToDoListMoreOpt
             currentList={mainList[listIndex]?.list}
-            isOpen={moreOptToggle}
-            setIsOpen={setMoreOptToggle}
+            isOpen={toDoMoreOptToggle}
+            setIsOpen={setToDoMoreOptToggle}
             vert={verticalList}
             setVert={setverticalList}
             listIndex={listIndex}
             setMainList={setMainList}
           />
-        </MoreOptsBtn>
+        </ThreeDotsBtn>
       </div>
 
       {/* table */}

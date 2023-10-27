@@ -13,6 +13,7 @@ import MultipleStopIcon from "@mui/icons-material/MultipleStop";
 import { accessibility } from "@/functions/accessibilityFunctions";
 import { CommonBtn, SetBoo } from "@/functions/interfaces";
 import { Dispatch, SetStateAction } from "react";
+import { Close, Menu, MoreVert } from "@mui/icons-material";
 
 const Access = new accessibility();
 // ========================= GREEN BUTTON =========================
@@ -55,7 +56,7 @@ export function DelBtn({
     <div
       className={`${className} ${
         rounded === "full" ? "btn_hover_full" : "btn_hover_md"
-      } min-h-[40px] min-w-[40px] flex justify-center items-center`}
+      } w-8 h-8 flex justify-center items-center`}
     >
       <div
         tabIndex={0}
@@ -63,7 +64,7 @@ export function DelBtn({
         onClick={func}
         className="kase change-on-click"
       ></div>
-      <DeleteOutlineIcon sx={{ fontSize: fontSize || "35px" }} />
+      <DeleteOutlineIcon sx={{ fontSize: fontSize || "30px" }} />
     </div>
   );
 }
@@ -83,7 +84,7 @@ export function AddBtn({
     <div
       className={`${className} ${
         rounded === "full" ? "btn_hover_full" : "btn_hover_md"
-      } min-h-[40px] min-w-[40px] flex justify-center items-center`}
+      } w-8 h-8 flex justify-center items-center`}
     >
       <div
         tabIndex={0}
@@ -91,7 +92,7 @@ export function AddBtn({
         onClick={func}
         className="kase"
       ></div>
-      <AddIcon sx={{ fontSize: fontSize || "35px" }} />
+      <AddIcon sx={{ fontSize: fontSize || "30px" }} />
     </div>
   );
 }
@@ -126,7 +127,7 @@ export function EditBtn({
     <div
       className={`${
         rounded === "full" ? "btn_hover_full" : "btn_hover_md"
-      } min-h-[40px] min-w-[40px] flex justify-center items-center`}
+      } w-8 h-8 flex justify-center items-center`}
     >
       <div
         tabIndex={0}
@@ -134,7 +135,7 @@ export function EditBtn({
         onKeyDown={enterAct}
         className="kase change-on-click"
       ></div>
-      <EditIcon sx={{ fontSize: fontSize || "32px" }} />
+      <EditIcon sx={{ fontSize: fontSize || "30px" }} />
     </div>
   );
 }
@@ -145,7 +146,7 @@ export function InfoBtn({ setToggle }) {
     Access.handlerWrapper(e, setToggle);
   };
   return (
-    <div className="btn_hover_full min-h-[40px] min-w-[40px] flex justify-center items-center">
+    <div className="btn_hover_full w-8 h-8 flex justify-center items-center">
       <div
         onClick={handlerEditDispay}
         tabIndex={0}
@@ -161,46 +162,55 @@ export function InfoBtn({ setToggle }) {
  ** ser quiser que ele tenha position fixed ponha dentro de um div,
     ele é relative
 */
-export function MoreOptsBtn({
+export function HamburgerBtn({
   children,
-  standing,
   className,
-  type,
   func,
 }: {
   children?: React.ReactNode;
-  standing?: boolean;
-  type: "lines" | "dots";
   className?: string;
   func: (e?) => void;
+}) {
+  return (
+    <div onClick={func} className={`${className || ""} relative`}>
+      <div tabIndex={0} className={`w-9 h-8 grid place-items-center`}>
+        <div className="kase change-on-click" />
+        <Menu sx={{fontSize:"35px"}} className="dark:text-white" />
+      </div>
+
+      {children}
+    </div>
+  );
+}
+
+export function ThreeDotsBtn({
+  children,
+  className,
+  func,
+  standing,
+  isOn,
+}: {
+  children?: React.ReactNode;
+  className?: string;
+  standing?: boolean;
+  func: (e?) => void;
+  isOn: boolean;
 }) {
   // três pontinhos, é uma tag pai
   return (
     <div onClick={func} className={`${className || ""} relative`}>
       <div
         tabIndex={0}
-        className={`${standing ? "flex-col" : ""} ${
-          type === "dots"
-            ? "w-10 gap-1 btn_hover_full"
-            : "w-12 btn_hover_md p-1 flex-col gap-1.5"
-        } flex justify-center items-center h-10`}
+        className={`${
+          standing ? "" : "rotate-90"
+        } w-8 h-8 gap-1 btn_hover_full flex justify-center items-center`}
       >
-        <div className="kase change-on-click"></div>
-        <div
-          className={`h-1.5 ${
-            type === "dots" ? "w-1.5" : "w-full"
-          } bg-black dark:bg-white rounded-full`}
-        ></div>
-        <div
-          className={`h-1.5 ${
-            type === "dots" ? "w-1.5" : "w-full"
-          } bg-black dark:bg-white rounded-full`}
-        ></div>
-        <div
-          className={`h-1.5 ${
-            type === "dots" ? "w-1.5" : "w-full"
-          } bg-black dark:bg-white rounded-full`}
-        ></div>
+        <div className="kase change-on-click" />
+        {isOn ? (
+          <Close sx={{ fontSize: "30px" }} />
+        ) : (
+          <MoreVert sx={{ fontSize: "35px" }} />
+        )}
       </div>
       {children}
     </div>
@@ -218,10 +228,9 @@ export function DirectionBtn({
   func,
   rounded,
   className,
-  fontSize,
 }: {
   rounded?: "full" | "md";
-  fontSize?: string;
+
   isVert: boolean;
   setVert: SetBoo;
   func?: (e?) => void;
@@ -236,7 +245,7 @@ export function DirectionBtn({
       className={`${className}
       ${rounded === "full" ? "btn_hover_full" : "btn_hover_md"}
       ${isVert ? "rotate-180" : "rotate-90"}
-       min-h-[40px] min-w-[40px] flex justify-center items-center`}
+       w-8 h-8 flex justify-center items-center`}
     >
       <div className="kase" onClick={handlerIcon}></div>
       <AlignVerticalBottomIcon />
@@ -261,7 +270,7 @@ export function MarkAllBoxesBtn({
     <div
       className={`${
         rounded === "full" ? "btn_hover_full" : "btn_hover_md"
-      } min-h-[40px] min-w-[40px] flex justify-center items-center`}
+      } w-8 h-8 flex justify-center items-center`}
     >
       <div className="kase" tabIndex={0} onClick={handlerIcon}></div>
       <LibraryAddCheckIcon sx={{ fontSize: fontSize || "30px" }} />
@@ -285,7 +294,7 @@ export function UnmarkAllBoxesBtn({
     <div
       className={`${
         rounded === "full" ? "btn_hover_full" : "btn_hover_md"
-      } min-h-[40px] min-w-[40px] flex justify-center items-center`}
+      } w-8 h-8 flex justify-center items-center`}
     >
       <div className="kase" tabIndex={0} onClick={handlerIcon}></div>
       <IndeterminateCheckBoxIcon sx={{ fontSize: fontSize || "30px" }} />
@@ -309,7 +318,7 @@ export function SwitchArrowsBtn({
     <div
       className={`${
         rounded === "full" ? "btn_hover_full" : "btn_hover_md"
-      } min-h-[40px] min-w-[40px] flex justify-center items-center`}
+      } w-8 h-8 flex justify-center items-center`}
     >
       <div
         className="kase change-on-click"
@@ -353,23 +362,18 @@ export function DelEditPopOver({
   return (
     <>
       {/* fecha o pop-over qndo clicar fora */}
+
       <div
-        onClick={(e) => Access.handlerWrapper(e, setOptsToggle)}
-        className={`${
-          optsToggle ? "" : "hidden"
-        } fixed h-screen w-screen top-0 left-0 z-10 close-on-click`}
-      ></div>
-      <div
-        onClick={(e) => Access.handlerWrapper(e, setOptsToggle)}
+        onClick={() => setOptsToggle((old) => !old)}
         className={`${
           optsToggle
             ? layed
-              ? "w-24 h-12 border-2 grid-flow-col"
-              : "w-12 h-24 border-2"
+              ? "w-20 h-10 border-2 grid-flow-col"
+              : "w-10 h-20 border-2"
             : "w-0 h-0"
         }
         ${center ? "top-1/2 -translate-y-1/2" : "top-5"}
-        overflow-hidden bg-slate-200 border-zinc-500 rounded-md absolute right-9 transition-all grid place-items-center z-10`}
+        overflow-hidden bg-slate-200 border-zinc-500 rounded-md absolute right-7 transition-all grid place-items-center z-10`}
       >
         <EditBtn rounded="full" setToggle={setEditToggle} />
         <DelBtn rounded="full" func={delFunc} />
