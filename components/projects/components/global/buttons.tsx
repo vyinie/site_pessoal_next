@@ -24,7 +24,7 @@ export function CommonBtn({ ActFunc, text, className, color }: CommonBtn) {
       className={`
       ${className || ""}
       ${color || "bg-green-500 hover:bg-green-600 "}
-       capitalize cursor-pointer transition rounded-md text-white py-2 px-3`}
+       capitalize cursor-pointer transition rounded-md text-white py-1 px-2`}
     >
       {text}
     </button>
