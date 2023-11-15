@@ -38,7 +38,8 @@ export default function SideBarListBtn({
       }
       className={`${
         mainList[listIndex]?.title === listData.title ? "bg-neutral-200" : ""
-      } w-full py-2 relative border-b-2 border-zinc-500 bgHover cursor-pointer close-on-click`}
+      } w-full py-2 relative border-b-2 border-zinc-500 bgHover cursor-pointer close-on-click text-ellipsis whitespace-nowrap pl-8`}
+      title={listData.title}
     >
       {listData.title}
       <div className="absolute h-full top-0 right-0 grid place-items-center">
