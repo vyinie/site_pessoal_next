@@ -35,10 +35,10 @@ export default function ToDoList() {
 
   /** mostra os dados salvos */
   function initialSetter() {
-    const t = localStorage.getItem("to_do_list_data") || "{}";
-    const holder_list: ToDoListData = JSON.parse(t);
+    const toDoLocalData = localStorage.getItem("to_do_list_data") || "{}";
+    const holder_list: ToDoListData = JSON.parse(toDoLocalData);
 
-    setMainList(() => holder_list.lists);
+    setMainList(holder_list.lists);
 
     // define apenas o id
     setNewToDo((old) => ({
@@ -46,7 +46,7 @@ export default function ToDoList() {
       id: holder_list.globalIds,
     }));
 
-    setverticalList(() => holder_list.verticalList);
+    setverticalList(holder_list.verticalList);
   }
 
   useEffect(() => {
@@ -54,13 +54,7 @@ export default function ToDoList() {
     const storageList = localStorage.getItem("to_do_list_data");
 
     if (!storageList) {
-      const defaultLists: TDList[] = [
-        { id: 0, list: [], title: "trabalho" },
-        { id: 1, list: [], title: "casa" },
-        { id: 2, list: [], title: "compras" },
-        { id: 3, list: [], title: "estudos" },
-        { id: 4, list: [], title: "academia" },
-      ];
+      const defaultLists: TDList[] = [{ list: [], title: "To Do" }];
 
       const defaultData: ToDoListData = {
         globalIds: 1,
@@ -69,10 +63,8 @@ export default function ToDoList() {
       };
 
       localStorage.setItem("to_do_list_data", JSON.stringify(defaultData));
-      initialSetter();
-    } else {
-      initialSetter();
     }
+    initialSetter();
   }, []);
 
   return (

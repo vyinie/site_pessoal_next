@@ -73,8 +73,8 @@ export default function TableRow({
 
       {/* cçoes */}
       <td className="flex gap-2 items-center justify-center">
-        <DelBtn func={delItem} rounded="full" />
-        <EditBtn setToggle={setEditPopUpToggle} rounded="full" />
+        <DelBtn func={delItem} rounded />
+        <EditBtn setToggle={setEditPopUpToggle} rounded />
         <EditNotePopUp
           setFinnanceData={setFinnanceData}
           noteData={item}

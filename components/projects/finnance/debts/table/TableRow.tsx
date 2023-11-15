@@ -98,8 +98,8 @@ export default function DebtTableRow({
               moreOptsToggle ? "w-36 border-2 border-neutral-400" : "w-0 "
             } overflow-hidden absolute top-1/2 right-full -translate-y-1/2 flex justify-between bg-slate-100 rounded transition-all z-10`}
           >
-            <DelBtn rounded="full" func={delItem} />
-            <EditBtn rounded="full" setToggle={setEditPopUpToggle} />
+            <DelBtn rounded func={delItem} />
+            <EditBtn rounded setToggle={setEditPopUpToggle} />
             <InfoBtn setToggle={setInfoCardPopUpToggle} />
           </div>
         </ThreeDotsBtn>

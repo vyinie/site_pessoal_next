@@ -94,7 +94,7 @@ export default function KbItem({
       </p>
 
       <div className="col-start-5 col-end-5">
-        <SwitchArrowsBtn rounded="full" func={openSwitchPopup} />
+        <SwitchArrowsBtn rounded func={openSwitchPopup} />
       </div>
       <div className="col-start-6 col-end-6">
         <ThreeDotsBtn isOn={itemOptsToggle} func={openMoreOpts} standing>

@@ -31,7 +31,6 @@ export class accessibility {
       typeof target === "string" &&
       target.includes("close-on-click")
     ) {
-      console.log(target);
       
       setOpen(() => false);
       const classBody = document.body.style;

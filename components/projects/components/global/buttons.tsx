@@ -12,7 +12,6 @@ import MultipleStopIcon from "@mui/icons-material/MultipleStop";
 
 import { accessibility } from "@/functions/accessibilityFunctions";
 import { CommonBtn, SetBoo } from "@/functions/interfaces";
-import { Dispatch, SetStateAction } from "react";
 import { Close, Menu, MoreVert } from "@mui/icons-material";
 
 const Access = new accessibility();
@@ -47,7 +46,7 @@ export function DelBtn({
   rounded,
   fontSize,
 }: {
-  rounded?: "full" | "md";
+  rounded?: boolean;
   fontSize?: string;
   className?: string;
   func: () => void;
@@ -55,7 +54,7 @@ export function DelBtn({
   return (
     <div
       className={`${className} ${
-        rounded === "full" ? "btn_hover_full" : "btn_hover_md"
+        rounded ? "btn_hover_full" : "btn_hover_md"
       } w-8 h-8 flex justify-center items-center`}
     >
       <div
@@ -75,7 +74,7 @@ export function AddBtn({
   rounded,
   fontSize,
 }: {
-  rounded?: "full" | "md";
+  rounded?: boolean;
   fontSize?: string;
   className?: string;
   func: () => void;
@@ -83,7 +82,7 @@ export function AddBtn({
   return (
     <div
       className={`${className} ${
-        rounded === "full" ? "btn_hover_full" : "btn_hover_md"
+        rounded  ? "btn_hover_full" : "btn_hover_md"
       } w-8 h-8 flex justify-center items-center`}
     >
       <div
@@ -97,6 +96,33 @@ export function AddBtn({
   );
 }
 
+export function CloseBtn({
+  className,
+  func,
+  rounded,
+  fontSize,
+}: {
+  rounded?: boolean;
+  fontSize?: string;
+  className?: string;
+  func: () => void;
+}) {
+  return (
+    <div
+      className={`${className} ${
+        rounded  ? "btn_hover_full" : "btn_hover_md"
+      } w-8 h-8 flex justify-center items-center`}
+    >
+      <div
+        tabIndex={0}
+        onKeyDown={(e) => Access.enterAct(e, func)}
+        onClick={func}
+        className="kase"
+      ></div>
+      <Close sx={{ fontSize: fontSize || "30px" }} />
+    </div>
+  );
+}
 // ========================= TOGGLE EDIT WRAPPER =========================
 /** tem a função expecifica de abrir popups pra edição
  ** hidden === true => overflow do body muda*/
@@ -106,7 +132,7 @@ export function EditBtn({
   rounded,
   fontSize,
 }: {
-  rounded?: "full" | "md";
+  rounded?: boolean;
   fontSize?: string;
 
   setToggle: SetBoo;
@@ -126,7 +152,7 @@ export function EditBtn({
   return (
     <div
       className={`${
-        rounded === "full" ? "btn_hover_full" : "btn_hover_md"
+        rounded ? "btn_hover_full" : "btn_hover_md"
       } w-8 h-8 flex justify-center items-center`}
     >
       <div
@@ -229,7 +255,7 @@ export function DirectionBtn({
   rounded,
   className,
 }: {
-  rounded?: "full" | "md";
+  rounded?: boolean;
 
   isVert: boolean;
   setVert: SetBoo;
@@ -243,7 +269,7 @@ export function DirectionBtn({
   return (
     <div
       className={`${className}
-      ${rounded === "full" ? "btn_hover_full" : "btn_hover_md"}
+      ${rounded ? "btn_hover_full" : "btn_hover_md"}
       ${isVert ? "rotate-180" : "rotate-90"}
        w-8 h-8 flex justify-center items-center`}
     >
@@ -259,7 +285,7 @@ export function MarkAllBoxesBtn({
   rounded,
   fontSize,
 }: {
-  rounded?: "full" | "md";
+  rounded?: boolean;
   fontSize?: string;
   func: (e?) => void;
 }) {
@@ -269,7 +295,7 @@ export function MarkAllBoxesBtn({
   return (
     <div
       className={`${
-        rounded === "full" ? "btn_hover_full" : "btn_hover_md"
+        rounded ? "btn_hover_full" : "btn_hover_md"
       } w-8 h-8 flex justify-center items-center`}
     >
       <div className="kase" tabIndex={0} onClick={handlerIcon}></div>
@@ -283,7 +309,7 @@ export function UnmarkAllBoxesBtn({
   rounded,
   fontSize,
 }: {
-  rounded?: "full" | "md";
+  rounded?: boolean;
   fontSize?: string;
   func: (e?) => void;
 }) {
@@ -293,7 +319,7 @@ export function UnmarkAllBoxesBtn({
   return (
     <div
       className={`${
-        rounded === "full" ? "btn_hover_full" : "btn_hover_md"
+        rounded ? "btn_hover_full" : "btn_hover_md"
       } w-8 h-8 flex justify-center items-center`}
     >
       <div className="kase" tabIndex={0} onClick={handlerIcon}></div>
@@ -307,7 +333,7 @@ export function SwitchArrowsBtn({
   rounded,
   fontSize,
 }: {
-  rounded?: "full" | "md";
+  rounded?: boolean;
   fontSize?: string;
   func: (e?) => void;
 }) {
@@ -317,7 +343,7 @@ export function SwitchArrowsBtn({
   return (
     <div
       className={`${
-        rounded === "full" ? "btn_hover_full" : "btn_hover_md"
+        rounded ? "btn_hover_full" : "btn_hover_md"
       } w-8 h-8 flex justify-center items-center`}
     >
       <div
@@ -375,8 +401,8 @@ export function DelEditPopOver({
         ${center ? "top-1/2 -translate-y-1/2" : "top-5"}
         overflow-hidden bg-slate-200 border-zinc-500 rounded-md absolute right-7 transition-all grid place-items-center z-10`}
       >
-        <EditBtn rounded="full" setToggle={setEditToggle} />
-        <DelBtn rounded="full" func={delFunc} />
+        <EditBtn rounded setToggle={setEditToggle} />
+        <DelBtn rounded func={delFunc} />
       </div>
     </>
   );

@@ -91,7 +91,7 @@ export default function ToDoItemComp({
         type="checkbox"
         id={`to_do_check_${to_do_item.id}`}
       />
-      <div className="grid grid-cols-7 place-items-center">
+      <div className="grid grid-cols-7 place-items-center w-full">
         <label
           htmlFor={`to_do_check_${to_do_item.id}`}
           className="w-full col-span-5 overflow-hidden text-ellipsis capitalize"

@@ -4,7 +4,12 @@ import { accessibility } from "@/functions/accessibilityFunctions";
 import { TDList } from "@/functions/interfaces";
 import { Dispatch, SetStateAction, useState } from "react";
 import ToDoListMoreOpt from "../dashboard/ToDoMoreOpt";
-import { HamburgerBtn } from "@/components/projects/components/global/buttons";
+import {
+  AddBtn,
+  HamburgerBtn,
+} from "@/components/projects/components/global/buttons";
+import ToDoAddListBtn from "./ToDoAddListBtn";
+import SideBarListBtn from "./SideBarListBtn";
 
 const Access = new accessibility();
 
@@ -24,6 +29,7 @@ export default function ToDoSideBar({
   function handlerSideBar(e) {
     Access.handlerWrapper(e, setsideBarToggle);
   }
+
   return (
     <>
       <div className="moblet:z-20 -z-10 fixed top-[10px] right-2 ">
@@ -51,14 +57,17 @@ export default function ToDoSideBar({
 
           {/* opições */}
           <div className="flex flex-col w-full text-lg text-center capitalize">
+            <ToDoAddListBtn setMainList={setMainList} />
+
             {mainList.map((i) => (
-              <div
-                onClick={() => setlistIndex(() => i.id)}
-                key={`sideBarBtn${i.id}`}
-                className="w-full py-2 border-b-2 border-zinc-500 bgHover cursor-pointer close-on-click"
-              >
-                {i.title}
-              </div>
+              <SideBarListBtn
+                listData={i}
+                listIndex={listIndex}
+                mainList={mainList}
+                setMainList={setMainList}
+                setlistIndex={setlistIndex}
+                key={`sideBarBtn${i.title}`}
+              />
             ))}
             <ToDoListMoreOpt
               currentList={mainList[listIndex]?.list}
@@ -67,12 +76,12 @@ export default function ToDoSideBar({
               isOpen
               className="mobile-sm:flex mobile-sm:w-[180px] hidden static h-fit self-center justify-self-center mt-5 gap-3"
               fontSize="40px"
+              vert
               /*
             esse state não sera usado aqui, é uma exigencia do componente.
             ha outras formas de fazer essa exigencia relativa, mas dessa
             forma o componente fica menos sujo  
             */
-              vert
               setVert={setsideBarToggle}
             />
           </div>

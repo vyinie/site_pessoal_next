@@ -14,7 +14,7 @@ const KbCard = ({
 
   kanbanLists,
   setKanbanLists,
-  
+
   classname,
 }: {
   cardData: KanbanCard;
@@ -83,8 +83,8 @@ const KbCard = ({
         {/* btn que abre o pop-up pra add itens */}
         <AddBtn
           func={openAddItemInp}
-          rounded="full"
           className="col-start-5 col-end-5"
+          rounded
         />
         <KbCardMoreOpts delCard={delCard} setEditToggle={setEditTitleToggle} />
 

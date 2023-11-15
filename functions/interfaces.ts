@@ -11,7 +11,6 @@ export interface ToDoItem {
 /** lista que guarda item, parte do conjunto */
 export interface TDList {
   list: ToDoItem[];
-  id: number;
   title: string;
 }
 /** todas as informações de todo o projeto */

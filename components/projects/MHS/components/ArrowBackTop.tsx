@@ -9,12 +9,6 @@ export default function ArrowBackTop() {
       ? setscrollButonVisibility(true)
       : setscrollButonVisibility(false);
   }
-
-useEffect(() => {
-  console.log(window.scrollY);
-  
-}, [window.scrollY]);
-
   return (
     <a
       href="#BShome"
