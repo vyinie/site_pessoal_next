@@ -1,4 +1,4 @@
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import {ArrowForwardIos} from "@mui/icons-material";
 
 export default function ToDoArrowBtn({
   left,
@@ -17,19 +17,17 @@ export default function ToDoArrowBtn({
   }
   return (
     <div
-      className={`${className || ""} absolute bottom-0 ${
-        left ? "-left-12" : "-right-12"
-      } btn_hover_md items-center h-full `}
+      className={`
+      ${className || ""}
+      absolute top-0 
+      ${left ? "-left-24" : "-right-12"}
+      btn_hover_md items-center bg-pink-800 h-full w-min moblet:hidden`}
       onClick={scroll}
     >
-      {left ? (
-        <ArrowForwardIosIcon
-          className="rotate-180"
-          style={{ fontSize: "40px" }}
-        />
-      ) : (
-        <ArrowForwardIosIcon style={{ fontSize: "40px" }} />
-      )}
+      <ArrowForwardIos
+        className={`${left ? "rotate-180" : ""}`}
+        style={{ fontSize: "40px" }}
+      />
     </div>
   );
 }

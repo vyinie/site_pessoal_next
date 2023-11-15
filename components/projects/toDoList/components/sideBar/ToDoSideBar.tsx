@@ -50,32 +50,19 @@ export default function ToDoSideBar({
         >
           {/* titulo */}
           <div className="flex items-center justify-center w-full h-full">
-            <h1 className="text-2xl font-bold uppercase">
+            <h1 className="text-2xl font-bold uppercase overflow-hidden text-ellipsis ">
               {mainList[listIndex]?.title}
             </h1>
           </div>
 
           {/* opições */}
           <div className="flex flex-col w-full text-lg text-center capitalize">
-            <ToDoAddListBtn setMainList={setMainList} />
-
-            {mainList.map((i) => (
-              <SideBarListBtn
-                listData={i}
-                listIndex={listIndex}
-                mainList={mainList}
-                setMainList={setMainList}
-                setlistIndex={setlistIndex}
-                key={`sideBarBtn${i.title}`}
-              />
-            ))}
             <ToDoListMoreOpt
               currentList={mainList[listIndex]?.list}
               listIndex={listIndex}
               setMainList={setMainList}
               isOpen
-              className="mobile-sm:flex mobile-sm:w-[180px] hidden static h-fit self-center justify-self-center mt-5 gap-3"
-              fontSize="40px"
+              className="mobile-sm:flex mobile-sm:w-[120px] hidden static h-fit self-center justify-self-center gap-3 mobile-sm:-mb-5"
               vert
               /*
             esse state não sera usado aqui, é uma exigencia do componente.
@@ -84,6 +71,19 @@ export default function ToDoSideBar({
             */
               setVert={setsideBarToggle}
             />
+            <ToDoAddListBtn mainList={mainList} setMainList={setMainList} />
+            <div className="h-[60vh] overflow-hidden overflow-y-auto">
+              {mainList.map((i) => (
+                <SideBarListBtn
+                  listData={i}
+                  listIndex={listIndex}
+                  mainList={mainList}
+                  setMainList={setMainList}
+                  setlistIndex={setlistIndex}
+                  key={`sideBarBtn${i.title}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

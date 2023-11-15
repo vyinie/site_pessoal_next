@@ -94,7 +94,7 @@ export default function ToDoItemComp({
       <div className="grid grid-cols-7 place-items-center w-full">
         <label
           htmlFor={`to_do_check_${to_do_item.id}`}
-          className="w-full col-span-5 overflow-hidden text-ellipsis whitespace-nowrap capitalize"
+          className="w-full col-span-5 overflow-hidden text-ellipsis capitalize"
         >
           {to_do_item.text}
         </label>

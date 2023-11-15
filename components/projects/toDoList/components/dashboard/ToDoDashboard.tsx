@@ -10,6 +10,7 @@ import { TDList, ToDoItem, ToDoListData } from "@/functions/interfaces";
 import { accessibility } from "@/functions/accessibilityFunctions";
 import { verifiers } from "@/functions/verifyers";
 import { ThreeDotsBtn } from "@/components/projects/components/global/buttons";
+import { ArrowForwardIos } from "@mui/icons-material";
 
 const verifier = new verifiers();
 const Access = new accessibility();
@@ -78,7 +79,7 @@ export default function ToDoDashboard({
   return (
     <div className="template_dashboard flex flex-col items-center">
       {/* form */}
-      <div className="flex gap-2 items-center mt-4 exept-mobile:translate-x-6">
+      <div className="flex gap-2 items-center mt-4 exept-mobile:translate-x-5">
         <ToDoForm
           newToDo={newToDo}
           setNewToDo={setNewToDo}
@@ -106,7 +107,7 @@ export default function ToDoDashboard({
       <div
         className={`${
           verticalList ? "pr-1" : ""
-        } relative mt-4 p-2  rounded-md bg-white`}
+        }  relative mt-4 p-2 rounded-md bg-white`}
       >
         <div
           className={`list 
@@ -129,10 +130,10 @@ export default function ToDoDashboard({
           ))}
         </div>
         <ToDoArrowBtn
-          className={`${verticalList ? "hidden" : "flex"} moblet:hidden`}
+          className={`${verticalList ? "hidden" : "flex"}`}
         />
         <ToDoArrowBtn
-          className={`${verticalList ? "hidden" : "flex"} moblet:hidden`}
+          className={`${verticalList ? "hidden" : "flex"}`}
           left
         />
       </div>
