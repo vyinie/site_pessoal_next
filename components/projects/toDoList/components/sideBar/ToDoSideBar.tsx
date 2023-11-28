@@ -50,7 +50,7 @@ export default function ToDoSideBar({
         >
           {/* titulo */}
           <div className="flex items-center justify-center w-full h-full">
-            <h1 className="text-2xl font-bold uppercase overflow-hidden text-ellipsis ">
+            <h1 className="text-2xl font-bold uppercase overflow-hidden text-ellipsis text-center">
               {mainList[listIndex]?.title}
             </h1>
           </div>
