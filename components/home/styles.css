@@ -1,16 +1,16 @@
 .title {
-  font-size: 70px;
+  font-size: 60px;
   line-height: 1;
 }
 .subtitleContainer {
   display: grid;
   grid-template-columns: min-content auto;
   align-items: center;
-  width: 626px;
+  width: 540px;
   gap: 15px;
 }
 .sub {
-  font-size: 28px;
+  font-size: 25px;
   line-height: 1;
 }
 @keyframes pisca {
@@ -38,7 +38,7 @@
     font-size: 60px;
   }
   .subtitleContainer {
-    width: 490px;
+    width: 520px;
     grid-template-columns: min-content 320px;
     justify-self: start;
   }
@@ -52,7 +52,7 @@
     font-size: 50px;
   }
   .subtitleContainer {
-    width: 415px;
+    width: 440px;
     grid-template-columns: min-content 280px;
   }
   .sub {

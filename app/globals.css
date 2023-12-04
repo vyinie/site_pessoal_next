@@ -8,16 +8,11 @@
   box-sizing: border-box;
 }
 body,
-html,
-.App {
+html {
   @apply w-full
   h-full
   bg-neutral-100
   ;
-}
-.App {
-  @apply bg-yellow-100;
-
 }
 
 *::-webkit-scrollbar {

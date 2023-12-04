@@ -1,5 +1,4 @@
 "use client";
-import './styles.css'
 import { useEffect, useState } from "react";
 
 export default function TextAnimation() {
@@ -18,5 +17,5 @@ export default function TextAnimation() {
       escreve("Me chamo Marcus e sou um web dev front-end");
     });
   }, []);
-  return <p className="w-fit leading-7 sub">{text}</p>;
+  return <p className="leading-7 w-fit sub">{text}</p>;
 }

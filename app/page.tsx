@@ -1,5 +1,5 @@
-import HomeIntro from "@/components/home/Home";
-import Projects from "@/components/projects/Projects";
+import {HomeIntro} from "@/components/home";
+import { ProjectsMenuSection } from "@/components/projectsMenu";
 
 export default async function Home() {
   return (
@@ -8,7 +8,7 @@ export default async function Home() {
         <HomeIntro />
 
         {/* projetos */}
-        <Projects />
+        <ProjectsMenuSection />
     </div>
   );
 }
