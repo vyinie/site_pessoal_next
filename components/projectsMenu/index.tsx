@@ -7,12 +7,10 @@ import colorgb from "@/public/_images/projectsItems/games/coloRGB_kase.png";
 
 import todo from "@/public/_images/projectsItems/apps/ToDo_kase.png";
 import kanban from "@/public/_images/projectsItems/apps/kanban_kase.png";
-import finnance from "@/public/_images/projectsItems/apps/finnance_kase.png";
 
 import mhsBS from "@/public/_images/projectsItems/landingPages/mhsBS/mhsBS_kase.png";
 import acAlma from "@/public/_images/projectsItems/landingPages/acAlma/acAlma_kase.png";
 
-import emBreve from "@/public/_images/projectsItems/em-breve.png";
 
 import { StaticImageData } from "next/image";
 import {ProjectsMenuSectionPanel} from "./ProjectsMenuSectionPanel";
