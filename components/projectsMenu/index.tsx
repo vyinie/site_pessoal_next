@@ -41,13 +41,13 @@ export function ProjectsMenuSection() {
       id: 0,
       selected: true,
       linksList: [
-        {
+        /* {
           title: "Finnance",
           des: "CRUD de controle financeiro, com banco de dados multi-tenancy",
           id: 3,
           link: "/finnance",
           img: finnance,
-        },
+        }, */
         {
           title: "Kanban",
           des: "tipo o To Do List, só que mais organizado",

@@ -2,8 +2,8 @@ import {
   SkeletonCard,
   SkeletonForm,
   SkeletonTab,
-} from "@/components/projects/components/global/skeletonCoponents";
-import "@/components/projects/finnance/dashboard/cards/style.css";
+} from "@/components/projectsComponents/components/global/skeletonCoponents";
+import "@/components/projectsComponents/finnance/dashboard/cards/style.css";
 
 export default async function DashboeardLoading() {
   return (

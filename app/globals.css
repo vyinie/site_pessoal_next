@@ -9,10 +9,7 @@
 }
 body,
 html {
-  @apply w-full
-  h-full
-  bg-neutral-100
-  ;
+  @apply w-full h-full bg-neutral-100 ;
 }
 
 *::-webkit-scrollbar {
@@ -29,7 +26,7 @@ html {
 .template {
   display: grid;
   grid-template-areas: "header header" "sideBar dashboard";
-  grid-template-rows: 60px auto;
+  grid-template-rows: 50px auto;
   grid-template-columns: 200px auto;
   @apply w-screen h-screen;
 }
@@ -61,36 +58,21 @@ html {
 
 .side_bar_wrapper {
   grid-area: sideBar;
-  @apply moblet:fixed 
-    moblet:top-0
-    moblet:left-0
-
-    h-full
-    w-full
-
-    moblet:bg-black
-    moblet:bg-opacity-60
-
-    flex
-    justify-center
-
-    moblet:justify-start
-
-    moblet:transition-all;
+  @apply flex justify-center w-full h-full moblet:fixed moblet:top-0 moblet:left-0 moblet:bg-black moblet:bg-opacity-60 moblet:justify-start moblet:transition-all;
 }
 
 /* ================== BUTOES ================== */
 .btn_hover_full {
-  @apply hover:bg-black dark:hover:bg-white hover:bg-opacity-20 rounded-full cursor-pointer transition relative;
+  @apply relative transition rounded-full cursor-pointer hover:bg-black dark:hover:bg-white hover:bg-opacity-20;
 }
 .btn_hover_md {
-  @apply hover:bg-black dark:hover:bg-white hover:bg-opacity-20 rounded-md cursor-pointer transition relative;
+  @apply relative transition rounded-md cursor-pointer hover:bg-black dark:hover:bg-white hover:bg-opacity-20;
 }
 .kase {
-  @apply absolute top-0 left-0 h-full w-full cursor-pointer;
+  @apply absolute top-0 left-0 w-full h-full cursor-pointer;
 }
 .bg_hover {
-  @apply hover:bg-neutral-300 hover:bg-opacity-80 dark:border-neutral-600 dark:hover:bg-neutral-600 dark:hover:bg-opacity-50 border-slate-300 transition-all;
+  @apply transition-all hover:bg-neutral-300 hover:bg-opacity-80 dark:border-neutral-600 dark:hover:bg-neutral-600 dark:hover:bg-opacity-50 border-slate-300;
 }
 /* ================== INPUTS ================== */
 
@@ -138,26 +120,9 @@ table {
 
 /* ================== DIVS ================== */
 .common_wrapper {
-  @apply fixed
-  top-0
-  left-0
-
-  h-screen
-  w-screen
-  
-  bg-opacity-60
-  bg-black
-
-  flex
-  items-center
-  justify-center;
+  @apply fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-black bg-opacity-60;
 }
 
 .skeletonShape {
-  @apply bg-zinc-200
-  border-zinc-600
-  
-  rounded-md
-  border
-  shadow-md;
+  @apply border rounded-md shadow-md bg-zinc-200 border-zinc-600;
 }

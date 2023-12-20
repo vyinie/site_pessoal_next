@@ -1,4 +1,4 @@
-import FeesCalculator from "@/components/projects/finnance/calculators/calculator";
+import FeesCalculator from "@/components/projectsComponents/finnance/calculators/calculator";
 
 export default async function Calculator() {
   return <FeesCalculator />;

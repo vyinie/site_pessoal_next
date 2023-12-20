@@ -1,4 +1,4 @@
-import ToDoList from "@/components/projects/toDoList/ToDo";
+import ToDoList from "@/components/projectsComponents/toDoList/ToDo";
 
 export default function ToDoPage() {
   return (

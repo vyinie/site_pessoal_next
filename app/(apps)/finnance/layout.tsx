@@ -1,5 +1,5 @@
-import ProjectHeader from "@/components/projects/components/ProjectHeader";
-import FinnanceSideBar from "@/components/projects/finnance/aside/aside";
+import ProjectHeader from "@/components/commonComponents/ProjectHeader";
+import FinnanceSideBar from "@/components/projectsComponents/finnance/aside/aside";
 
 export default function finnanceLayout({
   children,
